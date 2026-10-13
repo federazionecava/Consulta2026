@@ -1,0 +1,92 @@
+{
+  "aree": {
+    "istituzioni": { "nome": "Istituzioni" },
+    "giovani": { "nome": "Giovani e formazione" },
+    "agricoltura": { "nome": "Agricoltura e innovazione" }
+  },
+  "proposte": [
+    {
+      "slug": "invito-autorita-regione-veneto",
+      "numero": 1,
+      "area": "istituzioni",
+      "titolo": "Invito ufficiale delle Autorità della Regione del Veneto in Argentina",
+      "sintesi": "Proporre una visita istituzionale delle Autorità regionali in Argentina per incontrare le comunità venete, le associazioni e le istituzioni locali, rafforzando i rapporti tra Veneto e Argentina.",
+      "testo": [
+        "Proporre una visita istituzionale delle Autorità regionali in Argentina per incontrare le comunità venete, le associazioni e le istituzioni locali, rafforzando i rapporti tra Veneto e Argentina."
+      ]
+    },
+    {
+      "slug": "argentina-sede-consulta",
+      "numero": 2,
+      "area": "istituzioni",
+      "titolo": "Candidatura dell'Argentina quale futura sede della Consulta dei Veneti nel Mondo",
+      "sintesi": "Richiedere che venga valutata la possibilità di svolgere una futura sessione della Consulta in Argentina, riconoscendo il ruolo storico e l'importanza della collettività veneta presente nel Paese.",
+      "testo": [
+        "Richiedere che venga valutata la possibilità di svolgere una futura sessione della Consulta in Argentina, riconoscendo il ruolo storico e l'importanza della collettività veneta presente nel Paese."
+      ]
+    },
+    {
+      "slug": "scambio-giovanile",
+      "numero": 3,
+      "area": "giovani",
+      "titolo": "Ripresa dei programmi di scambio giovanile",
+      "sintesi": "Sollecitare la riattivazione dei programmi di mobilità destinati ai giovani discendenti veneti, favorendo soggiorni culturali, linguistici e formativi in Veneto.",
+      "testo": [
+        "Sollecitare la riattivazione dei programmi di mobilità destinati ai giovani discendenti veneti, favorendo soggiorni culturali, linguistici e formativi in Veneto."
+      ]
+    },
+    {
+      "slug": "formazione-e-stage",
+      "numero": 4,
+      "area": "giovani",
+      "titolo": "Corsi di perfezionamento, formazione e stage",
+      "sintesi": "Promuovere percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, con l'obiettivo di creare opportunità concrete per le nuove generazioni.",
+      "testo": [
+        "Promuovere percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, con l'obiettivo di creare opportunità concrete per le nuove generazioni."
+      ]
+    },
+    {
+      "slug": "risorse-e-finanziamenti",
+      "numero": 5,
+      "area": "giovani",
+      "titolo": "Ricerca di risorse e finanziamenti",
+      "sintesi": "Qualora non siano disponibili fondi regionali dedicati, chiedere alla Regione del Veneto di supportare le associazioni nell'individuazione di bandi, finanziamenti europei e internazionali, fondazioni, università e partner privati interessati a sostenere tali iniziative.",
+      "testo": [
+        "Qualora non siano disponibili fondi regionali dedicati, chiedere alla Regione del Veneto di supportare le associazioni nell'individuazione di bandi, finanziamenti europei e internazionali, fondazioni, università e partner privati interessati a sostenere tali iniziative."
+      ]
+    },
+    {
+      "slug": "scuole-agrarie-e-universita",
+      "numero": 6,
+      "area": "agricoltura",
+      "titolo": "Scambi tra scuole agrarie e università",
+      "sintesi": "Promuovere accordi di collaborazione tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina per realizzare programmi di mobilità, formazione e scambio di competenze.",
+      "testo": [
+        "Promuovere accordi di collaborazione tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina per realizzare programmi di mobilità, formazione e scambio di competenze."
+      ]
+    },
+    {
+      "slug": "droni-in-agricoltura",
+      "numero": 7,
+      "area": "agricoltura",
+      "titolo": "Formazione sull'utilizzo dei droni in agricoltura",
+      "sintesi": "Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore.",
+      "testo": [
+        "Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore."
+      ]
+    }
+  ],
+  "ragioni": [
+    { "titolo": "Affinità culturale", "testo": "La grande percentuale di discendenti italiani rende l'Argentina un contesto familiare e accogliente." },
+    { "titolo": "Valore identitario", "testo": "I giovani possono riscoprire radici comuni e rafforzare il senso di appartenenza." },
+    { "titolo": "Diversificazione degli scambi", "testo": "Ampliare le opportunità oltre l'UE, aprendo nuove prospettive formative e professionali." },
+    { "titolo": "Collaborazioni istituzionali", "testo": "Regione, Province e Comuni possono attivare accordi bilaterali con enti argentini." },
+    { "titolo": "Attrattività reciproca", "testo": "L'Argentina diventa meta di soggiorni culturali, mentre il Veneto si apre a giovani argentini." }
+  ],
+  "rete": [
+    { "valore": "×9", "etichetta": "L'Argentina è circa nove volte più grande dell'Italia: 2,8 milioni di km² contro 301 mila." },
+    { "valore": "1.580 km", "etichetta": "Buenos Aires – Bariloche · circa 24 ore di pullman", "confronto": "Venezia – Palermo · 1.425 km" },
+    { "valore": "1.071 km", "etichetta": "Buenos Aires – Mendoza · circa 15 ore di pullman", "confronto": "Venezia – Catanzaro · 1.113 km" },
+    { "valore": "20+", "etichetta": "associazioni federate", "confronto": "18 località, in 9 province e nella Capitale Federale" }
+  ]
+}

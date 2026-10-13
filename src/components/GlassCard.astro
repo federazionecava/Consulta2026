@@ -1,0 +1,20 @@
+---
+import type { HTMLTag } from 'astro/types';
+
+interface Props {
+  as?: HTMLTag;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { as: Tag = 'div', class: className, ...rest } = Astro.props;
+---
+
+<Tag class:list={['glass', 'glass-card', className]} {...rest}><slot /></Tag>
+
+<style>
+  .glass-card {
+    position: relative;
+    padding: var(--space-3);
+  }
+</style>

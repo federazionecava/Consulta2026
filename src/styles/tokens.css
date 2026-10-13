@@ -1,0 +1,53 @@
+/* Design tokens: the only place where colors are defined. */
+:root {
+  /* Palette */
+  --c-verde: #0b3b2a;
+  --c-bordo: #5e1327;
+  --c-carbone: #17191d;
+  --c-crema: #f6f1e7;
+  --c-oro: #d2ac62; /* gold on dark */
+  --c-oro-deco: #b98b3c; /* decorative gold */
+  --c-testo: #4a4640; /* body text on cream */
+
+  /* Areas */
+  --area-istituzioni: var(--c-bordo);
+  --area-giovani: var(--c-carbone);
+  --area-agricoltura: var(--c-verde);
+
+  /* Text on dark */
+  --on-dark: var(--c-crema);
+  --on-dark-muted: color-mix(in srgb, var(--c-crema) 78%, transparent);
+
+  /* Glass */
+  --glass-bg: color-mix(in srgb, var(--c-crema) 7%, transparent);
+  --glass-border: color-mix(in srgb, white 16%, transparent);
+  --glass-highlight: inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+  --glass-shadow: 0 24px 60px -24px color-mix(in srgb, black 60%, transparent);
+  --glass-blur: blur(18px) saturate(160%);
+  --glass-solid: color-mix(in srgb, var(--c-carbone) 92%, var(--c-crema));
+
+  /* Type */
+  --font: 'ZT Nature', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-small: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --fs-lead: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  --fs-h3: clamp(1.125rem, 1rem + 0.5vw, 1.4rem);
+  --fs-h2: clamp(2rem, 1.4rem + 3vw, 3.75rem);
+  --fs-h1: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+  --tracking-tight: -0.03em;
+
+  /* Space & shape */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --space-4: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --space-section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --gutter: clamp(1rem, 0.5rem + 3vw, 3rem);
+  --max-w: 76rem;
+  --radius: clamp(1.25rem, 1rem + 1vw, 2rem);
+  --radius-pill: 999px;
+  --header-h: 4.5rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
