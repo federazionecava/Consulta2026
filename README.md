@@ -1,53 +1,35 @@
 # nelmondo26
 
-Sitio estático (Astro) con las propuestas del CAVA para la Consulta dei Veneti nel Mondo.
+Sitio estático en HTML, CSS y JS puros con las propuestas del CAVA para la Consulta dei Veneti nel Mondo. No hace falta instalar ni compilar nada.
 
 ## Estructura
 
 ```
-src/            el sitio (lo que hay que editar)
-  data/         proposte.json: todos los textos
-  pages/        landing y subpáginas de las propuestas
-  components/   piezas reutilizables (tarjetas, chips, header…)
-  layouts/      estructura común (head, footer)
-  styles/       tokens.css (colores, medidas) y global.css
-  assets/       logo y fuentes que usa la web (optimizados)
-public/         archivos que se sirven tal cual (favicon, imagen OG, video/)
-recursos/       material original, no se publica
-  presentaciones/  las dos presentaciones HTML (fuente del contenido)
-  fuentes/         paquete completo de ZT Nature
-  logo/            logo original en alta resolución
+index.html          landing (propuestas, chi siamo, la rete, perché vale la pena, footer)
+proposte/           una página por propuesta (proposte/<slug>.html)
+css/style.css       todo el diseño. Colores y medidas, arriba de todo en :root
+js/main.js          animaciones, menú, videos de fondo
+assets/fonts/       ZT Nature (textos) y DM Serif Display (títulos, licencia OFL)
+assets/img/         logo, favicon, imagen para redes (og.jpg)
+video/              videos de fondo (ver videosabuscar.txt)
+recursos/           material original, no se publica (incluye videos-originales/ en alta)
+insporemake/        bocetos de inspiración
 ```
 
-`dist/`, `node_modules/` y `.astro/` se generan solos: no hace falta tocarlos.
+## Verlo
 
-## Correrlo
-
-Requiere Node 20+.
+Abrí `index.html` con doble clic. Para verlo como en un servidor real (lo más fiel), desde esta carpeta:
 
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # genera dist/ (para Netlify, Vercel o GitHub Pages)
-npm run preview  # sirve dist/ en local
+npx serve .        # o: python -m http.server
 ```
 
-Antes de publicar, poné el dominio en `astro.config.mjs` (`site`). Si va a GitHub Pages en un subpath, agregá también `base: '/nombre-repo'`.
+Para publicarlo, subí la carpeta tal cual a Netlify, Vercel, GitHub Pages o cualquier hosting.
 
-## Agregar un video a una propuesta
+## Agregar los videos de fondo
 
-1. Copiá el archivo a `public/video/<slug>.mp4`. El slug es el de la URL, por ejemplo `scambio-giovanile`.
-2. Opcional, pero recomendado: agregá el poster en `public/video/<slug>.jpg` (o `.webp`).
-3. Volvé a hacer el build. El video se detecta solo.
+Mirá `videosabuscar.txt`: dice qué video buscar para cada página y con qué nombre guardarlo en `video/`. Apenas el archivo existe, se muestra solo con un fundido sobre el gradiente, con una capa oscura encima para que el texto se lea. Si el visitante tiene activado el ahorro de datos o pidió reducir las animaciones, el video no se carga.
 
-También podés indicar las rutas a mano en los campos `video` y `poster` de `src/data/proposte.json`. Conviene un video corto, sin audio y comprimido (H.264, ~1080p, pocos MB). Si el usuario tiene activado el ahorro de datos, el video no se carga, y si pidió reducir las animaciones, queda en pausa.
+## Editar textos
 
-## Editar un texto
-
-Todo el contenido está en `src/data/proposte.json`:
-
-- `proposte`: `titolo`, `sintesi` (se usa como meta description) y `testo` (un elemento del array por cada párrafo).
-- `ragioni`: los 5 motivos de "Perché puntare sull'Argentina".
-- `rete`: los datos de la sección "La rete".
-
-El footer (contacto) está en `src/layouts/BaseLayout.astro`. Los placeholders entre `[corchetes]` están marcados con `TODO`. Colores y medidas: `src/styles/tokens.css`.
+Los textos están directamente en el HTML. Nav, menú y footer se repiten en las 8 páginas: si cambiás algo ahí (por ejemplo el mail de contacto del footer), cambialo en todas.

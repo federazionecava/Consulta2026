@@ -1,0 +1,77 @@
+VIDEOS A BUSCAR
+===============
+
+ESTADO (13/10/2026)
+-------------------
+YA ESTÁN (comprimidos a 720p, sin audio, en video/):
+  landing, y las propuestas 1 a 7.
+  Los originales en alta quedaron en recursos/videos-originales/ (no se publican).
+FALTA:
+  video/associazioni.mp4  (la banda oscura "Perché vale la pena" de la landing)
+
+Cómo agregarlos
+---------------
+- Guardá cada video en la carpeta video/ con EXACTAMENTE el nombre que figura abajo.
+- Apenas el archivo existe, la página lo muestra solo (con fundido). Si no existe, queda el gradiente.
+- El sitio ya le pone una capa oscura encima para que el texto contraste. El video se sigue viendo.
+- Formato recomendado: .mp4 (H.264), sin audio, 1920x1080 (o 1280x720), 10 a 20 segundos,
+  que pueda repetirse en loop sin un corte feo, idealmente menos de 5-8 MB.
+- Mejor tomas lentas y tranquilas (cámara lenta, drone, paneos suaves): el texto va encima.
+- Bancos gratuitos para buscar: pexels.com/videos, pixabay.com/videos, mixkit.co, coverr.co
+
+
+LANDING (index.html)
+--------------------
+video/landing.mp4
+  -> Buscar video de "Venecia desde el aire" o "Gran Canal de Venecia en cámara lenta",
+     o "Buenos Aires vista aérea". Ideal: algo que una Veneto y Argentina
+     (por ej. el puerto de Buenos Aires / barcos / el mar, idea del viaje de los emigrantes).
+
+video/associazioni.mp4   (banda oscura "Perché vale la pena")
+  -> Buscar video de "gente reunida en una fiesta / comunidad / asociación",
+     "manos brindando en una mesa larga", "danzas tradicionales". Algo cálido y humano.
+     (Si tienen video propio de un evento del CAVA, es el mejor para acá.)
+
+
+PROPUESTAS (carpeta proposte/)
+------------------------------
+1. Invito ufficiale delle Autorità della Regione del Veneto in Argentina
+   video/invito-autorita-regione-veneto.mp4
+   -> Buscar video de "apretón de manos / reunión institucional", "banderas flameando"
+      o "avión aterrizando en Buenos Aires" (la idea de la visita).
+
+2. Candidatura dell'Argentina quale futura sede della Consulta
+   video/argentina-sede-consulta.mp4
+   -> Buscar video de "íconos de la Argentina": Obelisco, Casa Rosada, Caminito,
+      Puerto Madero, bandera argentina flameando.
+
+3. Ripresa dei programmi di scambio giovanile
+   video/scambio-giovanile.mp4
+   -> Buscar video de "jóvenes viajando / estudiantes con mochila en Italia",
+      "jóvenes caminando por calles de Venecia, Verona o Padova".
+
+4. Corsi di perfezionamento, formazione e stage
+   video/formazione-e-stage.mp4
+   -> Buscar video de "universidad / estudiantes en un aula o biblioteca",
+      "jóvenes trabajando en una oficina o laboratorio" (pasantías).
+
+5. Ricerca di risorse e finanziamenti
+   video/risorse-e-finanziamenti.mp4
+   -> Buscar video de "reunión de trabajo / firma de acuerdo", "manos firmando un documento",
+      "equipo planificando con papeles y laptop". Evitar billetes: queda mejor algo de trabajo en equipo.
+
+6. Scambi tra scuole agrarie e università
+   video/scuole-agrarie-e-universita.mp4
+   -> Buscar video de "campo / viñedos del Veneto (colinas de Prosecco)", "campos de trigo en la pampa",
+      "estudiantes en el campo / agronomía".
+
+7. Formazione sull'utilizzo dei droni in agricoltura
+   video/droni-in-agricoltura.mp4
+   -> Buscar video de "drone agrícola volando sobre cultivos", "drone fumigando un campo",
+      "agricultura de precisión".
+
+
+OPCIONAL
+--------
+- Si un video pesa mucho, se puede comprimir gratis con HandBrake (preset "Web" / "Fast 1080p30",
+  y quitarle el audio).
