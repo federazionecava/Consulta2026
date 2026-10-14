@@ -1,2 +1,5 @@
 ﻿Thumbs.db
 .DS_Store
+
+# Videos en alta: pesan ~115 MB; la web usa las versiones comprimidas de video/
+recursos/videos-originales/

@@ -1,0 +1,20 @@
+Provincia	Ciudad de destino	Km aprox.	Tiempo en micro
+Capital Federal	Buenos Aires (CABA)	0 km	—
+Buenos Aires	La Plata	60 km	1 h – 1 h 30 min
+Buenos Aires	Mar del Plata	410 km	5 h – 6 h
+Buenos Aires	Pergamino	225 km	3 h – 3 h 30 min
+Santa Fe	Rosario	300 km	4 h – 4 h 30 min
+Santa Fe	Santa Fe capital	475 km	6 h – 7 h
+Santa Fe	Rafaela	530 km	6 h 30 min – 8 h
+Entre Ríos	Paraná	500 km	6 h – 7 h
+Entre Ríos	Gualeguaychú	230 km	3 h – 4 h
+Córdoba	Córdoba capital	700 km	8 h 30 min – 10 h
+Córdoba	Río Cuarto	600 km	7 h 30 min – 9 h
+Córdoba	San Francisco	575 km	7 h – 8 h
+Córdoba	Marcos Juárez	460 km	5 h 30 min – 7 h
+Tucumán	San Miguel de Tucumán	1.200 km	14 h – 16 h
+Catamarca	San Fernando del Valle de Catamarca	1.150 km	14 h – 16 h
+Mendoza	Mendoza capital	1.050 km	12 h – 14 h
+La Pampa	Santa Rosa	600 km	8 h – 10 h
+Río Negro	San Carlos de Bariloche	1.580 km	19 h – 22 h
+Río Negro	Villa Regina	1.100 km	13 h – 15 h

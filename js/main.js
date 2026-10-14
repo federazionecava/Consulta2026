@@ -97,37 +97,76 @@
     addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
   }
   // ---------- Mapa de la rete ----------
-  const map = document.querySelector('.map');
-  if (map) {
-    // Resaltar una ruta al pasar el mouse / tocar su fila
-    const routeButtons = document.querySelectorAll('.route[data-route]');
-    const setRoute = (id) => {
-      if (id) map.dataset.active = id; else delete map.dataset.active;
-      map.querySelectorAll('[data-route]').forEach((el) => el.classList.toggle('is-active', el.dataset.route === id));
-      routeButtons.forEach((b) => b.classList.toggle('is-active', b.dataset.route === id));
+  // Se elige una localidad (en la lista o tocando el mapa): se dibuja el viaje desde Buenos Aires.
+  // Con el mouse se previsualiza; con un clic queda elegida.
+  const mapCol = document.querySelector('.map-col');
+  if (mapCol) {
+    const locBtns = document.querySelectorAll('.route[data-city], .sede[data-city]');
+    let chosen = null;
+    let shown = null;
+    let touched = false;
+
+    const show = (city) => {
+      if (city) mapCol.dataset.active = city; else delete mapCol.dataset.active;
+      mapCol.querySelectorAll('.route-svg').forEach((g) => g.classList.toggle('is-active', g.dataset.city === city));
+      if (city && city !== shown) {
+        const anim = mapCol.querySelector(`.route-svg[data-city="${city}"] animateMotion`);
+        if (anim && anim.beginElement) anim.beginElement(); // el punto recorre el viaje
+      }
+      shown = city;
+      mapCol.querySelectorAll('.city, .city-label').forEach((el) => el.classList.toggle('is-active', el.dataset.city === city));
+      locBtns.forEach((b) => {
+        const on = b.dataset.city === city;
+        b.classList.toggle('is-active', on);
+        if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
+      });
     };
-    routeButtons.forEach((b) => {
-      b.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') setRoute(b.dataset.route); });
-      b.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') setRoute(null); });
-      b.addEventListener('focus', () => setRoute(b.dataset.route));
-      b.addEventListener('blur', () => setRoute(null));
-      b.addEventListener('click', () => setRoute(map.dataset.active === b.dataset.route ? null : b.dataset.route));
+    const choose = (city) => {
+      touched = true;
+      chosen = chosen === city ? null : city;
+      show(chosen);
+    };
+    const preview = (city) => (e) => { if (e.pointerType === 'mouse') show(city); };
+    const restore = (e) => { if (e.pointerType === 'mouse') show(chosen); };
+
+    // En celular, si el mapa no está a la vista, lo traemos
+    const bringMap = () => {
+      if (!matchMedia('(max-width: 860px)').matches) return;
+      const r = mapCol.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > innerHeight) mapCol.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    };
+
+    locBtns.forEach((b) => {
+      const city = b.dataset.city;
+      b.addEventListener('pointerenter', preview(city));
+      b.addEventListener('pointerleave', restore);
+      b.addEventListener('click', () => { choose(city); bringMap(); });
+    });
+    mapCol.querySelectorAll('.city, .hq').forEach((g) => {
+      const city = g.dataset.city;
+      g.addEventListener('pointerenter', preview(city));
+      g.addEventListener('pointerleave', restore);
+      g.addEventListener('click', () => choose(city));
     });
 
-    // Italia a la misma escala
-    const toggle = document.querySelector('[data-italia]');
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        const on = toggle.getAttribute('aria-pressed') !== 'true';
-        toggle.setAttribute('aria-pressed', String(on));
-        map.classList.toggle('show-italia', on);
-        if (on) setRoute(null);
-        // En celular el mapa queda arriba del botón: lo traemos a la vista
-        if (on && matchMedia('(max-width: 860px)').matches) {
-          map.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
-        }
-      });
+    // Al aparecer el mapa, arranca mostrando el viaje más largo (si todavía nadie tocó nada)
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        setTimeout(() => { if (!touched) { chosen = 'mendoza'; show(chosen); } }, 1600);
+      }, { threshold: 0.4 });
+      io.observe(mapCol);
     }
+
+    // La rete / Italia alla stessa scala
+    mapCol.querySelectorAll('.map-switch button').forEach((b) => {
+      b.addEventListener('click', () => {
+        const italia = b.dataset.view === 'italia';
+        mapCol.classList.toggle('show-italia', italia);
+        mapCol.querySelectorAll('.map-switch button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      });
+    });
   }
 
   // ---------- Videos de fondo ----------
