@@ -50,7 +50,7 @@ Es más cómodo para cambios grandes (todas las páginas de una), pero **reescri
 
 ## Antes de publicar: el dominio
 
-La vista previa al compartir por WhatsApp (imagen + título) necesita la dirección completa de la web. Por ahora todos los `.html` usan `https://tu-dominio.com`: cuando tengas el dominio real, hacé un **buscar y reemplazar** de `https://tu-dominio.com` por tu dirección (sin barra al final) en `index.html`, en la carpeta `proposte/` y en `recursos/generador/build.mjs` (constante `SITE`).
+La vista previa al compartir por WhatsApp (imagen + título) necesita la dirección completa de la web. Todos los `.html` usan `https://consulta.comitatocava.org`. Si el dominio cambia, hacé un **buscar y reemplazar** por la nueva dirección (sin barra al final) en `index.html`, en la carpeta `proposte/` y en `recursos/generador/build.mjs` (constante `SITE`).
 
 Después de publicar, se puede probar cómo se ve el link en https://www.opengraph.xyz o en el depurador de Facebook. WhatsApp guarda en caché las vistas previas: si cambiás la imagen, puede tardar en actualizarse.
 
@@ -63,7 +63,8 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 ## Pendientes para mañana
 
 **Para que la web funcione bien publicada**
-- [ ] **Elegir dónde publicar** (GitHub Pages, Netlify, Vercel…) y reemplazar `https://tu-dominio.com` (ver arriba). Sin esto, WhatsApp no muestra la imagen de vista previa.
+- [x] Dominio configurado en los `.html`: `https://consulta.comitatocava.org`.
+- [ ] **Elegir dónde publicar** (GitHub Pages, Netlify, Vercel…) y apuntar `consulta.comitatocava.org` ahí. Hasta que esté online, WhatsApp no muestra la imagen de vista previa.
 - [ ] **Hacer el primer commit.** Nada de lo de hoy está commiteado. Ojo: `git` no está en el PATH de esta compu (se puede usar GitHub Desktop).
 - [ ] Probar el link compartido por WhatsApp una vez publicado.
 - [ ] Probar en un **iPhone y un Android reales**: videos de fondo, menú, mapa (tocar ciudades) y navegación entre propuestas.

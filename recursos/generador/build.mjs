@@ -143,7 +143,7 @@ for (const c of CITIES) {
 // ---------------- Piezas comunes ----------------
 // Dominio donde se publica la web. WhatsApp, Facebook, etc. necesitan URLs completas
 // para mostrar la imagen de vista previa. Cambiarlo acá (o buscar y reemplazar en los .html).
-const SITE = 'https://tu-dominio.com';
+const SITE = 'https://consulta.comitatocava.org';
 
 // m = { path, ogTitle, image, imageAlt }
 const head = (r, title, desc, m) => `<!doctype html>
