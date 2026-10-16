@@ -347,8 +347,12 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 .p-card h3 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } /* toda la tarjeta es clickeable */
 .p-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--line); }
 .p-area { font-size: .88rem; font-weight: 500; color: var(--ink-soft); }
-.p-arrow { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 1px solid var(--line); transition: background-color .3s, color .3s, border-color .3s, transform .45s var(--ease); }
-.p-card:hover .p-arrow { background: var(--area); border-color: var(--area); color: var(--white); transform: translateX(3px); }
+/* Botón "Leggi →" siempre visible y relleno: en pruebas la gente no se daba cuenta de que la tarjeta se abría */
+.p-arrow { display: inline-flex; align-items: center; gap: .45rem; padding: .5rem .95rem .5rem 1.05rem; border-radius: 999px; background: var(--area); color: var(--white); font-size: .88rem; font-weight: 600; white-space: nowrap; transition: transform .45s var(--ease), box-shadow .3s; }
+.p-arrow i { font-style: normal; display: inline-block; animation: p-nudge 2.4s var(--ease) infinite; }
+@keyframes p-nudge { 0%, 60%, 100% { transform: translateX(0); } 75% { transform: translateX(4px); } }
+.p-card:hover .p-arrow { transform: translateX(3px); box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--area) 70%, transparent); }
+.p-card:hover .p-arrow i { animation: none; transform: translateX(3px); }
 /* En celular van de a una: sin altura mínima, la tarjeta mide lo que su contenido */
 @media (max-width: 600px) {
   .p-card { min-height: 0; gap: .85rem; padding: 1.2rem 1.3rem 1.1rem; }
@@ -714,7 +718,7 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
   .js [data-reveal]:not(.map) { transform: none; }
   @keyframes fade-up { from { opacity: 0; } to { opacity: 1; } }
   .p-card:hover, .footer-mail:hover, .btn:hover, .toggle:hover, .share:hover, .share:hover .share-icon { transform: none; }
-  .share.is-copied .share-icon { animation: none; }
+  .share.is-copied .share-icon, .p-arrow i { animation: none; }
   @keyframes count-plus { from { opacity: 0; } to { opacity: 1; } }
   .share-txt { transform: none !important; }
 }

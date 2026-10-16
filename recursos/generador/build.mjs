@@ -307,7 +307,7 @@ const card = (r, p, i) => `
               <h3><a href="${r}proposte/${p.slug}.html">${esc(p.titolo)}</a></h3>
               <div class="p-foot">
                 <span class="p-area">${AREE[p.area]}</span>
-                <span class="p-arrow" aria-hidden="true">→</span>
+                <span class="p-arrow" aria-hidden="true">Leggi <i>→</i></span>
               </div>
             </article>
           </li>`;
