@@ -178,7 +178,10 @@
     const run = (dt, delay) => {
       const target = Number(dt.dataset.count);
       const num = dt.firstChild; // nodo de texto con el número (el "+" va aparte)
-      dt.style.minWidth = `${dt.offsetWidth}px`; // que no salte el ancho mientras cuenta
+      // Que no salte el ancho mientras cuenta: se mide el número (no la celda, que en desktop ocupa toda la columna)
+      const range = document.createRange();
+      range.selectNodeContents(dt);
+      dt.style.minWidth = `${Math.ceil(range.getBoundingClientRect().width)}px`;
       dt.classList.add('is-counting');
       num.textContent = '0';
       const dur = 1400;
@@ -189,6 +192,7 @@
         num.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
         if (t < 1) return requestAnimationFrame(tick);
         dt.classList.replace('is-counting', 'is-counted');
+        dt.style.minWidth = '';
       };
       requestAnimationFrame(tick);
     };
