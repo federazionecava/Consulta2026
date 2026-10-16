@@ -84,7 +84,7 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 - [ ] Hero corto de la propuesta 2: *Candidatura dell'Argentina a sede della Consulta* + su subtítulo.
 - [ ] Footer: *Un ponte tra il Veneto e l'Argentina. / Per sostenere le proposte o collaborare con il CAVA, scriveteci.*
 - [ ] La rete: *…per ritrovarsi, ognuno parte da qui.*
-- [ ] Vista previa al compartir: los títulos y descripciones cortos de la tabla `SHARE` en `build.mjs` (por ejemplo *Proposta 1 · Le Autorità del Veneto in Argentina*) y el de la landing: *7 proposte del CAVA per la Consulta dei Veneti nel Mondo*.
+- [ ] Vista previa al compartir: los títulos y descripciones cortos de la tabla `SHARE` en `build.mjs` (por ejemplo *Proposta 1 · Le Autorità del Veneto in Argentina*) y el de la landing: *CAVA · Proposte per la Consulta dei Veneti nel Mondo* / *Sette proposte per rafforzare i rapporti tra Veneto e Argentina, su istituzioni, giovani e agricoltura.*
 
 **Contenido que falta**
 - [ ] Video para la franja "Perché vale la pena" (`video/associazioni.mp4`): gente del CAVA, una fiesta, una reunión. Hoy tiene fondo liso.

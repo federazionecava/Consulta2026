@@ -313,7 +313,7 @@ const card = (r, p, i) => `
           </li>`;
 
 // ---------------- Landing ----------------
-const index = `${head('', 'CAVA · Sette proposte per la Consulta dei Veneti nel Mondo', "11.400 km tra Veneto e Argentina, una sola comunità: proposte su istituzioni, giovani e agricoltura.", { path: '', ogTitle: '7 proposte del CAVA per la Consulta dei Veneti nel Mondo', seoDesc: "11.400 km tra Veneto e Argentina, una sola comunità: le proposte del CAVA per la Consulta dei Veneti nel Mondo su istituzioni, giovani e agricoltura.", image: 'assets/img/og.jpg?v=2', imageAlt: 'Logo del CAVA su un canale di Venezia: Proposte per la Consulta dei Veneti nel Mondo' })}
+const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo', 'Sette proposte per rafforzare i rapporti tra Veneto e Argentina, su istituzioni, giovani e agricoltura.', { path: '', ogTitle: 'CAVA · Proposte per la Consulta dei Veneti nel Mondo', seoDesc: "Le associazioni venete dell'Argentina (CAVA) presentano sette proposte per rafforzare i rapporti tra Veneto e Argentina, su istituzioni, giovani e agricoltura.", image: 'assets/img/og.jpg?v=2', imageAlt: 'Logo del CAVA su un canale di Venezia: Proposte per la Consulta dei Veneti nel Mondo' })}
 <body>${nav('', true)}
 
   <main id="main">
