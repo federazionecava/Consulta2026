@@ -8,8 +8,8 @@ Sitio estático en HTML, CSS y JS puros con las propuestas del CAVA para la Cons
 index.html          landing (propuestas, chi siamo, la rete, perché vale la pena, footer)
 proposte/           una página por propuesta (proposte/<slug>.html)
 css/style.css       todo el diseño. Colores y medidas, arriba de todo en :root
-js/main.js          animaciones, nav, menú, mapa, videos de fondo
-assets/fonts/       ZT Nature (la tipografía del CAVA)
+js/main.js          animaciones, nav, menú, mapa, chips de sedes (celular), botón compartir, videos de fondo
+assets/fonts/       ZT Nature (la tipografía del CAVA): solo los 5 pesos que usa la web
 assets/img/         logo, íconos, imágenes de vista previa (og.jpg y og/)
 video/              videos de fondo, ya comprimidos (720p, sin audio)
 favicon.ico         ícono de la pestaña
@@ -17,7 +17,6 @@ site.webmanifest    íconos para "agregar a inicio" en celulares
 
 recursos/           material de trabajo: NO se publica
   presentaciones/     las dos presentaciones HTML (fuente del contenido)
-  fuentes/            paquete completo de ZT Nature
   logo/               logo original (png y svg)
   videos-originales/  videos en alta, sin comprimir (fuera de git, ver .gitignore)
   insporemake/        bocetos de inspiración
@@ -26,7 +25,7 @@ recursos/           material de trabajo: NO se publica
   videosabuscar.txt   qué video va en cada página
 ```
 
-Para publicar, alcanza con subir todo **menos** `recursos/`.
+Para publicar, alcanza con subir todo **menos** `recursos/` (en Vercel lo deja afuera `.vercelignore`).
 
 ## Verlo
 
@@ -52,7 +51,13 @@ Es más cómodo para cambios grandes (todas las páginas de una), pero **reescri
 
 La vista previa al compartir por WhatsApp (imagen + título) necesita la dirección completa de la web. Todos los `.html` usan `https://consulta.comitatocava.org`. Si el dominio cambia, hacé un **buscar y reemplazar** por la nueva dirección (sin barra al final) en `index.html`, en la carpeta `proposte/` y en `recursos/generador/build.mjs` (constante `SITE`).
 
-Después de publicar, se puede probar cómo se ve el link en https://www.opengraph.xyz o en el depurador de Facebook. WhatsApp guarda en caché las vistas previas: si cambiás la imagen, puede tardar en actualizarse.
+Los textos de la vista previa son cortos a propósito (WhatsApp corta lo largo): están en la tabla `SHARE` de `build.mjs` (título ≤ 50 caracteres, descripción ≤ 100). Para Google se usa esa descripción más *"Una proposta del CAVA per la Consulta dei Veneti nel Mondo."* (120–160 caracteres).
+
+Después de publicar, se puede probar cómo se ve el link en https://www.opengraph.xyz o en el depurador de Facebook. WhatsApp guarda en caché las vistas previas (también las que fallaron): para probar enseguida, mandá el link con `?v=2` al final.
+
+## Botón compartir
+
+Cada propuesta tiene, al final, un botón *Condividi la proposta* que copia el link al portapapeles. No está en el HTML: lo agrega `js/main.js` y copia la dirección de `<link rel="canonical">` (la publicada, aunque lo pruebes en local).
 
 ## Videos de fondo
 
@@ -64,9 +69,9 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 
 **Para que la web funcione bien publicada**
 - [x] Dominio configurado en los `.html`: `https://consulta.comitatocava.org`.
-- [ ] **Elegir dónde publicar** (GitHub Pages, Netlify, Vercel…) y apuntar `consulta.comitatocava.org` ahí. Hasta que esté online, WhatsApp no muestra la imagen de vista previa.
-- [ ] **Hacer el primer commit.** Nada de lo de hoy está commiteado. Ojo: `git` no está en el PATH de esta compu (se puede usar GitHub Desktop).
-- [ ] Probar el link compartido por WhatsApp una vez publicado.
+- [x] Publicado en Vercel en `consulta.comitatocava.org`.
+- [ ] **Vercel no publica los commits nuevos**: el plan gratis bloquea los deploys de commits de quien no es miembro del equipo (el repo es de la organización `federazionecava`). Lo publicado todavía tiene `tu-dominio.com` en la vista previa, por eso WhatsApp no muestra la imagen. Opciones: Redeploy a mano desde Vercel, `npx vercel --prod` con la cuenta dueña, o pasar a otro hosting (ej. Cloudflare Pages). Ojo: `git` no está en el PATH de esta compu (se puede usar GitHub Desktop).
+- [ ] Probar el link compartido por WhatsApp una vez publicado (con `?v=2`).
 - [ ] Probar en un **iPhone y un Android reales**: videos de fondo, menú, mapa (tocar ciudades) y navegación entre propuestas.
 
 **Datos para confirmar con el CAVA**
@@ -79,7 +84,7 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 - [ ] Hero corto de la propuesta 2: *Candidatura dell'Argentina a sede della Consulta* + su subtítulo.
 - [ ] Footer: *Un ponte tra il Veneto e l'Argentina. / Per sostenere le proposte o collaborare con il CAVA, scriveteci.*
 - [ ] La rete: *…per ritrovarsi, ognuno parte da qui.*
-- [ ] Vista previa al compartir: *Da Venezia a Buenos Aires: sette proposte…* / *11.400 km tra il Veneto e l'Argentina, una sola comunità…*
+- [ ] Vista previa al compartir: los títulos y descripciones cortos de la tabla `SHARE` en `build.mjs` (por ejemplo *Proposta 1 · Le Autorità del Veneto in Argentina*) y el de la landing: *7 proposte del CAVA per la Consulta dei Veneti nel Mondo*.
 
 **Contenido que falta**
 - [ ] Video para la franja "Perché vale la pena" (`video/associazioni.mp4`): gente del CAVA, una fiesta, una reunión. Hoy tiene fondo liso.
