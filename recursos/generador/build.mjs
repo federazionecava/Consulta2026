@@ -55,6 +55,19 @@ const P = [
 ];
 P.forEach((p, i) => (p.n = i + 1));
 
+// Textos para la vista previa al compartir (WhatsApp, etc.) y para Google.
+// WhatsApp en el celular muestra ~2 líneas de título y ~2 de descripción: título ≤ 50 caracteres, descripción ≤ 100.
+const SHARE = {
+  'invito-autorita-regione-veneto': ['Le Autorità del Veneto in Argentina', 'Una visita istituzionale per incontrare comunità, associazioni e istituzioni venete in Argentina.'],
+  'argentina-sede-consulta': ["L'Argentina sede della Consulta", 'Una futura sessione della Consulta in Argentina, dove vive una grande collettività veneta.'],
+  'scambio-giovanile': ['Riprendere gli scambi giovanili', 'Soggiorni culturali, linguistici e formativi in Veneto per i giovani discendenti veneti.'],
+  'formazione-e-stage': ['Formazione e stage in Veneto', 'Alta formazione, tirocini e stage in enti, università e aziende venete per i giovani.'],
+  'risorse-e-finanziamenti': ['Risorse e finanziamenti', 'Bandi, fondi europei, fondazioni e partner privati per sostenere i progetti delle associazioni.'],
+  'scuole-agrarie-e-universita': ['Scuole agrarie e università', "Accordi tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina."],
+  'droni-in-agricoltura': ['Droni in agricoltura', 'Corsi e laboratori pratici su droni e agricoltura di precisione per studenti, docenti e aziende.'],
+};
+P.forEach((p) => ([p.shareTitolo, p.shareDesc] = SHARE[p.slug]));
+
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -297,7 +310,7 @@ const card = (r, p, i) => `
           </li>`;
 
 // ---------------- Landing ----------------
-const index = `${head('', 'CAVA · Sette proposte per la Consulta dei Veneti nel Mondo', "11.400 km tra il Veneto e l'Argentina, una sola comunità. Le proposte del CAVA su istituzioni, giovani e agricoltura.", { path: '', ogTitle: 'Da Venezia a Buenos Aires: sette proposte per la Consulta dei Veneti nel Mondo', image: 'assets/img/og.jpg', imageAlt: 'Venezia e Buenos Aires, unite da 11.400 km: le proposte del CAVA per la Consulta dei Veneti nel Mondo' })}
+const index = `${head('', 'CAVA · Sette proposte per la Consulta dei Veneti nel Mondo', "11.400 km tra Veneto e Argentina, una sola comunità: proposte su istituzioni, giovani e agricoltura.", { path: '', ogTitle: '7 proposte del CAVA per la Consulta dei Veneti nel Mondo', image: 'assets/img/og.jpg', imageAlt: 'Venezia e Buenos Aires, unite da 11.400 km: le proposte del CAVA per la Consulta dei Veneti nel Mondo' })}
 <body>${nav('', true)}
 
   <main id="main">
@@ -368,7 +381,7 @@ ${FEATURED.map((id) => CITY[id]).map((c) => `            <li><button class="rout
 
           <div class="localita" data-reveal>
             <h3>Tutte le sedi</h3>
-            <p class="routes-hint">Tocca una località per vedere il viaggio da Buenos Aires</p>
+            <p class="routes-hint"><span class="hint-desk">Tocca una località per vedere il viaggio da Buenos Aires</span><span class="hint-mob">Tocca una provincia per vedere le sue sedi, poi una sede per il viaggio da Buenos Aires</span></p>
             <dl>
 ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map((c) => `<button class="sede" type="button" data-city="${c.id}">${c.n}</button>`).join('')}</dd></div>`).join('\n')}
             </dl>
@@ -433,7 +446,7 @@ ${p.ragioni.map(([e, t, d], i) => `          <li class="reason" data-reveal styl
         </ul>
       </section>` : '';
 
-  const html = `${head(r, `Proposta ${p.n} · ${p.corto ? p.corto.titolo : p.titolo} · CAVA`, p.sintesi, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} di 7 — ${p.corto ? p.corto.titolo : p.titolo}`, image: `assets/img/og/${p.slug}.jpg`, imageAlt: `Proposta ${p.n} di 7 del CAVA: ${p.titolo}` })}
+  const html = `${head(r, `Proposta ${p.n} · ${p.shareTitolo} · CAVA`, p.shareDesc, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} · ${p.shareTitolo}`, image: `assets/img/og/${p.slug}.jpg`, imageAlt: `Proposta ${p.n} di 7 del CAVA: ${p.titolo}` })}
 <body data-area="${p.area}" data-page="${p.slug}">${nav(r, false, p)}
 
   <main id="main">
