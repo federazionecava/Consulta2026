@@ -351,8 +351,8 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
             <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
-            <div><dt>18</dt><dd>località, in 9 province e nella Capitale Federale</dd></div>
-            <div><dt>20+</dt><dd>associazioni federate</dd></div>
+            <div><dt data-count="18">18</dt><dd>località, in 9 province e nella Capitale Federale</dd></div>
+            <div><dt data-count="20">20<span class="count-plus">+</span></dt><dd>associazioni federate</dd></div>
           </dl>
         </div>
       </div>

@@ -169,6 +169,39 @@
     });
   }
 
+  // ---------- Contadores de "Chi siamo" ----------
+  // <dt data-count="20">: al aparecer, el número sube desde 0 (rápido al principio, frena al final).
+  // El HTML ya trae el número final, así que sin JS se ve igual. Con "reducir animaciones" también cuenta
+  // (no hay movimiento), pero el "+" solo aparece con un fundido.
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    const run = (dt, delay) => {
+      const target = Number(dt.dataset.count);
+      const num = dt.firstChild; // nodo de texto con el número (el "+" va aparte)
+      dt.style.minWidth = `${dt.offsetWidth}px`; // que no salte el ancho mientras cuenta
+      dt.classList.add('is-counting');
+      num.textContent = '0';
+      const dur = 1400;
+      let start;
+      const tick = (now) => {
+        start ??= now + delay;
+        const t = Math.min(Math.max((now - start) / dur, 0), 1);
+        num.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
+        if (t < 1) return requestAnimationFrame(tick);
+        dt.classList.replace('is-counting', 'is-counted');
+      };
+      requestAnimationFrame(tick);
+    };
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        cio.disconnect();
+        counters.forEach((dt, i) => run(dt, 250 + i * 180));
+      });
+    }, { threshold: 0.6 });
+    cio.observe(counters[0].closest('.facts') || counters[0]);
+  }
+
   // ---------- Tutte le sedi (celular) ----------
   // Cada provincia es un chip: al tocarlo se estira y muestra sus ciudades (una abierta por vez).
   // En desktop el botón de la provincia queda como texto y fuera del orden de tabulación.
