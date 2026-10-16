@@ -69,6 +69,8 @@ const SHARE = {
 P.forEach((p) => ([p.shareTitolo, p.shareDesc] = SHARE[p.slug]));
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// En las etiquetas del <head> también el apóstrofo: algunos lectores de vista previa cortan el texto en "l'Argentina"
+const escAttr = (s) => esc(s).replace(/'/g, '&#39;');
 const pad = (n) => String(n).padStart(2, '0');
 
 // ---------------- Mapa (SVG de la presentación "Mille chilometri") ----------------
@@ -158,32 +160,33 @@ for (const c of CITIES) {
 // para mostrar la imagen de vista previa. Cambiarlo acá (o buscar y reemplazar en los .html).
 const SITE = 'https://consulta.comitatocava.org';
 
-// m = { path, ogTitle, image, imageAlt }
+// m = { path, ogTitle, image, imageAlt, seoDesc }
+// desc es la descripción corta de la vista previa al compartir; para Google (seoDesc) conviene 120–160 caracteres.
 const head = (r, title, desc, m) => `<!doctype html>
 <html lang="it">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
-  <meta name="description" content="${esc(desc)}">
+  <meta name="description" content="${escAttr(m.seoDesc || desc)}">
   <link rel="canonical" href="${SITE}/${m.path}">
   <meta name="theme-color" content="#0b1828">
 
   <!-- Vista previa al compartir (WhatsApp, Facebook, LinkedIn, X) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="it_IT">
-  <meta property="og:site_name" content="CAVA · Comitato delle Associazioni Venete dell'Argentina">
+  <meta property="og:site_name" content="CAVA · Comitato delle Associazioni Venete dell&#39;Argentina">
   <meta property="og:url" content="${SITE}/${m.path}">
-  <meta property="og:title" content="${esc(m.ogTitle)}">
-  <meta property="og:description" content="${esc(desc)}">
+  <meta property="og:title" content="${escAttr(m.ogTitle)}">
+  <meta property="og:description" content="${escAttr(desc)}">
   <meta property="og:image" content="${SITE}/${m.image}">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="${esc(m.imageAlt)}">
+  <meta property="og:image:alt" content="${escAttr(m.imageAlt)}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${esc(m.ogTitle)}">
-  <meta name="twitter:description" content="${esc(desc)}">
+  <meta name="twitter:title" content="${escAttr(m.ogTitle)}">
+  <meta name="twitter:description" content="${escAttr(desc)}">
   <meta name="twitter:image" content="${SITE}/${m.image}">
 
   <!-- Íconos -->
@@ -310,7 +313,7 @@ const card = (r, p, i) => `
           </li>`;
 
 // ---------------- Landing ----------------
-const index = `${head('', 'CAVA · Sette proposte per la Consulta dei Veneti nel Mondo', "11.400 km tra Veneto e Argentina, una sola comunità: proposte su istituzioni, giovani e agricoltura.", { path: '', ogTitle: '7 proposte del CAVA per la Consulta dei Veneti nel Mondo', image: 'assets/img/og.jpg', imageAlt: 'Venezia e Buenos Aires, unite da 11.400 km: le proposte del CAVA per la Consulta dei Veneti nel Mondo' })}
+const index = `${head('', 'CAVA · Sette proposte per la Consulta dei Veneti nel Mondo', "11.400 km tra Veneto e Argentina, una sola comunità: proposte su istituzioni, giovani e agricoltura.", { path: '', ogTitle: '7 proposte del CAVA per la Consulta dei Veneti nel Mondo', seoDesc: "11.400 km tra Veneto e Argentina, una sola comunità: le proposte del CAVA per la Consulta dei Veneti nel Mondo su istituzioni, giovani e agricoltura.", image: 'assets/img/og.jpg', imageAlt: 'Venezia e Buenos Aires, unite da 11.400 km: le proposte del CAVA per la Consulta dei Veneti nel Mondo' })}
 <body>${nav('', true)}
 
   <main id="main">
@@ -446,7 +449,7 @@ ${p.ragioni.map(([e, t, d], i) => `          <li class="reason" data-reveal styl
         </ul>
       </section>` : '';
 
-  const html = `${head(r, `Proposta ${p.n} · ${p.shareTitolo} · CAVA`, p.shareDesc, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} · ${p.shareTitolo}`, image: `assets/img/og/${p.slug}.jpg`, imageAlt: `Proposta ${p.n} di 7 del CAVA: ${p.titolo}` })}
+  const html = `${head(r, `Proposta ${p.n} · ${p.shareTitolo} · CAVA`, p.shareDesc, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} · ${p.shareTitolo}`, seoDesc: `${p.shareDesc} Una proposta del CAVA per la Consulta dei Veneti nel Mondo.`, image: `assets/img/og/${p.slug}.jpg`, imageAlt: `Proposta ${p.n} di 7 del CAVA: ${p.titolo}` })}
 <body data-area="${p.area}" data-page="${p.slug}">${nav(r, false, p)}
 
   <main id="main">
