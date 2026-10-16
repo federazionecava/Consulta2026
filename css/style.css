@@ -359,6 +359,12 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
   .p-foot { padding-top: .8rem; }
 }
 
+/* Descargar el documento PDF (debajo de las tarjetas) */
+.pdf-wrap { display: flex; justify-content: center; margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); }
+.btn-pdf small { font-size: .85rem; font-weight: 500; opacity: .65; }
+.btn-pdf .btn-arrow { font-weight: 700; }
+.btn-pdf:hover .btn-arrow { transform: translateY(3px); }
+
 /* ---------- Chi siamo ---------- */
 .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(2rem, 1rem + 5vw, 6rem); align-items: start; }
 .about-head { display: grid; gap: 1.1rem; justify-items: start; }

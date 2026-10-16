@@ -2,12 +2,16 @@
 // Uso, desde la raíz del proyecto:  node recursos/generador/build.mjs .
 // OJO: reescribe los .html. Si cambiaste algo a mano en los .html, pasalo también acá antes de correrlo.
 // Los SVG del mapa salen de recursos/generador/maps (extraídos de la presentación "Mille chilometri").
-import { writeFileSync, readFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+// También arma el documento PDF de las propuestas (documento/...pdf): ver "Documento PDF" al final.
+import { writeFileSync, readFileSync, mkdirSync, existsSync } from 'node:fs';
+import { join, dirname, resolve } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { execFileSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
 
 const OUT = process.argv[2];
-const MAPS = join(dirname(fileURLToPath(import.meta.url)), 'maps');
+const GEN = dirname(fileURLToPath(import.meta.url));
+const MAPS = join(GEN, 'maps');
 
 const AREE = {
   istituzioni: 'Istituzioni',
@@ -67,6 +71,21 @@ const SHARE = {
   'droni-in-agricoltura': ['Droni in agricoltura', 'Corsi e laboratori pratici su droni e agricoltura di precisione per studenti, docenti e aziende.'],
 };
 P.forEach((p) => ([p.shareTitolo, p.shareDesc] = SHARE[p.slug]));
+
+// Textos que se repiten en la web y en el PDF
+const ABOUT = 'Il CAVA coordina le attività delle associazioni e rappresenta la comunità veneto-argentina presso la Regione Veneto e le autorità consolari italiane e argentine.';
+const PERCHE = "Le associazioni di emigrati veneti all'estero si presentano come ambasciatori autentici della Regione Veneto, in grado di rappresentarne valori, tradizioni e capacità innovativa. Sono ponti operativi che collegano il Veneto con i Paesi ospitanti.";
+const RUOLI = [
+  ['Istituzioni', 'Aprire le porte istituzionali verso autorità e organismi locali e nazionali.'],
+  ['Economia', 'Favorire rapporti economici e professionali e canali di cooperazione culturale, economica e accademica, con opportunità per imprese e investitori.'],
+  ['Cultura e turismo', 'Promuovere scambi culturali e turistici, incentivando visite e percorsi identitari, anche per chi voglia intraprendere attività in Argentina.'],
+  ['Giovani', 'Sostenere iniziative formative e programmi di mobilità per giovani e professionisti, rafforzando il legame identitario e il capitale umano.'],
+];
+const CITAZIONE = "Le associazioni non sono semplici custodi della tradizione, ma <em>attori strategici di diplomazia culturale ed economica</em>, capaci di aprire le porte dell'Argentina e di generare nuove opportunità di interscambio.";
+
+// Documento PDF con las siete propuestas (lo genera este script al final, con Chrome o Edge)
+const PDF_FILE = 'CAVA-Proposte-Consulta-Veneti-nel-Mondo.pdf';
+const PDF_PAGES = 6;
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // En las etiquetas del <head> también el apóstrofo: algunos lectores de vista previa cortan el texto en "l'Argentina"
@@ -338,6 +357,9 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
       </div>
       <ol class="proposals">${P.map((p, i) => card('', p, i)).join('')}
       </ol>
+      <div class="pdf-wrap" data-reveal>
+        <a class="btn btn-pdf" href="documento/${PDF_FILE}" download><span class="btn-arrow" aria-hidden="true">↓</span>Scarica il documento<small>PDF · ${PDF_PAGES} pagine</small></a>
+      </div>
     </section>
 
     <section class="section container" id="chi-siamo">
@@ -347,7 +369,7 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
           <h2>Una federazione di associazioni venete</h2>
         </div>
         <div class="about-body" data-reveal style="--i:1">
-          <p class="big">Il CAVA coordina le attività delle associazioni e rappresenta la comunità veneto-argentina davanti alla Regione Veneto e alle autorità consolari italiane e argentine.</p>
+          <p class="big">${ABOUT}</p>
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
             <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
@@ -411,18 +433,13 @@ ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map(
     <div class="container">
       <div class="sec-head on-dark" data-reveal>
         <h2>Ruolo strategico delle associazioni</h2>
-        <p>Le associazioni di emigrati veneti all'estero si presentano come ambasciatori autentici della Regione Veneto, in grado di rappresentarne valori, tradizioni e capacità innovativa. Sono ponti operativi che collegano il Veneto con i Paesi ospitanti.</p>
+        <p>${PERCHE}</p>
       </div>
       <ol class="roles">
-${[
-  ['Istituzioni', 'Aprire le porte istituzionali verso autorità e organismi locali e nazionali.'],
-  ['Economia', 'Favorire rapporti economici e professionali e canali di cooperazione culturale, economica e accademica, con opportunità per imprese e investitori.'],
-  ['Cultura e turismo', 'Promuovere scambi culturali e turistici, incentivando visite e percorsi identitari, anche per chi voglia intraprendere attività in Argentina.'],
-  ['Giovani', 'Sostenere iniziative formative e programmi di mobilità per giovani e professionisti, rafforzando il legame identitario e il capitale umano.'],
-].map(([t, d], i) => `        <li class="role" data-reveal style="--i:${i}"><span class="role-n">${['I', 'II', 'III', 'IV'][i]}</span><h3>${t}</h3><p>${d}</p></li>`).join('\n')}
+${RUOLI.map(([t, d], i) => `        <li class="role" data-reveal style="--i:${i}"><span class="role-n">${['I', 'II', 'III', 'IV'][i]}</span><h3>${t}</h3><p>${d}</p></li>`).join('\n')}
       </ol>
       <blockquote class="quote" data-reveal>
-        <p>Le associazioni non sono semplici custodi della tradizione, ma <em>attori strategici di diplomazia culturale ed economica</em>, capaci di aprire le porte dell'Argentina e di generare nuove opportunità di interscambio.</p>
+        <p>${CITAZIONE}</p>
       </blockquote>
     </div>
   </section>
@@ -508,3 +525,198 @@ ${footer(r)}`;
   writeFileSync(join(OUT, 'proposte', `${p.slug}.html`), html);
 }
 console.log('ok', P.length + 1, 'pages');
+
+// ---------------- Documento PDF ----------------
+// Arma recursos/documento/documento.html (A4, estilos en documento.css) y lo imprime a PDF con Chrome o Edge.
+// Para verlo antes de imprimir, abrí documento.html en el navegador. El QR (qr.svg) lleva a SITE: si cambia
+// el dominio, regeneralo con:  npx qrcode -t svg -e M -q 0 -d "#13263b" -l "#0000" -o recursos/generador/qr.svg "https://nuevo-dominio/"
+const D = '../../';
+const dots = `<div class="dots" aria-hidden="true"><svg viewBox="0 0 475 986">${puntini}<circle class="ba" cx="326.2" cy="386.1" r="10"/></svg></div>`;
+const qr = readFileSync(join(GEN, 'qr.svg'), 'utf8').replace(/^[\s\S]*?(?=<svg)/, '');
+const run = (n) => `
+    <header class="run"><span class="run-brand"><img src="${D}assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>${pad(n)}</b> / ${pad(PDF_PAGES)}</span></header>`;
+const legend = `<ul class="legend">${Object.entries(AREE).map(([k, v]) => `<li data-area="${k}">${v}</li>`).join('')}</ul>`;
+
+const pcard = (p) => `
+        <article class="pc" data-area="${p.area}">
+          <div class="pc-side"><span class="pc-num">${pad(p.n)}</span><span class="pc-emoji emoji">${p.emoji}</span></div>
+          <div class="pc-body">
+            <span class="pc-area">${AREE[p.area]}</span>
+            <h3>${esc(p.titolo)}</h3>
+            <p>${esc(p.sintesi)}</p>${p.ragioni ? `
+            <div class="reasons">
+              <p class="reasons-title">Perché puntare sull'Argentina</p>
+${p.ragioni.map(([e, t, d]) => `              <div class="reason"><span class="emoji">${e}</span><div><h4>${esc(t)}</h4><p>${esc(d)}</p></div></div>`).join('\n')}
+            </div>` : ''}
+            <a class="pc-link" href="${SITE}/proposte/${p.slug}.html">Leggi online <span>→</span></a>
+          </div>
+        </article>`;
+
+const doc = `<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>CAVA · Proposte per la Consulta dei Veneti nel Mondo</title>
+  <style>
+${readFileSync(join(GEN, 'documento.css'), 'utf8')}
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <div class="cover-hero">${dots}
+      <div class="cover-content">
+        <img class="cover-logo" src="${D}assets/img/logo-cava.png" alt="CAVA · Comitato delle Associazioni Venete dell'Argentina">
+        <h1>Proposte per la Consulta dei Veneti nel&nbsp;Mondo</h1>
+        <p class="lead">Sette proposte per rafforzare i rapporti tra Veneto e Argentina.</p>
+      </div>
+    </div>
+    <div class="cover-sheet">
+      <div class="cover-sheet-head"><h2>Le sette proposte</h2>${legend}</div>
+      <ol class="toc">
+${P.map((p) => `        <li data-area="${p.area}"><b>${pad(p.n)}</b><span>${esc(p.titolo)}</span><small>${AREE[p.area]}</small></li>`).join('\n')}
+      </ol>
+      <p class="cover-foot"><a href="${SITE}/">${SITE.replace(/^https?:\/\//, '')}</a><a href="${MAIL}">federazionecava@gmail.com</a></p>
+    </div>
+  </section>
+
+  <section class="page">${run(2)}
+    <div class="inner">
+      <div class="about">
+        <div class="about-head">
+          <img class="about-logo" src="${D}assets/img/logo-cava.png" alt="">
+          <p class="label">Chi siamo</p>
+          <h2 class="h2">Una federazione di associazioni venete</h2>
+        </div>
+        <div class="about-body">
+          <p class="big">${ABOUT}</p>
+          <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
+          <dl class="facts">
+            <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
+            <div><dt>18</dt><dd>località, in 9 province e nella Capitale Federale</dd></div>
+            <div><dt>20<span>+</span></dt><dd>associazioni federate</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="band">${dots}
+      <h2>Ruolo strategico delle associazioni</h2>
+      <p class="band-lead">${PERCHE}</p>
+      <ol class="roles">
+${RUOLI.map(([t, d], i) => `        <li class="role"><span class="role-n">${['I', 'II', 'III', 'IV'][i]}</span><h3>${t}</h3><p>${d}</p></li>`).join('\n')}
+      </ol>
+      <blockquote class="quote"><p>${CITAZIONE}</p></blockquote>
+    </div>
+  </section>
+
+  <section class="page">${run(3)}
+    <div class="inner">
+      <div class="rete-head">
+        <p class="label">La rete</p>
+        <h2 class="h2">Mille chilometri per ritrovarci</h2>
+        <p class="big">Le associazioni si trovano in 9 province e nella Capitale Federale, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
+      </div>
+      <div class="rete">
+        <div>
+          <div class="routes-top">
+            <p class="routes-hint">Le distanze da Buenos Aires, a confronto con un viaggio simile in Italia</p>
+            <p class="cmp-legend"><span class="ar">In Argentina</span><span class="it">In Italia</span></p>
+          </div>
+          <ol class="routes">
+${FEATURED.map((id) => CITY[id]).map((c) => `            <li class="route">
+              <span class="route-top"><span class="route-city">${c.n}</span><span class="route-time">${c.t} di pullman</span></span>
+              <span class="cmp">
+                <span class="cmp-row ar" style="--v:${num(c.km)}"><span class="cmp-label">Buenos Aires → ${c.n}</span><span class="cmp-track"><i></i></span><b>${c.km} km</b></span>
+                <span class="cmp-row it" style="--v:${num(c.it[1])}"><span class="cmp-label">Venezia → ${c.it[0]}</span><span class="cmp-track"><i></i></span><b>${c.it[1]} km</b></span>
+              </span>
+            </li>`).join('\n')}
+          </ol>
+          <div class="localita">
+            <h3>Tutte le sedi</h3>
+            <dl>
+${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map((c) => c.n).join(', ')}</dd></div>`).join('\n')}
+            </dl>
+          </div>
+        </div>
+        <div class="map-col">
+          <figure class="map">
+          ${mapSvg}
+          ${mapLabels}
+          <span class="map-hq" style="${pct([342, 386])}">Buenos Aires<b>sede del CAVA</b></span>
+          </figure>
+          <p class="map-legend"><span class="lg-hq">Buenos Aires, sede del CAVA</span><span class="lg-dot">Località con associazioni</span><span class="lg-prov">Province con associazioni</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">${run(4)}
+    <div class="inner">
+      <div class="sec-head">
+        <p class="label">Le proposte</p>
+        <h2 class="h2">Sette proposte, tre ambiti</h2>
+        ${legend}
+      </div>
+      <div class="props">${P.slice(0, 3).map(pcard).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="page">${run(5)}
+    <div class="inner">
+      <div class="props">${P.slice(3).map(pcard).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="page back">${dots}
+    <div class="back-content">
+      <img class="back-logo" src="${D}assets/img/logo-cava.png" alt="CAVA">
+      <h2>Un ponte tra il Veneto <span>e l'Argentina.</span></h2>
+      <div class="back-contact">
+        <p>Per sostenere le proposte o collaborare con il CAVA, scriveteci.</p>
+        <a class="mail" href="${MAIL}"><span class="mail-text"><small>Scrivici</small>federazionecava@gmail.com</span><span class="mail-arrow">→</span></a>
+      </div>
+      <a class="qr" href="${SITE}/">
+        <div class="qr-code">${qr}</div>
+        <div class="qr-text">
+          <h3>Le proposte online</h3>
+          <p>Inquadra il codice con il telefono per aprire il sito, con una pagina per ogni proposta e la mappa della rete.</p>
+          <span class="qr-url">${SITE.replace(/^https?:\/\//, '')} <span>→</span></span>
+        </div>
+      </a>
+      <div class="back-bottom"><span>© 2026 CAVA · Comitato delle Associazioni Venete dell'Argentina</span><span>federazionecava@gmail.com</span></div>
+    </div>
+  </section>
+</body>
+</html>
+`;
+
+const docDir = join(OUT, 'recursos', 'documento');
+mkdirSync(docDir, { recursive: true });
+const docHtml = join(docDir, 'documento.html');
+writeFileSync(docHtml, doc);
+
+// Imprime con el primer Chrome / Edge que encuentre (o el de la variable CHROME)
+const BROWSERS = [
+  process.env.CHROME,
+  'C:/Program Files/Google/Chrome/Application/chrome.exe',
+  'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+  'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+  'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/usr/bin/google-chrome',
+  '/usr/bin/chromium',
+].filter(Boolean);
+const browser = BROWSERS.find((b) => existsSync(b));
+const pdfDir = join(OUT, 'documento');
+mkdirSync(pdfDir, { recursive: true });
+if (browser) {
+  execFileSync(browser, [
+    '--headless=new', '--disable-gpu', '--no-pdf-header-footer', '--print-to-pdf-no-header',
+    `--user-data-dir=${join(tmpdir(), 'cava-pdf')}`, '--virtual-time-budget=5000',
+    `--print-to-pdf=${resolve(pdfDir, PDF_FILE)}`, pathToFileURL(resolve(docHtml)).href,
+  ], { stdio: 'ignore' });
+  console.log('ok documento/' + PDF_FILE);
+} else {
+  console.log(`No encontré Chrome ni Edge: abrí ${docHtml}, Imprimir > Guardar como PDF (sin márgenes ni encabezados) y guardalo como documento/${PDF_FILE}`);
+}

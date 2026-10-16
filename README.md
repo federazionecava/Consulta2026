@@ -7,6 +7,7 @@ Sitio estático en HTML, CSS y JS puros con las propuestas del CAVA para la Cons
 ```
 index.html          landing (propuestas, chi siamo, la rete, perché vale la pena, footer)
 proposte/           una página por propuesta (proposte/<slug>.html)
+documento/          el PDF con las siete propuestas (lo genera build.mjs)
 css/style.css       todo el diseño. Colores y medidas, arriba de todo en :root
 js/main.js          animaciones, nav, menú, mapa, chips de sedes (celular), botón compartir, videos de fondo
 assets/fonts/       ZT Nature (la tipografía del CAVA): solo los 5 pesos que usa la web
@@ -55,6 +56,12 @@ Los textos de la vista previa son cortos a propósito (WhatsApp corta lo largo):
 
 Después de publicar, se puede probar cómo se ve el link en https://www.opengraph.xyz o en el depurador de Facebook. WhatsApp guarda en caché las vistas previas (también las que fallaron): para probar enseguida, mandá el link con `?v=2` al final.
 
+## Documento PDF
+
+`documento/CAVA-Proposte-Consulta-Veneti-nel-Mondo.pdf` (6 páginas A4) se descarga desde el botón *Scarica il documento*, debajo de las tarjetas de la landing. Tiene portada con índice, chi siamo, la rete con el mapa, las siete propuestas y, al final, un QR que lleva a la web.
+
+Lo genera el mismo `build.mjs`, con los mismos textos que las páginas: arma `recursos/documento/documento.html` y lo imprime con Chrome o Edge (si no encuentra ninguno, explica cómo imprimirlo a mano). El diseño está en `recursos/generador/documento.css`. Si cambia el dominio, regenerá también el QR (`recursos/generador/qr.svg`): el comando está en `build.mjs`, en la sección *Documento PDF*.
+
 ## Botón compartir
 
 Cada propuesta tiene, al final, un botón *Condividi la proposta* que copia el link al portapapeles. No está en el HTML: lo agrega `js/main.js` y copia la dirección de `<link rel="canonical">` (la publicada, aunque lo pruebes en local).
@@ -87,7 +94,6 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 - [ ] Vista previa al compartir: los títulos y descripciones cortos de la tabla `SHARE` en `build.mjs` (por ejemplo *Proposta 1 · Le Autorità del Veneto in Argentina*) y el de la landing: *CAVA · Proposte per la Consulta dei Veneti nel Mondo* / *Sette proposte per rafforzare i rapporti tra Veneto e Argentina, su istituzioni, giovani e agricoltura.*
 
 **Contenido que falta**
-- [ ] Video para la franja "Perché vale la pena" (`video/associazioni.mp4`): gente del CAVA, una fiesta, una reunión. Hoy tiene fondo liso.
 - [ ] Fotos reales (eventos, sedes, socios): es lo que más haría que la web no parezca hecha por IA.
 - [ ] Más texto por propuesta si existe (antecedentes, ejemplos concretos). Hoy cada una tiene una sola frase.
 - [ ] Opcional: firma y fecha ("Buenos Aires, [fecha] · [Nombre], Presidente del CAVA").
