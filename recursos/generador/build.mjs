@@ -387,9 +387,7 @@ ${FEATURED.map((id) => CITY[id]).map((c) => `            <li><button class="rout
             <p class="routes-hint"><span class="hint-desk">Tocca una località per vedere il viaggio da Buenos Aires</span><span class="hint-mob">Tocca una provincia per vedere le sue sedi, poi una sede per il viaggio da Buenos Aires</span></p>
             <dl>
 ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map((c) => `<button class="sede" type="button" data-city="${c.id}">${c.n}</button>`).join('')}</dd></div>`).join('\n')}
-            </dl>
-            <p class="note">Km su strada e ore di pullman indicative.</p>
-          </div>
+            </dl>          </div>
         </div>
 
         <div class="map-col" data-reveal>

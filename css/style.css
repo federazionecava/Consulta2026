@@ -375,8 +375,8 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 /* En celular: número a la izquierda y texto a la derecha; los textos alineados en una misma columna */
 @media (max-width: 520px) {
   .facts { grid-template-columns: auto 1fr; gap: 1rem 0; }
-  .facts div { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; column-gap: 1.1rem; align-items: baseline; }
-  .facts dd { margin: 0; }
+  .facts div { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; column-gap: 1.1rem; align-items: center; padding-block: .9rem; }
+  .facts dd { margin: 0; line-height: 1.35; }
 }
 
 /* ---------- La rete: mapa ---------- */
