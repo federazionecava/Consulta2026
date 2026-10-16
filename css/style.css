@@ -349,6 +349,11 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 .p-area { font-size: .88rem; font-weight: 500; color: var(--ink-soft); }
 .p-arrow { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 1px solid var(--line); transition: background-color .3s, color .3s, border-color .3s, transform .45s var(--ease); }
 .p-card:hover .p-arrow { background: var(--area); border-color: var(--area); color: var(--white); transform: translateX(3px); }
+/* En celular van de a una: sin altura mínima, la tarjeta mide lo que su contenido */
+@media (max-width: 600px) {
+  .p-card { min-height: 0; gap: .85rem; padding: 1.2rem 1.3rem 1.1rem; }
+  .p-foot { padding-top: .8rem; }
+}
 
 /* ---------- Chi siamo ---------- */
 .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(2rem, 1rem + 5vw, 6rem); align-items: start; }
@@ -411,6 +416,31 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 .sede { padding: .15rem .45rem; margin-left: -.45rem; border-radius: .4rem; font-size: 1rem; transition: background-color .25s, color .25s; }
 .sede:hover, .sede.is-active { background: var(--paper); color: var(--rosso); }
 .localita .note { font-size: .85rem; color: var(--ink-soft); }
+/* La provincia es un botón (lo pone main.js), pero en desktop se ve y se comporta como texto */
+.prov { padding: 0; font: inherit; color: inherit; cursor: default; pointer-events: none; }
+.prov-n { display: none; }
+.hint-mob { display: none; }
+@media (max-width: 600px) { .js .hint-desk { display: none; } .js .hint-mob { display: inline; } }
+/* En celular: cada provincia es un chip; al tocarlo se estira y muestra sus ciudades */
+@media (max-width: 600px) {
+  .localita dl { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.1rem 0; }
+  .localita dl > div {
+    display: inline-flex; align-items: center; max-width: 100%;
+    padding: .2rem; border-radius: 1.4rem; background: var(--paper); border: 1px solid var(--line);
+    transition: border-color .3s, background-color .3s;
+  }
+  .localita dl > div.is-open { background: var(--white); border-color: color-mix(in srgb, var(--verde) 45%, transparent); }
+  .localita dt { margin: 0; flex: none; align-self: flex-start; }
+  .prov { display: inline-flex; align-items: center; gap: .45rem; padding: .4rem .45rem .4rem .75rem; border-radius: 999px; font-size: .92rem; font-weight: 700; color: var(--verde); white-space: nowrap; cursor: pointer; pointer-events: auto; }
+  .prov-n { display: grid; place-items: center; min-width: 1.4rem; height: 1.4rem; padding: 0 .35rem; border-radius: 999px; background: var(--verde); color: var(--white); font-size: .72rem; transition: background-color .3s, transform .4s var(--ease-spring); }
+  .is-open .prov-n { background: var(--navy); transform: scale(.85); }
+  /* Cerrado: en una sola línea (si no, las ciudades ocultas se apilan y estiran el chip hacia abajo) */
+  .localita dd { flex-wrap: nowrap; max-width: 0; overflow: hidden; align-items: center; gap: .1rem; transition: max-width .55s var(--ease); }
+  .localita dd .sede { margin: 0; padding: .35rem .55rem; border-radius: 999px; white-space: nowrap; opacity: 0; transform: translateX(-.4rem); transition: opacity .25s, transform .4s var(--ease), background-color .25s, color .25s; }
+  .is-open dd .sede { opacity: 1; transform: none; transition-delay: calc(.08s + var(--i, 0) * 50ms), calc(.08s + var(--i, 0) * 50ms), 0s, 0s; }
+  .sede:hover, .sede.is-active { background: var(--paper); }
+  .is-open .sede.is-active { background: color-mix(in srgb, var(--rosso) 10%, transparent); }
+}
 
 /* Columna del mapa: selector + mapa + nota (fija al hacer scroll en desktop) */
 .map-col { position: sticky; top: 5.5rem; display: grid; justify-items: center; gap: .9rem; }
@@ -571,7 +601,49 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
   .pager .only { grid-column: auto; }
   .pager .next { text-align: left; justify-items: start; }
 }
-.back-wrap { display: flex; justify-content: center; margin-top: clamp(3rem, 2rem + 3vw, 5rem); }
+.back-wrap { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; margin-top: clamp(3rem, 2rem + 3vw, 5rem); }
+
+/* Compartir: copia el link de la propuesta (lo inserta main.js junto a "Torna alle proposte").
+   Misma forma que .btn, pero con contorno, para que se lean como pareja. */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.share {
+  display: inline-flex; align-items: center; gap: .7rem;
+  padding: calc(1rem - 1.5px) calc(1.6rem - 1.5px) calc(1rem - 1.5px) calc(1.3rem - 1.5px); border-radius: 999px;
+  font: inherit; font-weight: 700; font-size: 1.05rem; line-height: normal; cursor: pointer;
+  color: var(--navy); background: transparent; border: 1.5px solid var(--navy);
+  transition: transform .4s var(--ease), background-color .3s, border-color .3s;
+}
+.share:hover { transform: translateY(-3px); background: var(--white); }
+.share:active { transform: translateY(-1px) scale(.97); }
+.share:focus-visible { outline: 2px solid var(--leone); outline-offset: 3px; }
+
+.share-icon { position: relative; flex: none; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--area, var(--leone)); color: var(--white); transition: background-color .35s, transform .5s var(--ease-spring); }
+.share-icon::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--verde); opacity: 0; pointer-events: none; }
+.share-ico { grid-area: 1 / 1; display: block; width: 1.05rem; height: 1.05rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .45s var(--ease-spring), opacity .25s; }
+.share-ico-share circle { fill: currentColor; stroke: none; }
+.share-ico-check { opacity: 0; transform: scale(.4); stroke-width: 2.8; stroke-dasharray: 22; stroke-dashoffset: 22; }
+.share:hover .share-icon { transform: rotate(-12deg) scale(1.08); }
+
+/* Los dos textos ocupan la misma celda: al cambiar, el botón no cambia de ancho */
+.share-label { display: grid; }
+.share-txt { grid-area: 1 / 1; transition: opacity .25s, transform .4s var(--ease); }
+.share-txt-done { opacity: 0; transform: translateY(.5em); }
+
+/* Copiado: el ícono pasa a verde con una onda, se dibuja el tilde y el texto sube */
+.share.is-copied { border-color: var(--verde); }
+.share.is-copied .share-icon { background: var(--verde); transform: none; animation: share-pop .5s var(--ease-spring); }
+.share.is-copied .share-icon::after { animation: share-ring .8s var(--ease) forwards; }
+.share.is-copied .share-ico-share { opacity: 0; transform: scale(.3) rotate(-90deg); }
+.share.is-copied .share-ico-check { opacity: 1; transform: none; animation: share-draw .45s .1s var(--ease) forwards; }
+.share.is-copied .share-txt, .share.is-error .share-txt { opacity: 0; transform: translateY(-.5em); }
+.share.is-copied .share-txt-done, .share.is-error .share-txt-done { opacity: 1; transform: none; color: var(--verde); }
+.share.is-error { border-color: var(--rosso); }
+.share.is-error .share-txt-done { color: var(--rosso); }
+.share.is-error .share-icon { background: var(--rosso); animation: share-shake .4s; }
+@keyframes share-pop { 0% { transform: scale(.8); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+@keyframes share-ring { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(2); } }
+@keyframes share-draw { to { stroke-dashoffset: 0; } }
+@keyframes share-shake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
 .btn {
   display: inline-flex; align-items: center; gap: .7rem;
   padding: 1rem 1.6rem 1rem 1.3rem; border-radius: 999px;
@@ -630,5 +702,7 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
   .hq-ring, .hero-emoji .float, .hero-down span { animation: none; }
   .js [data-reveal]:not(.map) { transform: none; }
   @keyframes fade-up { from { opacity: 0; } to { opacity: 1; } }
-  .p-card:hover, .footer-mail:hover, .btn:hover, .toggle:hover { transform: none; }
+  .p-card:hover, .footer-mail:hover, .btn:hover, .toggle:hover, .share:hover, .share:hover .share-icon { transform: none; }
+  .share.is-copied .share-icon { animation: none; }
+  .share-txt { transform: none !important; }
 }

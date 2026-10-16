@@ -169,6 +169,130 @@
     });
   }
 
+  // ---------- Tutte le sedi (celular) ----------
+  // Cada provincia es un chip: al tocarlo se estira y muestra sus ciudades (una abierta por vez).
+  // En desktop el botón de la provincia queda como texto y fuera del orden de tabulación.
+  const provs = document.querySelectorAll('.localita dl > div');
+  if (provs.length) {
+    const mq = matchMedia('(max-width: 600px)');
+    const dl = provs[0].parentElement;
+    const items = [...provs].map((row) => {
+      const dt = row.querySelector('dt');
+      const dd = row.querySelector('dd');
+      const sedi = dd.querySelectorAll('.sede');
+      sedi.forEach((s, i) => s.style.setProperty('--i', i));
+      dd.id = `prov-${dt.textContent.trim().toLowerCase().replace(/\W+/g, '-')}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'prov';
+      btn.setAttribute('aria-controls', dd.id);
+      btn.innerHTML = `<span>${dt.textContent.trim()}</span><span class="prov-n" aria-hidden="true">${sedi.length}</span>`;
+      dt.replaceChildren(btn);
+      return { row, btn, dd };
+    });
+
+    // Ancho final de las ciudades: lo que miden en una línea, sin pasarse del ancho disponible
+    const fit = ({ row, btn, dd }) => {
+      dd.style.flexWrap = 'nowrap';
+      const full = dd.scrollWidth;
+      dd.style.flexWrap = '';
+      const room = dl.clientWidth - btn.offsetWidth - (row.offsetWidth - row.clientWidth) - 8;
+      return Math.max(0, Math.min(full, room));
+    };
+    const setOpen = (it, open) => {
+      it.row.classList.toggle('is-open', open);
+      it.btn.setAttribute('aria-expanded', String(open));
+      it.dd.style.flexWrap = open ? 'wrap' : '';
+      it.dd.style.maxWidth = open ? `${fit(it)}px` : '';
+      it.dd.inert = mq.matches && !open;
+    };
+    const sync = () => items.forEach((it) => {
+      it.btn.tabIndex = mq.matches ? 0 : -1;
+      if (mq.matches) it.btn.setAttribute('aria-expanded', String(it.row.classList.contains('is-open')));
+      else it.btn.removeAttribute('aria-expanded');
+      if (it.row.classList.contains('is-open')) setOpen(it, mq.matches);
+      else it.dd.inert = mq.matches;
+    });
+
+    items.forEach((it) => it.btn.addEventListener('click', () => {
+      if (!mq.matches) return;
+      const open = !it.row.classList.contains('is-open');
+      items.forEach((o) => { if (o !== it && o.row.classList.contains('is-open')) setOpen(o, false); });
+      setOpen(it, open);
+    }));
+    // Si se elige una ciudad desde el mapa o las rutas, se abre su provincia
+    document.addEventListener('click', (e) => {
+      if (!mq.matches || !e.target.closest('.route, .city, .hq')) return;
+      const active = dl.querySelector('.sede.is-active');
+      const it = active && items.find((o) => o.row.contains(active));
+      if (!it || it.row.classList.contains('is-open')) return;
+      items.forEach((o) => { if (o !== it) setOpen(o, false); });
+      setOpen(it, true);
+    });
+    mq.addEventListener('change', sync);
+    addEventListener('resize', () => items.forEach((it) => { if (it.row.classList.contains('is-open')) setOpen(it, true); }), { passive: true });
+    sync();
+  }
+
+  // ---------- Compartir la propuesta ----------
+  // En cada propuesta, al final: un botón que copia el link al portapapeles.
+  const backWrap = document.querySelector('.hero-proposal') && document.querySelector('.back-wrap');
+  if (backWrap) {
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const url = canonical ? canonical.href : location.href.split('#')[0];
+    const icons =
+      // Los nodos están corridos 1px a la izquierda: dos de los tres círculos están a la derecha
+      // y así se ve centrado dentro del círculo.
+      '<svg class="share-ico share-ico-share" viewBox="0 0 24 24" aria-hidden="true"><g transform="translate(-1 0)"><circle cx="18" cy="5.5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="M8.3 10.8l7.4-4M8.3 13.2l7.4 4"/></g></svg>' +
+      '<svg class="share-ico share-ico-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+    const LABEL = 'Condividi la proposta';
+
+    const copy = async (text) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (_) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (_) {}
+        ta.remove();
+        return ok;
+      }
+    };
+
+    const live = document.createElement('span');
+    live.className = 'visually-hidden';
+    live.setAttribute('aria-live', 'polite');
+    document.body.appendChild(live);
+
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'share';
+    // Los dos textos están superpuestos: el botón no cambia de ancho al confirmar
+    b.innerHTML =
+      `<span class="share-icon">${icons}</span>` +
+      `<span class="share-label"><span class="share-txt">${LABEL}</span><span class="share-txt share-txt-done" aria-hidden="true"></span></span>`;
+    backWrap.prepend(b);
+
+    const done = b.querySelector('.share-txt-done');
+    let timer;
+    b.addEventListener('click', async () => {
+      const ok = await copy(url);
+      b.classList.remove('is-copied', 'is-error');
+      void b.offsetWidth; // reinicia la animación si se vuelve a tocar
+      b.classList.add(ok ? 'is-copied' : 'is-error');
+      done.textContent = ok ? 'Link copiato!' : 'Copia non riuscita';
+      live.textContent = ok ? 'Link della proposta copiato negli appunti' : 'Non è stato possibile copiare il link';
+      clearTimeout(timer);
+      timer = setTimeout(() => b.classList.remove('is-copied', 'is-error'), 2400);
+    });
+  }
+
   // ---------- Videos de fondo ----------
   // <video class="bg-video" data-src="video/xxx.mp4">: se carga solo cuando está en pantalla,
   // se pausa fuera de ella y, si el archivo todavía no existe, queda el gradiente.
