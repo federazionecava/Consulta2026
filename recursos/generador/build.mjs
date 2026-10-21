@@ -112,7 +112,7 @@ const BA = [326.2, 386.1];
 // pos = lado de la etiqueta: r derecha, l izquierda, t arriba, b abajo, bl abajo-izquierda.
 // it = comparación con un viaje desde Venezia (de la presentación).
 const CITIES = [
-  { id: 'buenos-aires', n: 'Buenos Aires', prov: 'Capitale Federale', xy: BA, hq: true },
+  { id: 'buenos-aires', n: 'Buenos Aires', prov: 'Città Autonoma di Buenos Aires', xy: BA, hq: true },
   { id: 'la-plata', n: 'La Plata', prov: 'Buenos Aires', xy: [335.8, 395.9], main: true, pos: 'bl', small: true, km: '60', t: '1 h – 1 h 30 min', ts: '1–1½ h' },
   { id: 'mar-del-plata', n: 'Mar del Plata', prov: 'Buenos Aires', xy: [339.1, 485.6], main: true, pos: 'r', km: '410', t: '5 – 6 h', ts: '5–6 h', it: ['Genova', '390'] },
   { id: 'pergamino', n: 'Pergamino', prov: 'Buenos Aires', ll: [-33.8895, -60.5736], pos: 'b', km: '225', t: '3 h – 3 h 30 min', ts: '3–3½ h' },
@@ -227,6 +227,15 @@ const MAIL = 'mailto:federazionecava@gmail.com';
 // progreso de lectura) que aparece al pasar el hero.
 const nav = (r, home, p) => {
   const h = home ? '' : `${r}index.html`;
+  // En la landing los links siguen el orden de las secciones (las propuestas al final);
+  // en las propuestas, "← Proposte" va primero como link de vuelta.
+  const L = {
+    proposte: `<a href="${h}#proposte" data-spy="proposte">${home ? '' : '← '}Proposte</a>`,
+    chi: `<a href="${h}#chi-siamo" data-spy="chi-siamo">Chi siamo</a>`,
+    rete: `<a href="${h}#la-rete" data-spy="la-rete">La rete</a>`,
+    perche: `<a href="${h}#perche" data-spy="perche">Perché</a>`,
+  };
+  const [a1, a2, b1, b2] = home ? [L.chi, L.rete, L.perche, L.proposte] : [L.proposte, L.chi, L.rete, L.perche];
   const prev = p && P[p.n - 2];
   const next = p && P[p.n];
   const ctx = p ? `
@@ -245,14 +254,14 @@ const nav = (r, home, p) => {
   <header class="nav${p ? ' has-ctx' : ''}">
     <div class="nav-main">
       <nav class="nav-links" aria-label="Sezioni">
-        <a href="${h}#proposte" data-spy="proposte">${home ? '' : '← '}Proposte</a>
-        <a href="${h}#chi-siamo" data-spy="chi-siamo">Chi siamo</a>
+        ${a1}
+        ${a2}
       </nav>
       <a class="brand" href="${r}index.html" aria-label="CAVA · Inizio"><img class="brand-mark" src="${r}assets/img/logo-mark.png" width="166" height="120" alt=""></a>
       <div class="nav-end">
         <nav class="nav-links" aria-label="Altre sezioni">
-          <a href="${h}#la-rete" data-spy="la-rete">La rete</a>
-          <a href="${h}#perche" data-spy="perche">Perché</a>
+          ${b1}
+          ${b2}
         </nav>
         <a class="nav-cta" href="${MAIL}">Scrivici</a>
         <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri il menu"><span></span><span></span><span></span></button>
@@ -262,21 +271,21 @@ const nav = (r, home, p) => {
 
   <div class="menu" id="menu">
     <div class="menu-inner">
-      <div>
-        <p class="menu-label">Le sette proposte</p>
-        <ol class="menu-props">
-${P.map((q, i) => `          <li style="--i:${i}"><a class="menu-prop${p && q.n === p.n ? ' is-current' : ''}" data-area="${q.area}" href="${r}proposte/${q.slug}.html"><b>${pad(q.n)}</b><span>${esc(q.titolo)}</span></a></li>`).join('\n')}
-        </ol>
-      </div>
       <div class="menu-sec">
         <p class="menu-label">Il CAVA</p>
         <ul>
-          <li style="--i:2"><a href="${r}index.html">Inizio</a></li>
-          <li style="--i:3"><a href="${r}index.html#chi-siamo">Chi siamo</a></li>
-          <li style="--i:4"><a href="${r}index.html#la-rete">La rete</a></li>
-          <li style="--i:5"><a href="${r}index.html#perche">Perché vale la pena</a></li>
+          <li style="--i:0"><a href="${r}index.html">Inizio</a></li>
+          <li style="--i:1"><a href="${r}index.html#chi-siamo">Chi siamo</a></li>
+          <li style="--i:2"><a href="${r}index.html#la-rete">La rete</a></li>
+          <li style="--i:3"><a href="${r}index.html#perche">Perché vale la pena</a></li>
         </ul>
-        <a class="menu-mail" style="--i:6" href="${MAIL}"><small>Scrivici</small>federazionecava@gmail.com</a>
+        <a class="menu-mail" style="--i:4" href="${MAIL}"><small>Scrivici</small>federazionecava@gmail.com</a>
+      </div>
+      <div>
+        <p class="menu-label">Le sette proposte</p>
+        <ol class="menu-props">
+${P.map((q, i) => `          <li style="--i:${i + 2}"><a class="menu-prop${p && q.n === p.n ? ' is-current' : ''}" data-area="${q.area}" href="${r}proposte/${q.slug}.html"><b>${pad(q.n)}</b><span>${esc(q.titolo)}</span></a></li>`).join('\n')}
+        </ol>
       </div>
     </div>
   </div>`;
@@ -293,7 +302,7 @@ const footer = (r) => `
     <div class="footer-map" aria-hidden="true"><svg viewBox="0 0 475 986">${puntini}<circle class="footer-ba" cx="326.2" cy="386.1" r="10"/></svg></div>
     <div class="container">
       <div class="footer-cta">
-        <h2 data-reveal>Un ponte tra il Veneto <span>e l'Argentina.</span></h2>
+        <h2 data-reveal>Costruiamolo <span>insieme.</span></h2>
         <div class="footer-contact" data-reveal style="--i:1">
           <p>Per sostenere le proposte o collaborare con il CAVA, scriveteci.</p>
           <a class="footer-mail" href="mailto:federazionecava@gmail.com">
@@ -339,30 +348,15 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
   <section class="hero">${bg('', 'cava', 'video/landing.mp4')}
     <div class="hero-content">
       <img class="hero-logo fade-in" style="--d:0s" src="assets/img/logo-cava.png" width="720" height="513" alt="CAVA · Comitato delle Associazioni Venete dell'Argentina" fetchpriority="high">
-      <h1 class="fade-in" style="--d:.15s">Proposte per la Consulta dei Veneti nel&nbsp;Mondo</h1>
-      <p class="lead fade-in" style="--d:.35s">Sette proposte per rafforzare i rapporti tra Veneto e Argentina.</p>
+      <p class="eyebrow fade-in" style="--d:.1s">Proposte per la Consulta dei Veneti nel&nbsp;Mondo</p>
+      <h1 class="fade-in" style="--d:.2s">Un ponte tra il Veneto e&nbsp;l'Argentina</h1>
+      <p class="lead fade-in" style="--d:.35s">Più di venti associazioni in nove province argentine, unite nel CAVA. Chi siamo, dove siamo e cosa proponiamo.</p>
     </div>
-    <a class="hero-down fade-in" style="--d:.6s" href="#proposte">Le proposte <span aria-hidden="true">↓</span></a>
+    <a class="hero-down fade-in" style="--d:.6s" href="#chi-siamo">Chi siamo <span aria-hidden="true">↓</span></a>
   </section>
 
   <div class="sheet">
-    <section class="container" id="proposte">
-      <div class="sec-head" data-reveal>
-        <h2>Sette proposte, tre ambiti</h2>
-        <ul class="legend" aria-label="Ambiti">
-          <li data-area="istituzioni">Istituzioni</li>
-          <li data-area="giovani">Giovani e formazione</li>
-          <li data-area="agricoltura">Agricoltura e innovazione</li>
-        </ul>
-      </div>
-      <ol class="proposals">${P.map((p, i) => card('', p, i)).join('')}
-      </ol>
-      <div class="pdf-wrap" data-reveal>
-        <a class="btn btn-pdf" href="documento/${PDF_FILE}" download><span class="btn-arrow" aria-hidden="true">↓</span>Scarica il documento<small>PDF · ${PDF_PAGES} pagine</small></a>
-      </div>
-    </section>
-
-    <section class="section container" id="chi-siamo">
+    <section class="container" id="chi-siamo">
       <div class="about">
         <div class="about-head" data-reveal>
           <img class="about-logo" src="assets/img/logo-cava.png" width="720" height="513" alt="" loading="lazy" decoding="async">
@@ -373,7 +367,7 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
             <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
-            <div><dt data-count="18">18</dt><dd>località, in 9 province e nella Capitale Federale</dd></div>
+            <div><dt data-count="18">18</dt><dd>località, in 9 province e nella Città Autonoma di Buenos Aires</dd></div>
             <div><dt data-count="20">20<span class="count-plus">+</span></dt><dd>associazioni federate</dd></div>
           </dl>
         </div>
@@ -385,7 +379,7 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
         <div class="rete-text">
           <div class="rete-head" data-reveal>
             <h2>Mille chilometri per ritrovarci</h2>
-            <p class="big">Le associazioni si trovano in 9 province e nella Capitale Federale, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
+            <p class="big">Le associazioni si trovano in 9 province e nella Città Autonoma di Buenos Aires, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
           </div>
 
           <div class="routes-wrap" data-reveal>
@@ -429,7 +423,7 @@ ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map(
     </section>
   </div>
 
-  <section class="band" id="perche">${bg('', 'veneto', 'video/associazioni.mp4')}
+  <section class="band band-to-sheet" id="perche">${bg('', 'veneto', 'video/associazioni.mp4')}
     <div class="container">
       <div class="sec-head on-dark" data-reveal>
         <h2>Ruolo strategico delle associazioni</h2>
@@ -443,6 +437,24 @@ ${RUOLI.map(([t, d], i) => `        <li class="role" data-reveal style="--i:${i}
       </blockquote>
     </div>
   </section>
+
+  <div class="sheet">
+    <section class="container" id="proposte">
+      <div class="sec-head" data-reveal>
+        <h2>Sette proposte, tre ambiti</h2>
+        <ul class="legend" aria-label="Ambiti">
+          <li data-area="istituzioni">Istituzioni</li>
+          <li data-area="giovani">Giovani e formazione</li>
+          <li data-area="agricoltura">Agricoltura e innovazione</li>
+        </ul>
+      </div>
+      <ol class="proposals">${P.map((p, i) => card('', p, i)).join('')}
+      </ol>
+      <div class="pdf-wrap" data-reveal>
+        <a class="btn btn-pdf" href="documento/${PDF_FILE}" download><span class="btn-arrow" aria-hidden="true">↓</span>Scarica il documento<small>PDF · ${PDF_PAGES} pagine</small></a>
+      </div>
+    </section>
+  </div>
   </main>
 ${footer('')}`;
 
@@ -538,7 +550,7 @@ const run = (n) => `
 const legend = `<ul class="legend">${Object.entries(AREE).map(([k, v]) => `<li data-area="${k}">${v}</li>`).join('')}</ul>`;
 
 const pcard = (p) => `
-        <article class="pc" data-area="${p.area}">
+        <article class="pc" id="proposta-${pad(p.n)}" data-area="${p.area}">
           <div class="pc-side"><span class="pc-num">${pad(p.n)}</span><span class="pc-emoji emoji">${p.emoji}</span></div>
           <div class="pc-body">
             <span class="pc-area">${AREE[p.area]}</span>
@@ -573,13 +585,32 @@ ${readFileSync(join(GEN, 'documento.css'), 'utf8')}
     <div class="cover-sheet">
       <div class="cover-sheet-head"><h2>Le sette proposte</h2>${legend}</div>
       <ol class="toc">
-${P.map((p) => `        <li data-area="${p.area}"><b>${pad(p.n)}</b><span>${esc(p.titolo)}</span><small>${AREE[p.area]}</small></li>`).join('\n')}
+${P.map((p) => `        <li data-area="${p.area}"><a href="#proposta-${pad(p.n)}"><b>${pad(p.n)}</b><span>${esc(p.titolo)}</span><small>${AREE[p.area]}</small></a></li>`).join('\n')}
       </ol>
       <p class="cover-foot"><a href="${SITE}/">${SITE.replace(/^https?:\/\//, '')}</a><a href="${MAIL}">federazionecava@gmail.com</a></p>
     </div>
   </section>
 
   <section class="page">${run(2)}
+    <div class="inner">
+      <div class="sec-head">
+        <p class="label">Le proposte</p>
+        <h2 class="h2">Sette proposte, tre ambiti</h2>
+        ${legend}
+      </div>
+      <div class="props">${P.slice(0, 3).map(pcard).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="page">${run(3)}
+    <div class="inner">
+      <div class="props">${P.slice(3).map(pcard).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="page">${run(4)}
     <div class="inner">
       <div class="about">
         <div class="about-head">
@@ -592,7 +623,7 @@ ${P.map((p) => `        <li data-area="${p.area}"><b>${pad(p.n)}</b><span>${esc(
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
             <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
-            <div><dt>18</dt><dd>località, in 9 province e nella Capitale Federale</dd></div>
+            <div><dt>18</dt><dd>località, in 9 province e nella Città Autonoma di Buenos Aires</dd></div>
             <div><dt>20<span>+</span></dt><dd>associazioni federate</dd></div>
           </dl>
         </div>
@@ -608,12 +639,12 @@ ${RUOLI.map(([t, d], i) => `        <li class="role"><span class="role-n">${['I'
     </div>
   </section>
 
-  <section class="page">${run(3)}
+  <section class="page">${run(5)}
     <div class="inner">
       <div class="rete-head">
         <p class="label">La rete</p>
         <h2 class="h2">Mille chilometri per ritrovarci</h2>
-        <p class="big">Le associazioni si trovano in 9 province e nella Capitale Federale, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
+        <p class="big">Le associazioni si trovano in 9 province e nella Città Autonoma di Buenos Aires, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
       </div>
       <div class="rete">
         <div>
@@ -645,25 +676,6 @@ ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map(
           </figure>
           <p class="map-legend"><span class="lg-hq">Buenos Aires, sede del CAVA</span><span class="lg-dot">Località con associazioni</span><span class="lg-prov">Province con associazioni</span></p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">${run(4)}
-    <div class="inner">
-      <div class="sec-head">
-        <p class="label">Le proposte</p>
-        <h2 class="h2">Sette proposte, tre ambiti</h2>
-        ${legend}
-      </div>
-      <div class="props">${P.slice(0, 3).map(pcard).join('')}
-      </div>
-    </div>
-  </section>
-
-  <section class="page">${run(5)}
-    <div class="inner">
-      <div class="props">${P.slice(3).map(pcard).join('')}
       </div>
     </div>
   </section>

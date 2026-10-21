@@ -94,7 +94,9 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .cover-sheet { position: absolute; inset: auto 0 0; height: 140mm; padding: 13mm var(--mx) 0; background: var(--crema); border-radius: 22mm 22mm 0 0; }
 .cover-sheet-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4mm; }
 .cover-sheet-head h2 { font-size: 15pt; letter-spacing: -0.02em; color: var(--navy); }
-.toc li { display: grid; grid-template-columns: 13mm 1fr auto; align-items: center; gap: 3mm; padding: 2.6mm 0; border-top: 1px solid var(--line); }
+.toc li { border-top: 1px solid var(--line); }
+/* Toda la fila es el link a la propuesta (link interno del PDF) */
+.toc a { display: grid; grid-template-columns: 13mm 1fr auto; align-items: center; gap: 3mm; padding: 2.6mm 0; color: inherit; text-decoration: none; }
 .toc li:last-child { border-bottom: 1px solid var(--line); }
 .toc b { font-weight: 900; font-size: 17pt; line-height: 1; letter-spacing: -0.05em; color: var(--area); }
 .toc span { font-size: 10.5pt; font-weight: 600; line-height: 1.25; color: var(--navy); }
@@ -243,13 +245,13 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
     <div class="cover-sheet">
       <div class="cover-sheet-head"><h2>Le sette proposte</h2><ul class="legend"><li data-area="istituzioni">Istituzioni</li><li data-area="giovani">Giovani e formazione</li><li data-area="agricoltura">Agricoltura e innovazione</li></ul></div>
       <ol class="toc">
-        <li data-area="istituzioni"><b>01</b><span>Invito ufficiale delle Autorità della Regione del Veneto in Argentina</span><small>Istituzioni</small></li>
-        <li data-area="istituzioni"><b>02</b><span>Candidatura dell'Argentina quale futura sede della Consulta dei Veneti nel Mondo</span><small>Istituzioni</small></li>
-        <li data-area="giovani"><b>03</b><span>Ripresa dei programmi di scambio giovanile</span><small>Giovani e formazione</small></li>
-        <li data-area="giovani"><b>04</b><span>Corsi di perfezionamento, formazione e stage</span><small>Giovani e formazione</small></li>
-        <li data-area="giovani"><b>05</b><span>Ricerca di risorse e finanziamenti</span><small>Giovani e formazione</small></li>
-        <li data-area="agricoltura"><b>06</b><span>Scambi tra scuole agrarie e università</span><small>Agricoltura e innovazione</small></li>
-        <li data-area="agricoltura"><b>07</b><span>Formazione sull'utilizzo dei droni in agricoltura</span><small>Agricoltura e innovazione</small></li>
+        <li data-area="istituzioni"><a href="#proposta-01"><b>01</b><span>Invito ufficiale delle Autorità della Regione del Veneto in Argentina</span><small>Istituzioni</small></a></li>
+        <li data-area="istituzioni"><a href="#proposta-02"><b>02</b><span>Candidatura dell'Argentina quale futura sede della Consulta dei Veneti nel Mondo</span><small>Istituzioni</small></a></li>
+        <li data-area="giovani"><a href="#proposta-03"><b>03</b><span>Ripresa dei programmi di scambio giovanile</span><small>Giovani e formazione</small></a></li>
+        <li data-area="giovani"><a href="#proposta-04"><b>04</b><span>Corsi di perfezionamento, formazione e stage</span><small>Giovani e formazione</small></a></li>
+        <li data-area="giovani"><a href="#proposta-05"><b>05</b><span>Ricerca di risorse e finanziamenti</span><small>Giovani e formazione</small></a></li>
+        <li data-area="agricoltura"><a href="#proposta-06"><b>06</b><span>Scambi tra scuole agrarie e università</span><small>Agricoltura e innovazione</small></a></li>
+        <li data-area="agricoltura"><a href="#proposta-07"><b>07</b><span>Formazione sull'utilizzo dei droni in agricoltura</span><small>Agricoltura e innovazione</small></a></li>
       </ol>
       <p class="cover-foot"><a href="https://consulta.comitatocava.org/">consulta.comitatocava.org</a><a href="mailto:federazionecava@gmail.com">federazionecava@gmail.com</a></p>
     </div>
@@ -257,6 +259,98 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 
   <section class="page">
     <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>02</b> / 06</span></header>
+    <div class="inner">
+      <div class="sec-head">
+        <p class="label">Le proposte</p>
+        <h2 class="h2">Sette proposte, tre ambiti</h2>
+        <ul class="legend"><li data-area="istituzioni">Istituzioni</li><li data-area="giovani">Giovani e formazione</li><li data-area="agricoltura">Agricoltura e innovazione</li></ul>
+      </div>
+      <div class="props">
+        <article class="pc" id="proposta-01" data-area="istituzioni">
+          <div class="pc-side"><span class="pc-num">01</span><span class="pc-emoji emoji">🤝</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Istituzioni</span>
+            <h3>Invito ufficiale delle Autorità della Regione del Veneto in Argentina</h3>
+            <p>Proporre una visita istituzionale delle Autorità regionali in Argentina per incontrare le comunità venete, le associazioni e le istituzioni locali, rafforzando i rapporti tra Veneto e Argentina.</p>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/invito-autorita-regione-veneto.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+        <article class="pc" id="proposta-02" data-area="istituzioni">
+          <div class="pc-side"><span class="pc-num">02</span><span class="pc-emoji emoji">🗺️</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Istituzioni</span>
+            <h3>Candidatura dell'Argentina quale futura sede della Consulta dei Veneti nel Mondo</h3>
+            <p>Richiedere che venga valutata la possibilità di svolgere una futura sessione della Consulta in Argentina, riconoscendo il ruolo storico e l'importanza della collettività veneta presente nel Paese.</p>
+            <div class="reasons">
+              <p class="reasons-title">Perché puntare sull'Argentina</p>
+              <div class="reason"><span class="emoji">🫶</span><div><h4>Affinità culturale</h4><p>La grande percentuale di discendenti italiani rende l'Argentina un contesto familiare e accogliente.</p></div></div>
+              <div class="reason"><span class="emoji">🌱</span><div><h4>Valore identitario</h4><p>I giovani possono riscoprire radici comuni e rafforzare il senso di appartenenza.</p></div></div>
+              <div class="reason"><span class="emoji">🌍</span><div><h4>Diversificazione degli scambi</h4><p>Ampliare le opportunità oltre l'UE, aprendo nuove prospettive formative e professionali.</p></div></div>
+              <div class="reason"><span class="emoji">🏛️</span><div><h4>Collaborazioni istituzionali</h4><p>Regione, Province e Comuni possono attivare accordi bilaterali con enti argentini.</p></div></div>
+              <div class="reason"><span class="emoji">✈️</span><div><h4>Attrattività reciproca</h4><p>L'Argentina diventa meta di soggiorni culturali, mentre il Veneto si apre a giovani argentini.</p></div></div>
+            </div>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/argentina-sede-consulta.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+        <article class="pc" id="proposta-03" data-area="giovani">
+          <div class="pc-side"><span class="pc-num">03</span><span class="pc-emoji emoji">🎒</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Giovani e formazione</span>
+            <h3>Ripresa dei programmi di scambio giovanile</h3>
+            <p>Sollecitare la riattivazione dei programmi di mobilità destinati ai giovani discendenti veneti, favorendo soggiorni culturali, linguistici e formativi in Veneto.</p>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/scambio-giovanile.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>03</b> / 06</span></header>
+    <div class="inner">
+      <div class="props">
+        <article class="pc" id="proposta-04" data-area="giovani">
+          <div class="pc-side"><span class="pc-num">04</span><span class="pc-emoji emoji">🎓</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Giovani e formazione</span>
+            <h3>Corsi di perfezionamento, formazione e stage</h3>
+            <p>Promuovere percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, con l'obiettivo di creare opportunità concrete per le nuove generazioni.</p>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/formazione-e-stage.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+        <article class="pc" id="proposta-05" data-area="giovani">
+          <div class="pc-side"><span class="pc-num">05</span><span class="pc-emoji emoji">💶</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Giovani e formazione</span>
+            <h3>Ricerca di risorse e finanziamenti</h3>
+            <p>Qualora non siano disponibili fondi regionali dedicati, chiedere alla Regione del Veneto di supportare le associazioni nell'individuazione di bandi, finanziamenti europei e internazionali, fondazioni, università e partner privati interessati a sostenere tali iniziative.</p>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/risorse-e-finanziamenti.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+        <article class="pc" id="proposta-06" data-area="agricoltura">
+          <div class="pc-side"><span class="pc-num">06</span><span class="pc-emoji emoji">🌾</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Agricoltura e innovazione</span>
+            <h3>Scambi tra scuole agrarie e università</h3>
+            <p>Promuovere accordi di collaborazione tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina per realizzare programmi di mobilità, formazione e scambio di competenze.</p>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/scuole-agrarie-e-universita.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+        <article class="pc" id="proposta-07" data-area="agricoltura">
+          <div class="pc-side"><span class="pc-num">07</span><span class="pc-emoji emoji">🚁</span></div>
+          <div class="pc-body">
+            <span class="pc-area">Agricoltura e innovazione</span>
+            <h3>Formazione sull'utilizzo dei droni in agricoltura</h3>
+            <p>Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore.</p>
+            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/droni-in-agricoltura.html">Leggi online <span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>04</b> / 06</span></header>
     <div class="inner">
       <div class="about">
         <div class="about-head">
@@ -269,7 +363,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
             <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
-            <div><dt>18</dt><dd>località, in 9 province e nella Capitale Federale</dd></div>
+            <div><dt>18</dt><dd>località, in 9 province e nella Città Autonoma di Buenos Aires</dd></div>
             <div><dt>20<span>+</span></dt><dd>associazioni federate</dd></div>
           </dl>
         </div>
@@ -289,12 +383,12 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
   </section>
 
   <section class="page">
-    <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>03</b> / 06</span></header>
+    <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>05</b> / 06</span></header>
     <div class="inner">
       <div class="rete-head">
         <p class="label">La rete</p>
         <h2 class="h2">Mille chilometri per ritrovarci</h2>
-        <p class="big">Le associazioni si trovano in 9 province e nella Capitale Federale, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
+        <p class="big">Le associazioni si trovano in 9 province e nella Città Autonoma di Buenos Aires, da Tucumán a Bariloche. Il CAVA ha sede a Buenos Aires: per ritrovarsi, ognuno parte da qui.</p>
       </div>
       <div class="rete">
         <div>
@@ -335,7 +429,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
           <div class="localita">
             <h3>Tutte le sedi</h3>
             <dl>
-              <div><dt>Capitale Federale</dt><dd>Buenos Aires</dd></div>
+              <div><dt>Città Autonoma di Buenos Aires</dt><dd>Buenos Aires</dd></div>
               <div><dt>Buenos Aires</dt><dd>La Plata, Mar del Plata, Pergamino</dd></div>
               <div><dt>Santa Fe</dt><dd>Rosario, Santa Fe, Rafaela</dd></div>
               <div><dt>Entre Ríos</dt><dd>Paraná, Gualeguaychú</dd></div>
@@ -419,98 +513,6 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
           </figure>
           <p class="map-legend"><span class="lg-hq">Buenos Aires, sede del CAVA</span><span class="lg-dot">Località con associazioni</span><span class="lg-prov">Province con associazioni</span></p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">
-    <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>04</b> / 06</span></header>
-    <div class="inner">
-      <div class="sec-head">
-        <p class="label">Le proposte</p>
-        <h2 class="h2">Sette proposte, tre ambiti</h2>
-        <ul class="legend"><li data-area="istituzioni">Istituzioni</li><li data-area="giovani">Giovani e formazione</li><li data-area="agricoltura">Agricoltura e innovazione</li></ul>
-      </div>
-      <div class="props">
-        <article class="pc" data-area="istituzioni">
-          <div class="pc-side"><span class="pc-num">01</span><span class="pc-emoji emoji">🤝</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Istituzioni</span>
-            <h3>Invito ufficiale delle Autorità della Regione del Veneto in Argentina</h3>
-            <p>Proporre una visita istituzionale delle Autorità regionali in Argentina per incontrare le comunità venete, le associazioni e le istituzioni locali, rafforzando i rapporti tra Veneto e Argentina.</p>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/invito-autorita-regione-veneto.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
-        <article class="pc" data-area="istituzioni">
-          <div class="pc-side"><span class="pc-num">02</span><span class="pc-emoji emoji">🗺️</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Istituzioni</span>
-            <h3>Candidatura dell'Argentina quale futura sede della Consulta dei Veneti nel Mondo</h3>
-            <p>Richiedere che venga valutata la possibilità di svolgere una futura sessione della Consulta in Argentina, riconoscendo il ruolo storico e l'importanza della collettività veneta presente nel Paese.</p>
-            <div class="reasons">
-              <p class="reasons-title">Perché puntare sull'Argentina</p>
-              <div class="reason"><span class="emoji">🫶</span><div><h4>Affinità culturale</h4><p>La grande percentuale di discendenti italiani rende l'Argentina un contesto familiare e accogliente.</p></div></div>
-              <div class="reason"><span class="emoji">🌱</span><div><h4>Valore identitario</h4><p>I giovani possono riscoprire radici comuni e rafforzare il senso di appartenenza.</p></div></div>
-              <div class="reason"><span class="emoji">🌍</span><div><h4>Diversificazione degli scambi</h4><p>Ampliare le opportunità oltre l'UE, aprendo nuove prospettive formative e professionali.</p></div></div>
-              <div class="reason"><span class="emoji">🏛️</span><div><h4>Collaborazioni istituzionali</h4><p>Regione, Province e Comuni possono attivare accordi bilaterali con enti argentini.</p></div></div>
-              <div class="reason"><span class="emoji">✈️</span><div><h4>Attrattività reciproca</h4><p>L'Argentina diventa meta di soggiorni culturali, mentre il Veneto si apre a giovani argentini.</p></div></div>
-            </div>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/argentina-sede-consulta.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
-        <article class="pc" data-area="giovani">
-          <div class="pc-side"><span class="pc-num">03</span><span class="pc-emoji emoji">🎒</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Giovani e formazione</span>
-            <h3>Ripresa dei programmi di scambio giovanile</h3>
-            <p>Sollecitare la riattivazione dei programmi di mobilità destinati ai giovani discendenti veneti, favorendo soggiorni culturali, linguistici e formativi in Veneto.</p>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/scambio-giovanile.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="page">
-    <header class="run"><span class="run-brand"><img src="../../assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>05</b> / 06</span></header>
-    <div class="inner">
-      <div class="props">
-        <article class="pc" data-area="giovani">
-          <div class="pc-side"><span class="pc-num">04</span><span class="pc-emoji emoji">🎓</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Giovani e formazione</span>
-            <h3>Corsi di perfezionamento, formazione e stage</h3>
-            <p>Promuovere percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, con l'obiettivo di creare opportunità concrete per le nuove generazioni.</p>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/formazione-e-stage.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
-        <article class="pc" data-area="giovani">
-          <div class="pc-side"><span class="pc-num">05</span><span class="pc-emoji emoji">💶</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Giovani e formazione</span>
-            <h3>Ricerca di risorse e finanziamenti</h3>
-            <p>Qualora non siano disponibili fondi regionali dedicati, chiedere alla Regione del Veneto di supportare le associazioni nell'individuazione di bandi, finanziamenti europei e internazionali, fondazioni, università e partner privati interessati a sostenere tali iniziative.</p>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/risorse-e-finanziamenti.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
-        <article class="pc" data-area="agricoltura">
-          <div class="pc-side"><span class="pc-num">06</span><span class="pc-emoji emoji">🌾</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Agricoltura e innovazione</span>
-            <h3>Scambi tra scuole agrarie e università</h3>
-            <p>Promuovere accordi di collaborazione tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina per realizzare programmi di mobilità, formazione e scambio di competenze.</p>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/scuole-agrarie-e-universita.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
-        <article class="pc" data-area="agricoltura">
-          <div class="pc-side"><span class="pc-num">07</span><span class="pc-emoji emoji">🚁</span></div>
-          <div class="pc-body">
-            <span class="pc-area">Agricoltura e innovazione</span>
-            <h3>Formazione sull'utilizzo dei droni in agricoltura</h3>
-            <p>Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore.</p>
-            <a class="pc-link" href="https://consulta.comitatocava.org/proposte/droni-in-agricoltura.html">Leggi online <span>→</span></a>
-          </div>
-        </article>
       </div>
     </div>
   </section>

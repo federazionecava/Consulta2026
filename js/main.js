@@ -164,6 +164,7 @@
       b.addEventListener('click', () => {
         const italia = b.dataset.view === 'italia';
         mapCol.classList.toggle('show-italia', italia);
+        if (italia) mapCol.classList.add('italia-seen'); // apaga el pulso del botón
         mapCol.querySelectorAll('.map-switch button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
       });
     });
