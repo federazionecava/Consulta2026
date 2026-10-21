@@ -18,7 +18,11 @@
   --rosso: #c8323a;
   --navy: #13263b;
   --navy-deep: #0b1828;
-  --leone: #e08c4c;
+  /* Dorado (estilo whitehouse.gov): el claro sobre fondos oscuros, el oscuro sobre fondos claros */
+  --oro: #cfae62;
+  --oro-scuro: #8b6914;
+  --oro-grad: linear-gradient(100deg, #a8823a 0%, #e6c97f 22%, #fff1c4 36%, #d4b366 50%, #9c7a32 68%, #e6c97f 86%, #a8823a 100%);
+  --oro-grad-scuro: linear-gradient(100deg, #6e520c 0%, #a8822a 30%, #c9a24a 45%, #8b6914 65%, #6e520c 100%);
   --crema: #f4eee1;
   --crema-2: #ebe3d1;
   --paper: #fbf8f1;
@@ -62,7 +66,7 @@ ol, ul { list-style: none; padding: 0; }
 .run b { font-weight: 900; color: var(--navy); letter-spacing: -0.02em; }
 
 .label { font-size: 9pt; font-weight: 600; color: var(--ink-soft); }
-.eyebrow { font-size: 8.5pt; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--leone); }
+.eyebrow { font-size: 8.5pt; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--oro); }
 .big { font-size: 12.5pt; line-height: 1.45; color: var(--ink); }
 h2.h2 { font-size: 27pt; color: var(--navy); }
 .legend { display: flex; flex-wrap: wrap; gap: 1mm 5mm; font-size: 8.5pt; color: var(--ink-soft); }
@@ -112,7 +116,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-top: 4mm; }
 .facts div { border-top: 1px solid var(--navy); padding-top: 3mm; }
 .facts dt { font-weight: 900; font-size: 27pt; line-height: 1; letter-spacing: -0.05em; color: var(--navy); }
-.facts dt span { color: var(--leone); }
+.facts dt span { color: var(--oro-scuro); }
 .facts dd { margin: 1.5mm 0 0; font-size: 8.5pt; line-height: 1.4; color: var(--ink-soft); }
 
 .band { position: absolute; inset: auto 0 0; height: 162mm; padding: 15mm var(--mx) 0; background: #161d2c; color: var(--white); overflow: hidden; }
@@ -124,13 +128,13 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .band-lead { font-size: 11pt; line-height: 1.45; color: rgba(255, 255, 255, .82); max-width: 150mm; }
 .roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6mm; margin-top: 9mm; }
 .role { border-top: 1px solid rgba(255, 255, 255, .3); padding-top: 3.5mm; }
-.role-n { display: block; font-weight: 900; font-size: 14pt; line-height: 1; letter-spacing: -0.03em; color: var(--leone); margin-bottom: 3mm; }
+.role-n { display: block; font-weight: 900; font-size: 14pt; line-height: 1; letter-spacing: -0.03em; color: var(--oro); margin-bottom: 3mm; }
 .role h3 { font-size: 11pt; font-weight: 600; margin-bottom: 1.5mm; }
 .role p { font-size: 8.5pt; line-height: 1.45; color: rgba(255, 255, 255, .78); }
 .quote { margin: 11mm auto 0; max-width: 150mm; text-align: center; }
-.quote::before { content: '“'; display: block; font-weight: 900; font-size: 42pt; line-height: .6; color: var(--leone); margin-bottom: 2mm; }
+.quote::before { content: '“'; display: block; font-weight: 900; font-size: 42pt; line-height: .6; color: var(--oro); margin-bottom: 2mm; }
 .quote p { font-weight: 600; letter-spacing: -0.02em; font-size: 14pt; line-height: 1.3; }
-.quote em { font-style: normal; color: var(--leone); }
+.quote em { font-style: normal; color: var(--oro); }
 
 /* ---------- 3. La rete: mapa, distancias y sedes ---------- */
 .rete-head { display: grid; gap: 3.5mm; margin-bottom: 8mm; max-width: 160mm; }
@@ -214,12 +218,12 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .back-content { position: absolute; z-index: 1; inset: 38mm var(--mx) 16mm; display: flex; flex-direction: column; }
 .back-logo { width: 34mm; height: auto; filter: brightness(0) invert(1); opacity: .95; margin-bottom: 14mm; }
 .back h2 { font-size: 46pt; line-height: 1; letter-spacing: -0.04em; color: var(--white); max-width: 12ch; }
-.back h2 span { display: block; color: var(--leone); }
+.back h2 span { display: block; color: var(--oro); }
 .back-contact { display: grid; gap: 5mm; max-width: 110mm; margin-top: 12mm; }
 .back-contact p { font-size: 13pt; line-height: 1.4; color: rgba(255, 255, 255, .85); }
 .mail { display: flex; align-items: center; justify-content: space-between; gap: 4mm; padding: 3.5mm 3.5mm 3.5mm 6mm; border-radius: 999px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .16); }
 .mail-text { display: grid; gap: .3mm; color: var(--white); font-weight: 700; font-size: 13pt; }
-.mail-text small { font-size: 8pt; font-weight: 600; color: var(--leone); }
+.mail-text small { font-size: 8pt; font-weight: 600; color: var(--oro); }
 .mail-arrow { flex: none; display: grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: var(--verde); color: var(--white); font-size: 12pt; font-weight: 700; }
 
 .qr { margin-top: auto; display: grid; grid-template-columns: 42mm 1fr; gap: 8mm; align-items: center; padding: 6mm; border-radius: 7mm; background: var(--crema); color: var(--ink); }
@@ -230,6 +234,13 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .qr-text p { font-size: 10pt; color: var(--ink-soft); }
 .qr-url { display: inline-flex; align-items: center; gap: 2mm; margin-top: 1mm; padding: 2mm 4mm; border-radius: 999px; background: var(--navy); color: var(--white); font-size: 10pt; font-weight: 700; }
 .back-bottom { display: flex; justify-content: space-between; margin-top: 7mm; padding-top: 4mm; border-top: 1px solid rgba(255, 255, 255, .1); font-size: 8pt; }
+
+/* Dorado en degradé, solo en los dorados grandes: al imprimir, Chrome deja rayitas en los bordes
+   del degradado en textos chicos, de varias líneas o en bloques anchos (el "+" de 20+, la cita) */
+.eyebrow, .role-n, .back h2 span {
+  background: var(--oro-grad); -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
 
   </style>
 </head>
