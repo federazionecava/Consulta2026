@@ -29,7 +29,30 @@ const RUOLO = {
 const P = [
   { slug: 'invito-autorita-regione-veneto', area: 'istituzioni', emoji: '🤝',
     titolo: "Invito ufficiale delle Autorità della Regione del Veneto in Argentina",
-    sintesi: "Proporre una visita istituzionale delle Autorità regionali in Argentina per incontrare le comunità venete, le associazioni e le istituzioni locali, rafforzando i rapporti tra Veneto e Argentina." },
+    sintesi: "Proporre una visita istituzionale delle Autorità regionali in Argentina per incontrare le comunità venete, le associazioni e le istituzioni locali, rafforzando i rapporti tra Veneto e Argentina.",
+    // Contenido ampliado (investigado: historia del CAVA en miveneto.it, delegaciones en regione.veneto.it, giunta Stefani en italpress)
+    testo: ['La proposta', 'Una visita per ritrovarsi', [
+      "In Argentina vive una delle collettività venete più numerose al mondo, organizzata in associazioni da Buenos Aires a Mendoza, da Córdoba a Mar del Plata. Per molte famiglie il Veneto è un'origine viva, ma lontana oltre undicimila chilometri.",
+      "Il CAVA propone che il Presidente della Regione e l'Assessore competente per i flussi migratori visitino le comunità venete in Argentina, con un programma costruito insieme alle associazioni.",
+      "Negli anni Novanta le visite istituzionali erano frequenti, e nel 2006 la Consulta si è riunita a Mendoza. Una nuova missione darebbe continuità a un rapporto che le associazioni coltivano ogni giorno.",
+    ]],
+    programma: ['Cosa potrebbe includere la visita', [
+      ['🏠', 'Le sedi delle associazioni', 'Incontri con soci, famiglie e anziani nelle sedi della rete del CAVA.'],
+      ['🏛️', 'Le istituzioni argentine', 'Province e municipi con forte presenza veneta, per avviare accordi e gemellaggi.'],
+      ['📜', 'La rete italiana', "Ambasciata d'Italia, consolati e Comites, per lavorare in modo coordinato."],
+      ['🎓', 'Università e scuole', 'Atenei e istituti agrari: le basi per gli scambi delle proposte 4, 6 e 7.'],
+      ['🌱', 'I giovani', 'Un incontro con le nuove generazioni di discendenti veneti, il futuro della rete.'],
+      ['💼', 'Le imprese', 'Camere di commercio italiane e aziende di origine veneta, per nuove occasioni di interscambio.'],
+    ]],
+    storia: ['Una storia di incontri', [
+      ['1989', 'Alla nascita del CAVA, a Buenos Aires, partecipano due consultori della Regione del Veneto.'],
+      ['1993', "A Rosario, l'incontro triveneto latinoamericano INTRIVELA accoglie l'assessore regionale e il presidente della Consulta."],
+      ['1998', 'Il Presidente della Regione inaugura a Buenos Aires la mostra dei modelli lignei delle opere di Palladio.'],
+      ['1999', 'Il Congresso Giovani Veneti di Santa Fe riceve una delegazione regionale insieme a sindaci veneti.'],
+      ['2006', 'La Consulta dei Veneti nel Mondo si riunisce a Mendoza.'],
+      ['2024', 'Una delegazione della Provincia di Santa Fe è ricevuta dalla Regione del Veneto.'],
+      ['Oggi', 'Il CAVA propone di riprendere il cammino con una nuova visita delle Autorità regionali.'],
+    ]] },
   { slug: 'argentina-sede-consulta', area: 'istituzioni', emoji: '🗺️',
     corto: { titolo: "Candidatura dell'Argentina a sede della Consulta", lead: 'Una prossima sessione della Consulta dei Veneti nel Mondo in Argentina, per riconoscere il ruolo storico e il peso della collettività veneta nel Paese.' },
     titolo: "Candidatura dell'Argentina quale futura sede della Consulta dei Veneti nel Mondo",
@@ -40,22 +63,140 @@ const P = [
       ['🌍', 'Diversificazione degli scambi', "Ampliare le opportunità oltre l'UE, aprendo nuove prospettive formative e professionali."],
       ['🏛️', 'Collaborazioni istituzionali', 'Regione, Province e Comuni possono attivare accordi bilaterali con enti argentini.'],
       ['✈️', 'Attrattività reciproca', "L'Argentina diventa meta di soggiorni culturali, mentre il Veneto si apre a giovani argentini."],
-    ] },
+    ],
+    // Investigado: comunicados de regione.veneto.it (Bento Gonçalves 2025, Belluno 2026, Treviso 2022, Vicenza 2023)
+    programma: ['Come potrebbe essere', [
+      ['📍', 'Una città della rete', 'Buenos Aires, Córdoba, Rosario o Mendoza: sedi con associazioni attive e collegamenti diretti.'],
+      ['🌱', 'Il Meeting dei Giovani', 'Insieme alla Consulta, come in Brasile, con i giovani discendenti veneti di tutta la rete.'],
+      ['🎉', 'La Giornata dei Veneti nel mondo', 'Una festa aperta alle famiglie venete argentine, nelle piazze e nelle sedi delle associazioni.'],
+      ['🤝', 'Istituzioni e università', 'Incontri con autorità, atenei e camere di commercio, per dare seguito alle altre proposte.'],
+      ['🧭', "L'accoglienza del CAVA", "Le associazioni mettono a disposizione sedi, contatti e volontari per l'organizzazione."],
+    ]],
+    storia: ['La Consulta nel mondo', [
+      ['2006', "La Consulta si riunisce a Mendoza: l'ultima volta in Argentina."],
+      ['2022', 'A Treviso, la prima sessione in presenza dopo la pandemia.'],
+      ['2023', 'Vicenza ospita la Consulta e il Meeting dei Giovani.'],
+      ['2025', "In Brasile, a Bento Gonçalves, per i 150 anni dell'emigrazione veneta nel Rio Grande do Sul."],
+      ['2026', 'La Consulta torna in Veneto, a Belluno.'],
+      ['Domani', "L'Argentina, a vent'anni da Mendoza."],
+    ], "Nel 2025 la Regione ha portato la Consulta oltreoceano. Una sessione all'estero si può fare, e ha senso farla dove l'emigrazione veneta ha fatto la storia."] },
   { slug: 'scambio-giovanile', area: 'giovani', emoji: '🎒',
     titolo: 'Ripresa dei programmi di scambio giovanile',
-    sintesi: 'Sollecitare la riattivazione dei programmi di mobilità destinati ai giovani discendenti veneti, favorendo soggiorni culturali, linguistici e formativi in Veneto.' },
+    sintesi: 'Sollecitare la riattivazione dei programmi di mobilità destinati ai giovani discendenti veneti, favorendo soggiorni culturali, linguistici e formativi in Veneto.',
+    // Investigado: regione.veneto.it (progetti formativi 18-39, Meeting), Trentino interscambi (ladige.it), LAZOS (trentininelmondo.it), Italea (esteri.it)
+    testo: ['La proposta', 'Il Veneto dei nonni, visto da vicino', [
+      "Per molti giovani veneto-argentini il Veneto è la terra dei nonni: lo conoscono dai racconti, dai cognomi e dalle ricette di casa, ma non l'hanno mai visto.",
+      "Il CAVA chiede di riattivare programmi di mobilità che permettano ai giovani discendenti di trascorrere un periodo in Veneto, per studiare la lingua, conoscere il territorio e ritrovare i paesi d'origine delle proprie famiglie.",
+      'Oggi la Regione sostiene progetti formativi per i giovani oriundi tra i 18 e i 39 anni e riunisce ogni anno il Meeting dei Giovani. Un programma di scambio stabile darebbe a molti più ragazzi la possibilità di vivere il Veneto in prima persona.',
+    ]],
+    programma: ['Come potrebbe funzionare', [
+      ['🗓️', 'Due o tre settimane a luglio', "Durante le vacanze invernali argentine, quando l'estate veneta è piena di vita."],
+      ['🏡', 'Ospiti delle famiglie', 'Accoglienza presso famiglie venete, per vivere il quotidiano e non solo i monumenti.'],
+      ['🗣️', 'Lingua e cultura', 'Corsi di italiano e di cultura veneta con università, scuole e associazioni del territorio.'],
+      ['📍', "Il paese d'origine", "Una giornata nel comune degli antenati, con l'incontro con il sindaco e la ricerca negli archivi."],
+      ['🔁', 'Uno scambio reciproco', "L'anno dopo, i giovani veneti partono per l'Argentina, ospitati dalle famiglie della rete."],
+      ['🧭', 'Le associazioni come ponte', 'Il CAVA e le associazioni raccolgono le candidature e preparano i ragazzi prima della partenza.'],
+    ]],
+    storia: ['Esperienze da cui ripartire', [
+      ['1994', "Il CAVA avvia corsi di formazione annuali con l'Università di Padova e la Regione, in diverse città argentine."],
+      ['1999', 'A Santa Fe il Congresso Giovani Veneti riunisce i ragazzi della rete.'],
+      ['Dal 1999', 'Il Trentino scambia ogni anno giovani con i discendenti dei suoi emigrati: oltre venti edizioni, con ospitalità reciproca.'],
+      ['2015', 'Il Friuli Venezia Giulia avvia LAZOS con Avellaneda (Santa Fe): un mese in famiglia per studenti italiani.'],
+      ['2024', "Con l'Anno delle radici italiane e il progetto Italea, lo Stato punta sul ritorno dei discendenti."],
+      ['Oggi', 'Il CAVA propone che il Veneto riprenda gli scambi giovanili.'],
+    ], 'Il Veneto ha già lavorato con i giovani veneto-argentini, e altre regioni dimostrano che uno scambio stabile funziona.'] },
   { slug: 'formazione-e-stage', area: 'giovani', emoji: '🎓',
     titolo: 'Corsi di perfezionamento, formazione e stage',
-    sintesi: "Promuovere percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, con l'obiettivo di creare opportunità concrete per le nuove generazioni." },
+    sintesi: "Promuovere percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, con l'obiettivo di creare opportunità concrete per le nuove generazioni.",
+    // Investigado: bandi master 2018-2019 (decretos en inapp.gov.it), DGR 510/2021 y avviso 2025 (regione.veneto.it), Erasmus KA171
+    testo: ['La proposta', 'Imparare in Veneto, lavorare nel mondo', [
+      'Il Veneto ha università di prestigio, distretti produttivi e imprese conosciute in tutto il mondo. Per un giovane veneto-argentino, un periodo di formazione in Veneto può cambiare la carriera.',
+      'Il CAVA propone percorsi di alta formazione, tirocini e stage presso enti, università, aziende e istituzioni venete, pensati per i giovani discendenti laureati o in formazione.',
+      "Molti di loro hanno già la cittadinanza italiana: possono studiare e fare esperienza in Veneto con meno ostacoli, e riportare poi in Argentina competenze e contatti.",
+    ]],
+    programma: ['Cosa si potrebbe offrire', [
+      ['🎓', 'Master e perfezionamento', 'Riattivare le borse per i master nelle università venete, già previste dalla legge regionale.'],
+      ['🏭', 'Stage in azienda', "Tirocini di alcuni mesi in imprese venete, a partire da quelle che lavorano con l'America Latina."],
+      ['🏛️', 'Tirocini nelle istituzioni', 'Esperienze in Regione, nei Comuni, nelle camere di commercio e negli enti culturali.'],
+      ['💻', 'Formazione a distanza', 'Corsi online per chi non può partire, come già previsto dagli ultimi avvisi regionali.'],
+      ['🔁', "Erasmus+ con l'Argentina", 'Accordi di mobilità tra atenei veneti e argentini, che il programma europeo già consente.'],
+      ['🤝', 'Un ritorno per la rete', "Chi rientra porta nell'associazione competenze e contatti, e accompagna chi parte dopo."],
+    ]],
+    storia: ['Da dove partire', [
+      ['2018', "La Regione finanzia master nelle università venete per giovani oriundi tra i 18 e i 39 anni, fino a 10.000 euro a testa."],
+      ['2019', 'Nuova edizione dei master, gestita dagli ESU di Padova, Venezia e Verona.'],
+      ['2021', 'Nasce una linea di progetti formativi per i giovani oriundi dai 18 ai 39 anni, anche a distanza.'],
+      ['2025', "L'avviso annuale della Regione include progetti formativi per i giovani oriundi, in Veneto o a distanza."],
+      ['Oggi', 'Il CAVA chiede di farne un programma stabile, con stage in aziende e istituzioni.'],
+    ], 'Gli strumenti esistono già, ma sono saltuari e poco conosciuti in Argentina.'] },
   { slug: 'risorse-e-finanziamenti', area: 'giovani', emoji: '💶',
     titolo: 'Ricerca di risorse e finanziamenti',
-    sintesi: "Qualora non siano disponibili fondi regionali dedicati, chiedere alla Regione del Veneto di supportare le associazioni nell'individuazione di bandi, finanziamenti europei e internazionali, fondazioni, università e partner privati interessati a sostenere tali iniziative." },
+    sintesi: "Qualora non siano disponibili fondi regionali dedicati, chiedere alla Regione del Veneto di supportare le associazioni nell'individuazione di bandi, finanziamenti europei e internazionali, fondazioni, università e partner privati interessati a sostenere tali iniziative.",
+    // Investigado: avvisi L.R. 2/2003 (regione.veneto.it), MAECI missioni di studio, Italea, Erasmus KA171, bandi Cariverona/Cariparo
+    testo: ['La proposta', 'Le idee ci sono, servono le risorse', [
+      'Scambi, stage e corsi hanno un costo: viaggi, alloggi, docenti. Le associazioni hanno le persone e i contatti, ma raramente i fondi o la struttura per candidarsi ai grandi bandi.',
+      'Se i fondi regionali non bastano, il CAVA chiede alla Regione di fare da guida: segnalare i bandi adatti, aiutare a scrivere i progetti e mettere in contatto le associazioni con università, fondazioni e imprese.',
+      'Molti bandi richiedono un ente capofila in Italia: con un partner veneto al fianco, i progetti nati in Argentina diventano finanziabili.',
+    ]],
+    programma: ['Dove cercare', [
+      ['🦁', 'Regione del Veneto', 'Gli avvisi annuali della legge 2/2003 per iniziative culturali e progetti formativi, aperti ai circoli registrati.'],
+      ['🌐', 'Unione Europea', 'Erasmus+ per la mobilità tra atenei europei e argentini, Horizon Europe per la ricerca.'],
+      ['🏛️', 'Stato italiano', 'Farnesina e Italea, il progetto per il turismo delle radici, con contributi per studio e ricerca.'],
+      ['🏦', 'Fondazioni', 'Le fondazioni venete che sostengono ricerca e formazione, con un ente veneto come capofila.'],
+      ['🎓', 'Università', 'Accordi tra atenei, borse di studio e dottorati in cotutela tra Veneto e Argentina.'],
+      ['💼', 'Imprese', 'Aziende venete presenti in Argentina e camere di commercio: borse e stage sponsorizzati.'],
+    ]],
+    storia: ['Cosa chiede il CAVA alla Regione', [
+      ['01', 'Un referente per le associazioni venete all\'estero, a cui chiedere orientamento sui bandi.'],
+      ['02', "Una mappa delle opportunità aggiornata ogni anno e diffusa a tutta la rete."],
+      ['03', 'Progetti in partenariato, con la Regione o un ente veneto come capofila.'],
+      ['04', 'Un corso di progettazione per i circoli, anche online, per imparare a candidarsi.'],
+    ]] },
   { slug: 'scuole-agrarie-e-universita', area: 'agricoltura', emoji: '🌾',
     titolo: 'Scambi tra scuole agrarie e università',
-    sintesi: "Promuovere accordi di collaborazione tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina per realizzare programmi di mobilità, formazione e scambio di competenze." },
+    sintesi: "Promuovere accordi di collaborazione tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina per realizzare programmi di mobilità, formazione e scambio di competenze.",
+    // Investigado: Agripolis (unipd.it), Scuola Enologica di Conegliano, INTA; ciudades = localidades de la rete (CITIES)
+    testo: ['La proposta', 'Due terre agricole, un sapere comune', [
+      'Molti emigrati veneti arrivati in Argentina erano contadini: hanno lavorato la terra nella pampa, nelle colonie di Santa Fe e Córdoba, nelle vigne di Mendoza.',
+      'Oggi Veneto e Argentina sono due grandi realtà agroalimentari, con scuole e università di eccellenza. Il CAVA propone accordi tra istituti agrari, università e centri di ricerca per scambiare studenti, docenti e conoscenze.',
+      "Le stagioni invertite sono un vantaggio: chi studia viticoltura può vivere la vendemmia in Veneto a settembre e quella argentina a marzo.",
+    ]],
+    programma: ['Cosa si potrebbe fare', [
+      ['📝', 'Gemellaggi tra scuole', 'Accordi tra istituti agrari veneti ed escuelas agrotécnicas argentine.'],
+      ['🎒', 'Mobilità degli studenti', 'Periodi di studio e stage in azienda, anche durante la vendemmia e la raccolta.'],
+      ['👩‍🏫', 'Scambio di docenti', 'Seminari e corsi brevi tenuti da docenti dei due Paesi, in presenza o online.'],
+      ['🔬', 'Ricerca condivisa', "Progetti comuni tra università e centri come l'INTA su clima, acqua e suolo."],
+      ['🧀', 'Filiere e tradizioni', 'Vino, formaggi e frutta come laboratorio pratico di competenze tecniche.'],
+    ]],
+    storia: ['Abbinamenti possibili', [
+      ['Vino', "Conegliano, sede della prima scuola enologica d'Italia, e Mendoza, capitale del vino argentino."],
+      ['Latte', 'Le scuole agrarie venete e il bacino lattiero di Rafaela e San Francisco.'],
+      ['Cereali', "Agripolis, il campus agrario dell'Università di Padova, e la pampa di Pergamino e Marcos Juárez."],
+      ['Frutta', "Il Veronese e l'Alto Valle del Río Negro, attorno a Villa Regina."],
+    ], 'Ogni area agricola veneta ha un corrispettivo argentino, spesso in una città della rete del CAVA.'] },
   { slug: 'droni-in-agricoltura', area: 'agricoltura', emoji: '🚁',
     titolo: "Formazione sull'utilizzo dei droni in agricoltura",
-    sintesi: "Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore." },
+    sintesi: "Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore.",
+    // Investigado: master GIScience e SAPR y cursos en Agripolis (unipd.it), encuesta INTA sobre drones, régimen ANAC 2025
+    testo: ['La proposta', 'La tecnologia al servizio del campo', [
+      "Droni e agricoltura di precisione permettono di monitorare le colture, dosare acqua e fertilizzanti e intervenire solo dove serve: meno costi, meno sprechi, più rispetto per l'ambiente.",
+      "In Veneto l'Università di Padova forma da anni sull'uso dei droni in agricoltura, con un master dedicato e prove in campo nell'azienda sperimentale di Legnaro. In Argentina l'INTA studia la diffusione dei droni nel settore agricolo.",
+      'Il CAVA propone corsi, laboratori e attività pratiche condivise tra i due Paesi, per studenti, docenti e aziende.',
+    ]],
+    programma: ['Cosa si potrebbe fare', [
+      ['🎓', 'Corsi e laboratori', 'Moduli teorici e prove pratiche di volo, in presenza o a distanza.'],
+      ['🛰️', 'Mappe e dati', 'Rilievi con droni e satelliti per leggere lo stato delle colture e decidere meglio.'],
+      ['🧪', 'Prove in campo condivise', 'Lo stesso protocollo provato in Veneto e in Argentina, in due stagioni opposte.'],
+      ['📜', 'Regole e sicurezza', 'Un confronto tra le norme europee e quelle argentine, aggiornate nel 2025.'],
+      ['🏭', 'Le aziende', 'Imprese venete del settore e produttori argentini, per lavorare con tecnologie reali.'],
+      ['🌱', 'Giovani tecnici', "Priorità ai giovani della rete, futuri professionisti dell'agricoltura di precisione."],
+    ]],
+    storia: ['Su cosa costruire', [
+      ['Padova', "Un master in GIScience e droni, con un indirizzo dedicato all'agricoltura di precisione."],
+      ['Legnaro', "L'azienda agraria sperimentale di Agripolis, dove si svolgono le prove in campo."],
+      ['INTA', 'Le stazioni sperimentali di Marcos Juárez, Pergamino e Rafaela, città della rete del CAVA.'],
+      ['Oggi', 'Il CAVA propone di mettere in rete queste esperienze con un programma comune.'],
+    ]] },
 ];
 P.forEach((p, i) => (p.n = i + 1));
 
@@ -466,14 +607,36 @@ for (const p of P) {
   const [ruoloT, ruoloD] = RUOLO[p.area];
   const prev = P[p.n - 2];
   const next = P[p.n];
-  const ragioni = p.ragioni ? `
+  const cards = (titolo, items) => `
       <section class="block">
         <div class="sec-head center" data-reveal>
-          <h2>Perché puntare sull'Argentina</h2>
+          <h2>${esc(titolo)}</h2>
         </div>
         <ul class="reasons">
-${p.ragioni.map(([e, t, d], i) => `          <li class="reason" data-reveal style="--i:${i}"><span class="reason-emoji" aria-hidden="true">${e}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('\n')}
+${items.map(([e, t, d], i) => `          <li class="reason" data-reveal style="--i:${i}"><span class="reason-emoji" aria-hidden="true">${e}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('\n')}
         </ul>
+      </section>`;
+  const ragioni = p.ragioni ? cards("Perché puntare sull'Argentina", p.ragioni) : '';
+  const programma = p.programma ? cards(...p.programma) : '';
+  const testo = p.testo ? `
+      <section class="block ruolo testo" data-reveal>
+        <div>
+          ${label(p.testo[0])}
+          <h2>${esc(p.testo[1])}</h2>
+        </div>
+        <div>
+${p.testo[2].map((t, i) => `          <p${i ? '' : ' class="big"'}>${esc(t)}</p>`).join('\n')}
+        </div>
+      </section>` : '';
+  const storia = p.storia ? `
+      <section class="block">
+        <div class="sec-head" data-reveal>
+          <h2>${esc(p.storia[0])}</h2>${p.storia[2] ? `
+          <p>${esc(p.storia[2])}</p>` : ''}
+        </div>
+        <ol class="timeline">
+${p.storia[1].map(([a, t], i) => `          <li${a === 'Oggi' || a === 'Domani' ? ' class="is-now"' : ''} data-reveal style="--i:${i}"><b>${esc(a)}</b><p>${esc(t)}</p></li>`).join('\n')}
+        </ol>
       </section>` : '';
 
   const html = `${head(r, `Proposta ${p.n} · ${p.shareTitolo} · CAVA`, p.shareDesc, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} · ${p.shareTitolo}`, seoDesc: `${p.shareDesc} Una proposta del CAVA per la Consulta dei Veneti nel Mondo.`, image: `assets/img/og/${p.slug}.jpg`, imageAlt: `Proposta ${p.n} di 7 del CAVA: ${p.titolo}` })}
@@ -500,7 +663,7 @@ ${p.ragioni.map(([e, t, d], i) => `          <li class="reason" data-reveal styl
         <div>
           <p class="big">${esc(p.sintesi)}</p>
         </div>
-      </section>` : ''}${ragioni}
+      </section>` : ''}${testo}${ragioni}${programma}${storia}
 
       <section class="block ruolo" data-reveal>
         <div>

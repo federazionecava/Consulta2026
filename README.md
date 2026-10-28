@@ -48,6 +48,17 @@ node recursos/generador/build.mjs .
 
 Es más cómodo para cambios grandes (todas las páginas de una), pero **reescribe los .html**: si editaste algo a mano, pasalo también al script antes de correrlo.
 
+### Contenido de cada propuesta
+
+Los textos de las propuestas están en la lista `P`, al principio de `build.mjs`. Además del título y la síntesis (que van también a la landing y al PDF), cada propuesta puede tener secciones que **solo salen en su página web**:
+
+- `testo`: `[etiqueta, título, [párrafos]]`. Bloque de texto; el primer párrafo sale más grande.
+- `ragioni`: tarjetas con emoji de "Perché puntare sull'Argentina" (solo la 2; también salen en el PDF).
+- `programma`: `[título, [[emoji, título, texto], …]]`. Tarjetas con emoji (qué podría incluir, cómo funcionaría, etc.).
+- `storia`: `[título, [[etiqueta, texto], …], intro opcional]`. Línea de tiempo; si la etiqueta es *Oggi* o *Domani* el punto sale dorado.
+
+Arriba de cada propuesta hay un comentario con las fuentes que se usaron para investigar ese contenido.
+
 ## Antes de publicar: el dominio
 
 La vista previa al compartir por WhatsApp (imagen + título) necesita la dirección completa de la web. Todos los `.html` usan `https://consulta.comitatocava.org`. Si el dominio cambia, hacé un **buscar y reemplazar** por la nueva dirección (sin barra al final) en `index.html`, en la carpeta `proposte/` y en `recursos/generador/build.mjs` (constante `SITE`).
@@ -77,7 +88,7 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 **Para que la web funcione bien publicada**
 - [x] Dominio configurado en los `.html`: `https://consulta.comitatocava.org`.
 - [x] Publicado en Vercel en `consulta.comitatocava.org`.
-- [ ] **Vercel no publica los commits nuevos**: el plan gratis bloquea los deploys de commits de quien no es miembro del equipo (el repo es de la organización `federazionecava`). Lo publicado todavía tiene `tu-dominio.com` en la vista previa, por eso WhatsApp no muestra la imagen. Opciones: Redeploy a mano desde Vercel, `npx vercel --prod` con la cuenta dueña, o pasar a otro hosting (ej. Cloudflare Pages). Ojo: `git` no está en el PATH de esta compu (se puede usar GitHub Desktop).
+- [x] Vercel publica los commits nuevos (antes el plan gratis bloqueaba los deploys de quien no es miembro del equipo `federazionecava`). Ojo: `git` no está en el PATH de esta compu (se puede usar GitHub Desktop).
 - [ ] Probar el link compartido por WhatsApp una vez publicado (con `?v=2`).
 - [ ] Probar en un **iPhone y un Android reales**: videos de fondo, menú, mapa (tocar ciudades) y navegación entre propuestas.
 
@@ -87,7 +98,17 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 - [ ] **La Pampa = Santa Rosa**: confirmar que la asociación está en Santa Rosa.
 - [ ] Comparaciones con Italia que agregué yo (aproximadas): **Rosario ≈ Venezia–Milano (270 km)** y **Mar del Plata ≈ Venezia–Genova (390 km)**. Las de Córdoba y Mendoza vienen de la presentación.
 
+**Contenido ampliado de las propuestas (investigado, parte inventado): confirmar con el CAVA**
+- [ ] P1: que no hubo visitas oficiales de la Región a Argentina después de 2006 (no encontré ninguna). Las fechas 1989–2006 salen de la historia del CAVA en miveneto.it.
+- [ ] P2: que Mendoza 2006 fue la última Consulta en Argentina. La tarjeta *L'accoglienza del CAVA* compromete al CAVA a poner sedes, contactos y voluntarios.
+- [ ] P3: la propuesta dice *riattivare*: ¿qué programa juvenil había antes y cuándo se cortó? Con ese dato el texto queda más firme.
+- [ ] P4: las becas de máster de la Región aparecen solo en 2018 y 2019; confirmar si hubo ediciones después.
+- [ ] P5: los cuatro pedidos de *Cosa chiede il CAVA alla Regione* son una propuesta mía.
+- [ ] P6 y P7: los *abbinamenti* (Conegliano–Mendoza, Rafaela, Pergamino, Marcos Juárez, Villa Regina) y las estaciones del INTA son ideas para mostrar el potencial, no acuerdos existentes.
+- [ ] En todas: las tarjetas de *programma* (qué incluiría, cómo funcionaría) son propuestas razonables, no compromisos de nadie.
+
 **Textos en italiano para que revise alguien del CAVA**
+- [ ] Todo el contenido ampliado de las siete propuestas (secciones `testo`, `programma` y `storia` en `build.mjs`).
 - [ ] Hero corto de la propuesta 2: *Candidatura dell'Argentina a sede della Consulta* + su subtítulo.
 - [ ] Footer: *Un ponte tra il Veneto e l'Argentina. / Per sostenere le proposte o collaborare con il CAVA, scriveteci.*
 - [ ] La rete: *…per ritrovarsi, ognuno parte da qui.*
@@ -95,7 +116,7 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 
 **Contenido que falta**
 - [ ] Fotos reales (eventos, sedes, socios): es lo que más haría que la web no parezca hecha por IA.
-- [ ] Más texto por propuesta si existe (antecedentes, ejemplos concretos). Hoy cada una tiene una sola frase.
+- [x] Más texto por propuesta: cada página tiene ahora texto, tarjetas y línea de tiempo (ver arriba qué confirmar).
 - [ ] Opcional: firma y fecha ("Buenos Aires, [fecha] · [Nombre], Presidente del CAVA").
 
 **Ideas que quedaron sueltas**
