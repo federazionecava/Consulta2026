@@ -226,7 +226,7 @@ const CITAZIONE = "Le associazioni non sono semplici custodi della tradizione, m
 
 // Documento PDF con las siete propuestas (lo genera este script al final, con Chrome o Edge)
 const PDF_FILE = 'CAVA-Proposte-Consulta-Veneti-nel-Mondo.pdf';
-const PDF_PAGES = 6;
+const PDF_PAGES = 4 + P.length; // portada, una por propuesta, chi siamo, la rete, contraportada
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // En las etiquetas del <head> también el apóstrofo: algunos lectores de vista previa cortan el texto en "l'Argentina"
@@ -712,20 +712,47 @@ const run = (n) => `
     <header class="run"><span class="run-brand"><img src="${D}assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>${pad(n)}</b> / ${pad(PDF_PAGES)}</span></header>`;
 const legend = `<ul class="legend">${Object.entries(AREE).map(([k, v]) => `<li data-area="${k}">${v}</li>`).join('')}</ul>`;
 
-const pcard = (p) => `
-        <article class="pc" id="proposta-${pad(p.n)}" data-area="${p.area}">
-          <div class="pc-side"><span class="pc-num">${pad(p.n)}</span><span class="pc-emoji emoji">${p.emoji}</span></div>
-          <div class="pc-body">
-            <span class="pc-area">${AREE[p.area]}</span>
-            <h3>${esc(p.titolo)}</h3>
-            <p>${esc(p.sintesi)}</p>${p.ragioni ? `
-            <div class="reasons">
-              <p class="reasons-title">Perché puntare sull'Argentina</p>
-${p.ragioni.map(([e, t, d]) => `              <div class="reason"><span class="emoji">${e}</span><div><h4>${esc(t)}</h4><p>${esc(d)}</p></div></div>`).join('\n')}
-            </div>` : ''}
-            <a class="pc-link" href="${SITE}/proposte/${p.slug}.html">Leggi online <span>→</span></a>
-          </div>
-        </article>`;
+// Una hoja por propuesta, con todo lo de su página web (testo, ragioni, programma, storia, ruolo)
+const pcards = (titolo, items) => `
+      <div class="pp-block">
+        <h3 class="pp-h">${esc(titolo)}</h3>
+        <div class="pp-cards">
+${items.map(([e, t, d]) => `          <div class="reason"><span class="emoji">${e}</span><div><h4>${esc(t)}</h4><p>${esc(d)}</p></div></div>`).join('\n')}
+        </div>
+      </div>`;
+const ppage = (p) => {
+  const [ruoloT, ruoloD] = RUOLO[p.area];
+  return `
+  <section class="page pp" id="proposta-${pad(p.n)}" data-area="${p.area}">${run(p.n + 1)}
+    <div class="inner pp-inner">
+      <header class="pp-head">
+        <div class="pp-side"><span class="pc-num">${pad(p.n)}</span><span class="pc-emoji emoji">${p.emoji}</span></div>
+        <div class="pp-title">
+          <span class="pc-area">Proposta ${p.n} di 7 · ${AREE[p.area]}</span>
+          <h2>${esc(p.titolo)}</h2>
+          <p class="big">${esc(p.sintesi)}</p>
+        </div>
+      </header>${p.testo ? `
+      <div class="pp-block pp-testo">
+        <h3 class="pp-h"><small>${esc(p.testo[0])}</small>${esc(p.testo[1])}</h3>
+        <div class="pp-cols">
+${p.testo[2].map((t) => `          <p>${esc(t)}</p>`).join('\n')}
+        </div>
+      </div>` : ''}${p.ragioni ? pcards("Perché puntare sull'Argentina", p.ragioni) : ''}${p.programma ? pcards(...p.programma) : ''}${p.storia ? `
+      <div class="pp-block">
+        <h3 class="pp-h">${esc(p.storia[0])}</h3>${p.storia[2] ? `
+        <p class="pp-intro">${esc(p.storia[2])}</p>` : ''}
+        <ol class="pp-tl">
+${p.storia[1].map(([a, t]) => `          <li${a === 'Oggi' || a === 'Domani' ? ' class="is-now"' : ''}><b>${esc(a)}</b><p>${esc(t)}</p></li>`).join('\n')}
+        </ol>
+      </div>` : ''}
+      <footer class="pp-foot">
+        <p><b>Il ruolo delle associazioni · ${ruoloT}</b>${esc(ruoloD)}</p>
+        <a class="pc-link" href="${SITE}/proposte/${p.slug}.html">Leggi online <span>→</span></a>
+      </footer>
+    </div>
+  </section>`;
+};
 
 const doc = `<!doctype html>
 <html lang="it">
@@ -754,26 +781,9 @@ ${P.map((p) => `        <li data-area="${p.area}"><a href="#proposta-${pad(p.n)}
     </div>
   </section>
 
-  <section class="page">${run(2)}
-    <div class="inner">
-      <div class="sec-head">
-        <p class="label">Le proposte</p>
-        <h2 class="h2">Sette proposte, tre ambiti</h2>
-        ${legend}
-      </div>
-      <div class="props">${P.slice(0, 3).map(pcard).join('')}
-      </div>
-    </div>
-  </section>
+${P.map(ppage).join('\n')}
 
-  <section class="page">${run(3)}
-    <div class="inner">
-      <div class="props">${P.slice(3).map(pcard).join('')}
-      </div>
-    </div>
-  </section>
-
-  <section class="page">${run(4)}
+  <section class="page">${run(P.length + 2)}
     <div class="inner">
       <div class="about">
         <div class="about-head">
@@ -802,7 +812,7 @@ ${RUOLI.map(([t, d], i) => `        <li class="role"><span class="role-n">${['I'
     </div>
   </section>
 
-  <section class="page">${run(5)}
+  <section class="page">${run(P.length + 3)}
     <div class="inner">
       <div class="rete-head">
         <p class="label">La rete</p>

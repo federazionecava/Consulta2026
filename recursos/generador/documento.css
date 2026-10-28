@@ -101,7 +101,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .toc small { font-size: 8pt; font-weight: 500; color: var(--ink-soft); white-space: nowrap; }
 .cover-foot { position: absolute; left: var(--mx); right: var(--mx); bottom: 14mm; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; color: var(--ink-soft); }
 
-/* ---------- 2. Chi siamo + ruolo de las asociaciones ---------- */
+/* ---------- 9. Chi siamo + ruolo de las asociaciones ---------- */
 .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 12mm; align-items: start; }
 .about-head { display: grid; gap: 4mm; justify-items: start; }
 .about-logo { width: 34mm; height: auto; margin-bottom: 1mm; }
@@ -130,7 +130,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .quote p { font-weight: 600; letter-spacing: -0.02em; font-size: 14pt; line-height: 1.3; }
 .quote em { font-style: normal; color: var(--oro); }
 
-/* ---------- 3. La rete: mapa, distancias y sedes ---------- */
+/* ---------- 10. La rete: mapa, distancias y sedes ---------- */
 .rete-head { display: grid; gap: 3.5mm; margin-bottom: 8mm; max-width: 160mm; }
 .rete { display: grid; grid-template-columns: 1fr 66mm; gap: 9mm; align-items: start; }
 .routes-hint { font-size: 8.5pt; font-weight: 500; color: var(--ink-soft); }
@@ -185,27 +185,49 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .lg-prov::before { content: ''; width: 2.8mm; height: 2.2mm; border-radius: 1px; background: #c3dacb; box-shadow: inset 0 0 0 1px #a2c1ad; }
 .lg-hq::before { content: ''; width: 2.2mm; height: 2.2mm; border-radius: 50%; background: var(--rosso); }
 
-/* ---------- 4-5. Las propuestas ---------- */
-.sec-head { display: grid; gap: 3.5mm; justify-items: start; margin-bottom: 7mm; }
-.props { display: grid; gap: 5mm; }
-.pc { display: grid; grid-template-columns: 21mm 1fr; gap: 5mm; padding: 6mm 7mm 6mm 6mm; background: var(--paper); border: 1px solid var(--line); border-radius: 6mm; break-inside: avoid; }
-.pc-side { display: grid; align-content: start; justify-items: start; gap: 3.5mm; }
-.pc-num { font-weight: 900; font-size: 30pt; line-height: .85; letter-spacing: -0.05em; color: var(--area); }
-.pc-emoji { font-size: 17pt; line-height: 1; }
-.pc-body { display: grid; gap: 2.5mm; align-content: start; }
-.pc-area { display: inline-flex; align-items: center; gap: 1.6mm; font-size: 7.8pt; font-weight: 600; color: var(--ink-soft); }
+/* ---------- 2-8. Una hoja por propuesta: todo lo de su página web ---------- */
+.pp-inner { display: flex; flex-direction: column; gap: 5.5mm; }
+.pp-inner > * { flex-shrink: 0; }
+.pp-head { display: grid; grid-template-columns: 21mm 1fr; gap: 5mm; padding-bottom: 5mm; border-bottom: 1px solid var(--navy); }
+.pp-side { display: grid; align-content: start; justify-items: start; gap: 3.5mm; }
+.pc-num { font-weight: 900; font-size: 34pt; line-height: .85; letter-spacing: -0.05em; color: var(--area); }
+.pc-emoji { font-size: 19pt; line-height: 1; }
+.pp-title { display: grid; gap: 2.8mm; justify-items: start; }
+.pc-area { display: inline-flex; align-items: center; gap: 1.6mm; font-size: 8pt; font-weight: 600; color: var(--ink-soft); }
 .pc-area::before { content: ''; width: 2mm; height: 2mm; border-radius: 50%; background: var(--area); }
-.pc h3 { font-size: 13pt; font-weight: 600; color: var(--navy); }
-.pc p { font-size: 9.8pt; line-height: 1.5; color: var(--ink-soft); }
-.pc-link { justify-self: start; display: inline-flex; gap: 1.5mm; margin-top: .5mm; font-size: 8pt; font-weight: 600; color: var(--area); border-bottom: 1px solid currentColor; }
-.reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; margin-top: 1.5mm; padding-top: 3.5mm; border-top: 1px solid var(--line); }
-.reasons-title { grid-column: 1 / -1; font-size: 8.5pt; font-weight: 700; color: var(--navy); }
-.reason { display: grid; grid-template-columns: 6mm 1fr; gap: 2mm; align-items: start; }
-.reason .emoji { font-size: 11pt; line-height: 1.2; }
-.reason h4 { font-size: 8.8pt; font-weight: 700; color: var(--navy); line-height: 1.25; }
-.reason p { font-size: 8pt; line-height: 1.4; }
+.pp-title h2 { font-size: 19pt; line-height: 1.08; letter-spacing: -0.03em; color: var(--navy); }
+.pp-title .big { font-size: 11pt; }
 
-/* ---------- 6. Contraportada: como el footer de la web, con el QR abajo ---------- */
+.pp-block { display: grid; gap: 3mm; }
+.pp-h { font-size: 12.5pt; font-weight: 700; letter-spacing: -0.02em; color: var(--navy); }
+.pp-h small { display: block; margin-bottom: .8mm; font-size: 8pt; font-weight: 600; letter-spacing: 0; color: var(--area); }
+.pp-cols { columns: 2; column-gap: 7mm; }
+.pp-cols p { font-size: 9pt; line-height: 1.5; color: var(--ink-soft); margin-bottom: 2mm; break-inside: avoid; }
+.pp-cols p:first-child { color: var(--ink); }
+.pp-intro { font-size: 9pt; color: var(--ink-soft); }
+
+/* Tarjetas (ragioni y programma) */
+.pp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5mm; }
+.reason { display: grid; grid-template-columns: 6mm 1fr; gap: 2mm; align-items: start; padding: 2.6mm 3mm; background: var(--paper); border: 1px solid var(--line); border-radius: 3mm; }
+.reason .emoji { font-size: 11pt; line-height: 1.2; }
+.reason h4 { font-size: 8.6pt; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: .8mm; }
+.reason p { font-size: 7.8pt; line-height: 1.4; color: var(--ink-soft); }
+
+/* Línea de tiempo horizontal; el punto de Oggi / Domani en dorado */
+.pp-tl { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3mm; padding-top: 1mm; }
+.pp-tl li { position: relative; padding-top: 4.5mm; border-top: 1.5px solid var(--line); }
+.pp-tl li::before { content: ''; position: absolute; top: -1.6mm; left: 0; width: 2.6mm; height: 2.6mm; border-radius: 50%; background: var(--area); box-shadow: 0 0 0 1mm var(--crema); }
+.pp-tl li.is-now::before { background: var(--oro-scuro); }
+.pp-tl b { display: block; margin-bottom: 1mm; font-size: 10pt; font-weight: 900; letter-spacing: -0.02em; color: var(--navy); }
+.pp-tl .is-now b { color: var(--oro-scuro); }
+.pp-tl p { font-size: 7.6pt; line-height: 1.4; color: var(--ink-soft); }
+
+.pp-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: end; gap: 8mm; padding-top: 4mm; border-top: 1px solid var(--line); }
+.pp-foot p { max-width: 125mm; font-size: 8pt; line-height: 1.45; color: var(--ink-soft); }
+.pp-foot b { display: block; font-weight: 700; color: var(--navy); }
+.pc-link { flex: none; display: inline-flex; gap: 1.5mm; font-size: 8pt; font-weight: 600; color: var(--area); border-bottom: 1px solid currentColor; }
+
+/* ---------- 11. Contraportada: como el footer de la web, con el QR abajo ---------- */
 .back { background: var(--navy-deep); color: rgba(255, 255, 255, .78); }
 .back::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2mm; background: linear-gradient(90deg, #009246 0 33.3%, #f4f5f0 0 66.6%, #ce2b37 0); z-index: 2; }
 .back .dots { height: 112%; left: 50%; top: 50%; transform: translate(-50%, -54%); }

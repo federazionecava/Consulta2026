@@ -273,7 +273,8 @@
   }
 
   // ---------- Compartir la propuesta ----------
-  // En cada propuesta, al final: un botón que copia el link al portapapeles.
+  // En cada propuesta, al final: un botón que abre el menú de compartir del sistema
+  // (o, si el navegador no lo tiene, copia el link al portapapeles).
   const backWrap = document.querySelector('.hero-proposal') && document.querySelector('.back-wrap');
   if (backWrap) {
     const canonical = document.querySelector('link[rel="canonical"]');
@@ -317,9 +318,22 @@
       `<span class="share-label"><span class="share-txt">${LABEL}</span><span class="share-txt share-txt-done" aria-hidden="true"></span></span>`;
     backWrap.prepend(b);
 
+    // Título y texto de la vista previa (los mismos de WhatsApp) para acompañar el link
+    const meta = (p) => { const m = document.querySelector(`meta[property="${p}"]`); return m ? m.content : ''; };
+    const data = { title: meta('og:title') || document.title, text: meta('og:description'), url };
+
     const done = b.querySelector('.share-txt-done');
     let timer;
     b.addEventListener('click', async () => {
+      // Menú de compartir del sistema (iPhone, Android, Windows, Mac). Si no existe, copia el link.
+      if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+        try {
+          await navigator.share(data);
+          return;
+        } catch (e) {
+          if (e.name === 'AbortError') return; // cerró el menú sin compartir
+        }
+      }
       const ok = await copy(url);
       b.classList.remove('is-copied', 'is-error');
       void b.offsetWidth; // reinicia la animación si se vuelve a tocar

@@ -69,13 +69,13 @@ Después de publicar, se puede probar cómo se ve el link en https://www.opengra
 
 ## Documento PDF
 
-`documento/CAVA-Proposte-Consulta-Veneti-nel-Mondo.pdf` (6 páginas A4) se descarga desde el botón *Scarica il documento*, debajo de las tarjetas de la landing. Tiene portada con índice, chi siamo, la rete con el mapa, las siete propuestas y, al final, un QR que lleva a la web.
+`documento/CAVA-Proposte-Consulta-Veneti-nel-Mondo.pdf` (11 páginas A4) se descarga desde el botón *Scarica il documento*, debajo de las tarjetas de la landing. Tiene portada con índice, una página por propuesta con todo el contenido de su página web (texto, tarjetas, línea de tiempo y rol de las asociaciones), chi siamo, la rete con el mapa y, al final, un QR que lleva a la web. Cada propuesta tiene que entrar en una sola hoja: si le agregás mucho texto, abrí `recursos/documento/documento.html` en el navegador y fijate que no se corte abajo.
 
 Lo genera el mismo `build.mjs`, con los mismos textos que las páginas: arma `recursos/documento/documento.html` y lo imprime con Chrome o Edge (si no encuentra ninguno, explica cómo imprimirlo a mano). El diseño está en `recursos/generador/documento.css`. Si cambia el dominio, regenerá también el QR (`recursos/generador/qr.svg`): el comando está en `build.mjs`, en la sección *Documento PDF*.
 
 ## Botón compartir
 
-Cada propuesta tiene, al final, un botón *Condividi la proposta* que copia el link al portapapeles. No está en el HTML: lo agrega `js/main.js` y copia la dirección de `<link rel="canonical">` (la publicada, aunque lo pruebes en local).
+Cada propuesta tiene, al final, un botón *Condividi la proposta* que abre el menú de compartir del sistema (en el iPhone, el mismo de cualquier app: WhatsApp, Mensajes, Mail, AirDrop…), con el título y la descripción de la vista previa. Si el navegador no tiene ese menú (por ejemplo Firefox en la compu, o al abrir el archivo con doble clic en vez de desde la web publicada), copia el link al portapapeles. No está en el HTML: lo agrega `js/main.js` y comparte la dirección de `<link rel="canonical">` (la publicada, aunque lo pruebes en local).
 
 ## Videos de fondo
 
