@@ -507,7 +507,7 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
           <p class="big">${ABOUT}</p>
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
-            <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
+            <div><dt>1989</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
             <div><dt data-count="18">18</dt><dd>località, in 9 province e nella Città Autonoma di Buenos Aires</dd></div>
             <div><dt data-count="20">20<span class="count-plus">+</span></dt><dd>associazioni federate</dd></div>
           </dl>
@@ -785,7 +785,7 @@ ${P.map((p) => `        <li data-area="${p.area}"><a href="#proposta-${pad(p.n)}
           <p class="big">${ABOUT}</p>
           <p>Senza fini di lucro, iscritto all'Albo della Regione Veneto.</p>
           <dl class="facts">
-            <div><dt>1998</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
+            <div><dt>1989</dt><dd>fondato a Buenos Aires il 25 luglio</dd></div>
             <div><dt>18</dt><dd>località, in 9 province e nella Città Autonoma di Buenos Aires</dd></div>
             <div><dt>20<span>+</span></dt><dd>associazioni federate</dd></div>
           </dl>
