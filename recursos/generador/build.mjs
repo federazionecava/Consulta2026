@@ -417,15 +417,15 @@ const MAIL = 'mailto:federazionecava@gmail.com';
 // progreso de lectura) que aparece al pasar el hero.
 const nav = (r, home, p) => {
   const h = home ? '' : `${r}index.html`;
-  // En la landing los links siguen el orden de las secciones (las propuestas al final);
-  // en las propuestas, "← Proposte" va primero como link de vuelta.
+  // Los links siguen el orden de las secciones de la landing (las propuestas primero);
+  // en las propuestas, "← Proposte" sirve de link de vuelta.
   const L = {
     proposte: `<a href="${h}#proposte" data-spy="proposte">${home ? '' : '← '}Proposte</a>`,
     chi: `<a href="${h}#chi-siamo" data-spy="chi-siamo">Chi siamo</a>`,
     rete: `<a href="${h}#la-rete" data-spy="la-rete">La rete</a>`,
     perche: `<a href="${h}#perche" data-spy="perche">Perché</a>`,
   };
-  const [a1, a2, b1, b2] = home ? [L.chi, L.rete, L.perche, L.proposte] : [L.proposte, L.chi, L.rete, L.perche];
+  const [a1, a2, b1, b2] = [L.proposte, L.chi, L.rete, L.perche];
   const prev = p && P[p.n - 2];
   const next = p && P[p.n];
   const ctx = p ? `
@@ -461,21 +461,21 @@ const nav = (r, home, p) => {
 
   <div class="menu" id="menu">
     <div class="menu-inner">
-      <div class="menu-sec">
-        <p class="menu-label">Il CAVA</p>
-        <ul>
-          <li style="--i:0"><a href="${r}index.html">Inizio</a></li>
-          <li style="--i:1"><a href="${r}index.html#chi-siamo">Chi siamo</a></li>
-          <li style="--i:2"><a href="${r}index.html#la-rete">La rete</a></li>
-          <li style="--i:3"><a href="${r}index.html#perche">Perché vale la pena</a></li>
-        </ul>
-        <a class="menu-mail" style="--i:4" href="${MAIL}"><small>Scrivici</small>federazionecava@gmail.com</a>
-      </div>
       <div>
         <p class="menu-label">Le ${NP_IT} proposte</p>
         <ol class="menu-props">
-${P.map((q, i) => `          <li style="--i:${i + 2}"><a class="menu-prop${p && q.n === p.n ? ' is-current' : ''}" data-area="${q.area}" href="${r}proposte/${q.slug}.html"><b>${pad(q.n)}</b><span>${esc(q.titolo)}</span></a></li>`).join('\n')}
+${P.map((q, i) => `          <li style="--i:${i}"><a class="menu-prop${p && q.n === p.n ? ' is-current' : ''}" data-area="${q.area}" href="${r}proposte/${q.slug}.html"><b>${pad(q.n)}</b><span>${esc(q.titolo)}</span></a></li>`).join('\n')}
         </ol>
+      </div>
+      <div class="menu-sec">
+        <p class="menu-label">Il CAVA</p>
+        <ul>
+          <li style="--i:2"><a href="${r}index.html">Inizio</a></li>
+          <li style="--i:3"><a href="${r}index.html#chi-siamo">Chi siamo</a></li>
+          <li style="--i:4"><a href="${r}index.html#la-rete">La rete</a></li>
+          <li style="--i:5"><a href="${r}index.html#perche">Perché vale la pena</a></li>
+        </ul>
+        <a class="menu-mail" style="--i:6" href="${MAIL}"><small>Scrivici</small>federazionecava@gmail.com</a>
       </div>
     </div>
   </div>`;
@@ -542,11 +542,26 @@ const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo
       <h1 class="fade-in" style="--d:.2s">Un ponte tra il Veneto e&nbsp;l'Argentina</h1>
       <p class="lead fade-in" style="--d:.35s">Più di venti associazioni in nove province argentine, unite nel CAVA. Chi siamo, dove siamo e cosa proponiamo.</p>
     </div>
-    <a class="hero-down fade-in" style="--d:.6s" href="#chi-siamo">Chi siamo <span aria-hidden="true">↓</span></a>
+    <a class="hero-down fade-in" style="--d:.6s" href="#proposte">Le proposte <span aria-hidden="true">↓</span></a>
   </section>
 
   <div class="sheet">
-    <section class="container" id="chi-siamo">
+    <section class="container" id="proposte">
+      <div class="sec-head" data-reveal>
+        <h2>${cap(NP_IT)} proposte, ${NA_IT} ambiti</h2>
+        <ul class="legend" aria-label="Ambiti">${Object.entries(AREE).map(([k, v]) => `
+          <li data-area="${k}">${v}</li>`).join('')}
+        </ul>
+
+      </div>
+      <ol class="proposals">${P.map((p, i) => card('', p, i)).join('')}
+      </ol>
+      <div class="pdf-wrap" data-reveal>
+        <a class="btn btn-pdf" href="documento/${PDF_FILE}" download><span class="btn-arrow" aria-hidden="true">↓</span>Scarica il documento<small>PDF · ${PDF_PAGES} pagine</small></a>
+      </div>
+    </section>
+
+    <section class="section container" id="chi-siamo">
       <div class="about">
         <div class="about-head" data-reveal>
           <img class="about-logo" src="assets/img/logo-cava.png" width="720" height="513" alt="" loading="lazy" decoding="async">
@@ -613,7 +628,7 @@ ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map(
     </section>
   </div>
 
-  <section class="band band-to-sheet" id="perche">${bg('', 'veneto', 'video/associazioni.mp4')}
+  <section class="band" id="perche">${bg('', 'veneto', 'video/associazioni.mp4')}
     <div class="container">
       <div class="sec-head on-dark" data-reveal>
         <h2>Ruolo strategico delle associazioni</h2>
@@ -627,23 +642,6 @@ ${RUOLI.map(([t, d], i) => `        <li class="role" data-reveal style="--i:${i}
       </blockquote>
     </div>
   </section>
-
-  <div class="sheet">
-    <section class="container" id="proposte">
-      <div class="sec-head" data-reveal>
-        <h2>${cap(NP_IT)} proposte, ${NA_IT} ambiti</h2>
-        <ul class="legend" aria-label="Ambiti">${Object.entries(AREE).map(([k, v]) => `
-          <li data-area="${k}">${v}</li>`).join('')}
-        </ul>
-
-      </div>
-      <ol class="proposals">${P.map((p, i) => card('', p, i)).join('')}
-      </ol>
-      <div class="pdf-wrap" data-reveal>
-        <a class="btn btn-pdf" href="documento/${PDF_FILE}" download><span class="btn-arrow" aria-hidden="true">↓</span>Scarica il documento<small>PDF · ${PDF_PAGES} pagine</small></a>
-      </div>
-    </section>
-  </div>
   </main>
 ${footer('')}`;
 
@@ -765,7 +763,6 @@ const dots = `<div class="dots" aria-hidden="true"><svg viewBox="0 0 475 986">${
 const qr = readFileSync(join(GEN, 'qr.svg'), 'utf8').replace(/^[\s\S]*?(?=<svg)/, '');
 const run = (n) => `
     <header class="run"><span class="run-brand"><img src="${D}assets/img/logo-mark.png" alt="">Proposte per la Consulta dei Veneti nel Mondo</span><span><b>${pad(n)}</b> / ${pad(PDF_PAGES)}</span></header>`;
-const legend = `<ul class="legend">${Object.entries(AREE).map(([k, v]) => `<li data-area="${k}">${v}</li>`).join('')}</ul>`;
 
 // Una hoja por propuesta, con todo lo de su página web (testo, ragioni, programma, storia, ruolo)
 const pcards = (titolo, items) => `
@@ -819,21 +816,21 @@ ${readFileSync(join(GEN, 'documento.css'), 'utf8')}
   </style>
 </head>
 <body>
-  <section class="page cover">
-    <div class="cover-hero">${dots}
-      <div class="cover-content">
-        <img class="cover-logo" src="${D}assets/img/logo-cava.png" alt="CAVA · Comitato delle Associazioni Venete dell'Argentina">
-        <h1>Proposte per la Consulta dei Veneti nel&nbsp;Mondo</h1>
-        <p class="lead">${cap(NP_IT)} proposte per rafforzare i rapporti tra Veneto e Argentina.</p>
-      </div>
+  <section class="page cover">${dots}
+    <header class="cover-top">
+      <span>Comitato delle Associazioni Venete dell'Argentina</span>
+      <span>Buenos Aires · 2026</span>
+    </header>
+    <div class="cover-title">
+      <img class="cover-logo" src="${D}assets/img/logo-cava.png" alt="CAVA · Comitato delle Associazioni Venete dell'Argentina">
+      <p class="cover-eyebrow">Proposte per la Consulta dei Veneti nel&nbsp;Mondo</p>
+      <h1>Un ponte tra il Veneto <span>e l'Argentina</span></h1>
+      <p class="lead">${cap(NP_IT)} proposte per rafforzare i rapporti tra Veneto e Argentina, su ${AMBITI_IT}.</p>
     </div>
-    <div class="cover-sheet">
-      <div class="cover-sheet-head"><h2>Le ${NP_IT} proposte</h2>${legend}</div>
-      <ol class="toc">
-${P.map((p) => `        <li data-area="${p.area}"><a href="#proposta-${pad(p.n)}"><b>${pad(p.n)}</b><span>${esc(p.titolo)}</span><small>${AREE[p.area]}</small></a></li>`).join('\n')}
-      </ol>
-      <p class="cover-foot"><a href="${SITE}/">${SITE.replace(/^https?:\/\//, '')}</a><a href="${MAIL}">federazionecava@gmail.com</a></p>
-    </div>
+    <ol class="cover-grid">
+${P.map((p) => `      <li data-area="${p.area}"><a href="#proposta-${pad(p.n)}"><span class="cg-top"><b>${pad(p.n)}</b><span class="emoji">${p.emoji}</span></span><span class="cg-title">${esc(p.corto ? p.corto.titolo : p.titolo)}</span><small>${AREE[p.area]}</small></a></li>`).join('\n')}
+    </ol>
+    <p class="cover-foot"><a href="${SITE}/">${SITE.replace(/^https?:\/\//, '')}</a><a href="${MAIL}">federazionecava@gmail.com</a></p>
   </section>
 
 ${P.map(ppage).join('\n')}

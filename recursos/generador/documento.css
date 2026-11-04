@@ -75,33 +75,31 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .dots path { stroke: rgba(255, 255, 255, .13); }
 .dots .ba { fill: var(--rosso); stroke: var(--navy-deep); stroke-width: 4; }
 
-/* ---------- 1. Portada: hero oscuro + hoja crema, como la landing ---------- */
-.cover-hero {
-  position: absolute; inset: 0 0 auto; height: 172mm; overflow: hidden;
-  display: grid; place-items: center; padding: 0 var(--mx) 22mm; text-align: center; color: var(--white);
-  background:
-    radial-gradient(ellipse 80% 70% at 15% 10%, rgba(59, 169, 224, .45), transparent 60%),
-    radial-gradient(ellipse 70% 60% at 90% 95%, rgba(29, 107, 69, .7), transparent 65%),
-    linear-gradient(165deg, #0f2c48 0%, #173d5c 50%, #10392b 100%);
-}
-.cover-hero .dots { height: 135%; right: -32mm; top: -10mm; }
-.cover-hero .dots path { stroke: rgba(255, 255, 255, .09); }
-.cover-content { position: relative; z-index: 1; display: grid; justify-items: center; gap: 5.5mm; }
-.cover-logo { width: 46mm; height: auto; filter: brightness(0) invert(1); opacity: .95; margin-bottom: 2mm; }
-.cover-hero h1 { font-size: 36pt; max-width: 150mm; }
-.cover-hero .lead { font-size: 13.5pt; line-height: 1.4; color: rgba(255, 255, 255, .88); }
+/* ---------- 1. Portada: hoja crema, título grande a la izquierda, mapa de puntitos
+   de Argentina a la derecha y las propuestas como un mosaico de tarjetas por ámbito ---------- */
+.cover::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2mm; background: linear-gradient(90deg, #009246 0 33.3%, #f4f5f0 0 66.6%, #ce2b37 0); z-index: 2; }
+.cover > .dots { height: 178mm; right: -14mm; top: 9mm; }
+.cover > .dots path { stroke: rgba(19, 38, 59, .11); }
+.cover > .dots .ba { stroke: var(--crema); }
+.cover-top { position: absolute; z-index: 1; top: 10mm; left: var(--mx); right: var(--mx); display: flex; justify-content: space-between; align-items: center; font-size: 8pt; font-weight: 500; color: var(--ink-soft); }
 
-.cover-sheet { position: absolute; inset: auto 0 0; height: 140mm; padding: 13mm var(--mx) 0; background: var(--crema); border-radius: 22mm 22mm 0 0; }
-.cover-sheet-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4mm; }
-.cover-sheet-head h2 { font-size: 15pt; letter-spacing: -0.02em; color: var(--navy); }
-.toc li { border-top: 1px solid var(--line); }
-/* Toda la fila es el link a la propuesta (link interno del PDF) */
-.toc a { display: grid; grid-template-columns: 13mm 1fr auto; align-items: center; gap: 3mm; padding: 2.6mm 0; color: inherit; text-decoration: none; }
-.toc li:last-child { border-bottom: 1px solid var(--line); }
-.toc b { font-weight: 900; font-size: 17pt; line-height: 1; letter-spacing: -0.05em; color: var(--area); }
-.toc span { font-size: 10.5pt; font-weight: 600; line-height: 1.25; color: var(--navy); }
-.toc small { font-size: 8pt; font-weight: 500; color: var(--ink-soft); white-space: nowrap; }
-.cover-foot { position: absolute; left: var(--mx); right: var(--mx); bottom: 14mm; display: flex; justify-content: space-between; font-size: 8.5pt; font-weight: 600; color: var(--ink-soft); }
+.cover-title { position: absolute; z-index: 1; top: 27mm; left: var(--mx); width: 132mm; display: grid; justify-items: start; gap: 5mm; }
+.cover-logo { width: 34mm; height: auto; margin-bottom: 3mm; }
+.cover-eyebrow { font-size: 9pt; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--oro-scuro); }
+.cover-title h1 { font-size: 48pt; line-height: .98; letter-spacing: -0.045em; color: var(--navy); }
+.cover-title h1 span { display: block; }
+.cover-title .lead { max-width: 112mm; font-size: 12.5pt; line-height: 1.4; color: var(--ink-soft); }
+
+/* Mosaico: 4 × 2 tarjetas del color de su ámbito; cada una es link interno a su hoja */
+.cover-grid { position: absolute; z-index: 1; left: var(--mx); right: var(--mx); bottom: 26mm; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 55mm; gap: 3mm; }
+.cover-grid a { position: relative; height: 100%; display: flex; flex-direction: column; padding: 4.5mm 4.5mm 4mm; border-radius: 4mm; background: var(--area); color: var(--white); overflow: hidden; }
+.cover-grid a::after { content: ''; position: absolute; right: -9mm; bottom: -9mm; width: 26mm; height: 26mm; border-radius: 50%; background: rgba(255, 255, 255, .1); }
+.cg-top { display: flex; justify-content: space-between; align-items: start; }
+.cg-top b { font-weight: 900; font-size: 26pt; line-height: .85; letter-spacing: -0.05em; }
+.cg-top .emoji { font-size: 17pt; line-height: 1; }
+.cg-title { margin-top: auto; font-size: 10pt; font-weight: 700; line-height: 1.22; letter-spacing: -0.01em; text-wrap: balance; }
+.cover-grid small { margin-top: 2mm; font-size: 7pt; font-weight: 600; color: rgba(255, 255, 255, .78); }
+.cover-foot { position: absolute; left: var(--mx); right: var(--mx); bottom: 12mm; display: flex; justify-content: space-between; padding-top: 3mm; border-top: 1px solid var(--line); font-size: 8.5pt; font-weight: 600; color: var(--ink-soft); }
 
 /* ---------- 9. Chi siamo + ruolo de las asociaciones ---------- */
 .about { display: grid; grid-template-columns: 1fr 1.3fr; gap: 12mm; align-items: start; }

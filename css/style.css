@@ -200,7 +200,7 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 .menu-open .nav .brand-mark { filter: brightness(0) invert(1); }
 .menu-open .nav.is-ctx .nav-main { opacity: 1; visibility: visible; transform: none; }
 .menu-open .nav.is-ctx .nav-ctx { opacity: 0; visibility: hidden; }
-.menu-inner { width: min(100%, 60rem); margin-inline: auto; display: grid; gap: 2.5rem; grid-template-columns: 1fr 1.4fr; }
+.menu-inner { width: min(100%, 60rem); margin-inline: auto; display: grid; gap: 2.5rem; grid-template-columns: 1.4fr 1fr; }
 .menu-label { font-size: .95rem; font-weight: 700; color: var(--oro); margin-bottom: 1rem; }
 .menu ol, .menu ul { list-style: none; padding: 0; display: grid; gap: .25rem; }
 .menu li, .menu-mail { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .5s var(--ease); transition-delay: calc(var(--i, 0) * 40ms); }
