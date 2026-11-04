@@ -216,6 +216,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 
 /* Tarjetas (ragioni y programma) */
 .pp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5mm; }
+.pp-cards-4 { grid-template-columns: repeat(2, 1fr); } /* 2 × 2: que no quede una sola suelta */
 .reason { display: grid; grid-template-columns: 6mm 1fr; gap: 2mm; align-items: start; padding: 2.6mm 3mm; background: var(--paper); border: 1px solid var(--line); border-radius: 3mm; }
 .reason .emoji { font-size: 11pt; line-height: 1.2; }
 .reason h4 { font-size: 8.6pt; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: .8mm; }
@@ -594,32 +595,29 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
         </div>
       </header>
       <div class="pp-block pp-testo">
-        <h3 class="pp-h"><small>La proposta</small>La tecnologia al servizio del campo</h3>
+        <h3 class="pp-h"><small>La proposta</small>Monitorare le colture con i droni</h3>
         <div class="pp-cols">
-          <p>Droni e agricoltura di precisione permettono di monitorare le colture, dosare acqua e fertilizzanti e intervenire solo dove serve: meno costi, meno sprechi, più rispetto per l'ambiente.</p>
-          <p>In Veneto l'Università di Padova forma da anni sull'uso dei droni in agricoltura, con un master dedicato e prove in campo nell'azienda sperimentale di Legnaro. In Argentina l'INTA studia la diffusione dei droni nel settore agricolo.</p>
-          <p>Il CAVA propone corsi, laboratori e attività pratiche condivise tra i due Paesi, per studenti, docenti e aziende.</p>
+          <p>I droni dotati di sensori aiutano a risolvere una delle principali problematiche delle colture intensive: la difficoltà di monitorare in modo preciso, frequente e a livello di singole parcelle lo stato fitosanitario e fisiologico delle piante.</p>
+          <p>Lo stress idrico, la comparsa di parassiti o malattie e l'eterogeneità del suolo possono passare inosservati con i tradizionali metodi di osservazione. Questa tecnologia consente di individuarli precocemente e in modo localizzato, con interventi più efficienti, meno perdite produttive e un uso migliore di acqua e prodotti agricoli.</p>
+          <p>Il CAVA propone corsi, laboratori e attività pratiche per formare all'uso di queste tecnologie studenti, docenti e aziende del settore.</p>
         </div>
       </div>
       <div class="pp-block">
-        <h3 class="pp-h">Cosa si potrebbe fare</h3>
+        <h3 class="pp-h">Principali utilizzi</h3>
+        <div class="pp-cards pp-cards-4">
+          <div class="reason"><span class="emoji">💧</span><div><h4>Irrorazione e fertilizzazione</h4><p>Distribuzione di prodotti fitosanitari e sostanze nutritive mediante sistemi di nebulizzazione.</p></div></div>
+          <div class="reason"><span class="emoji">🌱</span><div><h4>Semina di colture di copertura</h4><p>Distribuzione di semi, ad esempio loietto, o di altri materiali solidi in appezzamenti difficili da raggiungere.</p></div></div>
+          <div class="reason"><span class="emoji">🔍</span><div><h4>Monitoraggio e diagnosi</h4><p>Camere multispettrali per individuare stress idrico, erbe infestanti e parassiti, e per generare mappe di prescrizione a dosaggio variabile.</p></div></div>
+          <div class="reason"><span class="emoji">🌊</span><div><h4>Accesso a terreni difficili</h4><p>Interventi su terreni saturi d'acqua o allagati, senza il compattamento del suolo e i danni alle colture causati dai macchinari pesanti.</p></div></div>
+        </div>
+      </div>
+      <div class="pp-block">
+        <h3 class="pp-h">Vantaggi e benefici</h3>
         <div class="pp-cards">
-          <div class="reason"><span class="emoji">🎓</span><div><h4>Corsi e laboratori</h4><p>Moduli teorici e prove pratiche di volo, in presenza o a distanza.</p></div></div>
-          <div class="reason"><span class="emoji">🛰️</span><div><h4>Mappe e dati</h4><p>Rilievi con droni e satelliti per leggere lo stato delle colture e decidere meglio.</p></div></div>
-          <div class="reason"><span class="emoji">🧪</span><div><h4>Prove in campo condivise</h4><p>Lo stesso protocollo provato in Veneto e in Argentina, in due stagioni opposte.</p></div></div>
-          <div class="reason"><span class="emoji">📜</span><div><h4>Regole e sicurezza</h4><p>Un confronto tra le norme europee e quelle argentine, aggiornate nel 2025.</p></div></div>
-          <div class="reason"><span class="emoji">🏭</span><div><h4>Le aziende</h4><p>Imprese venete del settore e produttori argentini, per lavorare con tecnologie reali.</p></div></div>
-          <div class="reason"><span class="emoji">🌱</span><div><h4>Giovani tecnici</h4><p>Priorità ai giovani della rete, futuri professionisti dell'agricoltura di precisione.</p></div></div>
+          <div class="reason"><span class="emoji">🪣</span><div><h4>Risparmio di prodotti e acqua</h4><p>Meno acqua e meno prodotti agrochimici rispetto ai metodi tradizionali, in funzione dell'applicazione e della tecnologia utilizzata.</p></div></div>
+          <div class="reason"><span class="emoji">💶</span><div><h4>Minore investimento iniziale</h4><p>Anche con capacità di carico elevate, possono richiedere un investimento inferiore rispetto alle irroratrici terrestri semoventi.</p></div></div>
+          <div class="reason"><span class="emoji">🦺</span><div><h4>Sicurezza sul lavoro</h4><p>Riduzione del contatto diretto degli operatori con i prodotti chimici.</p></div></div>
         </div>
-      </div>
-      <div class="pp-block">
-        <h3 class="pp-h">Su cosa costruire</h3>
-        <ol class="pp-tl">
-          <li><b>Padova</b><p>Un master in GIScience e droni, con un indirizzo dedicato all'agricoltura di precisione.</p></li>
-          <li><b>Legnaro</b><p>L'azienda agraria sperimentale di Agripolis, dove si svolgono le prove in campo.</p></li>
-          <li><b>INTA</b><p>Le stazioni sperimentali di Marcos Juárez, Pergamino e Rafaela, città della rete del CAVA.</p></li>
-          <li class="is-now"><b>Oggi</b><p>Il CAVA propone di mettere in rete queste esperienze con un programma comune.</p></li>
-        </ol>
       </div>
       <footer class="pp-foot">
         <p><b>Il ruolo delle associazioni · Economia</b>Favorire rapporti economici e professionali e canali di cooperazione culturale, economica e accademica, con opportunità per imprese e investitori.</p>
@@ -650,7 +648,7 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
       </div>
       <div class="pp-block">
         <h3 class="pp-h">I pilastri d'azione</h3>
-        <div class="pp-cards">
+        <div class="pp-cards pp-cards-4">
           <div class="reason"><span class="emoji">🤝</span><div><h4>Incrocio domanda-offerta</h4><p>Mappatura delle posizioni scoperte con Veneto Lavoro e le categorie economiche, e selezioni mirate nei Paesi di residenza prima della partenza.</p></div></div>
           <div class="reason"><span class="emoji">🌎</span><div><h4>Rete territoriale estera</h4><p>Federazioni e associazioni venete, Com.It.Es. e rete consolare per l'orientamento civico-linguistico, la verifica dei titoli e le preselezioni.</p></div></div>
           <div class="reason"><span class="emoji">🏛️</span><div><h4>Sportello unico</h4><p>Un presidio con i Comuni riceventi per le pratiche anagrafiche, il medico di base e il riconoscimento rapido delle competenze (sistema IVC).</p></div></div>

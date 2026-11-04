@@ -628,6 +628,17 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 .reason h3 { font-size: var(--fs-h3); font-weight: 600; color: var(--navy); }
 .reason p { color: var(--ink-soft); font-size: 1rem; line-height: 1.45; }
 @media (max-width: 600px) { .reason { flex-basis: 100%; } }
+/* Con 4 tarjetas: una fila de 4 (o 2 × 2), para que no quede una sola suelta abajo */
+.reasons-4 { display: grid; grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .reasons-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .reasons-4 { grid-template-columns: 1fr; } }
+
+/* Fotos de la propuesta: una al lado de la otra, misma altura (cada una crece según su proporción, --r) */
+.foto { display: flex; gap: clamp(1rem, .75rem + 1.5vw, 2rem); align-items: flex-start; }
+.foto figure { flex: var(--r) 1 0; min-width: 0; }
+.foto img { width: 100%; height: auto; border-radius: var(--radius); background: var(--crema-2); }
+.foto figcaption { margin-top: .7rem; font-size: .9rem; color: var(--ink-soft); }
+@media (max-width: 700px) { .foto { flex-direction: column; } .foto figure { flex: none; width: 100%; } }
 
 .ruolo { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(1.5rem, 1rem + 4vw, 5rem); padding-top: 2rem; border-top: 1px solid var(--navy); }
 .ruolo > div:first-child { display: grid; gap: 1rem; align-content: start; justify-items: start; }

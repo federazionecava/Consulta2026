@@ -179,26 +179,42 @@ const P = [
   { slug: 'droni-in-agricoltura', area: 'agricoltura', emoji: '🚁',
     titolo: "Formazione sull'utilizzo dei droni in agricoltura",
     sintesi: "Sviluppare corsi, laboratori e attività pratiche sull'impiego dei droni e delle tecnologie di agricoltura di precisione, coinvolgendo studenti, docenti e aziende del settore.",
-    // Investigado: master GIScience e SAPR y cursos en Agripolis (unipd.it), encuesta INTA sobre drones, régimen ANAC 2025
-    testo: ['La proposta', 'La tecnologia al servizio del campo', [
-      "Droni e agricoltura di precisione permettono di monitorare le colture, dosare acqua e fertilizzanti e intervenire solo dove serve: meno costi, meno sprechi, più rispetto per l'ambiente.",
-      "In Veneto l'Università di Padova forma da anni sull'uso dei droni in agricoltura, con un master dedicato e prove in campo nell'azienda sperimentale di Legnaro. In Argentina l'INTA studia la diffusione dei droni nel settore agricolo.",
-      'Il CAVA propone corsi, laboratori e attività pratiche condivise tra i due Paesi, per studenti, docenti e aziende.',
+    // Fuente: documento del CAVA "Monitoraggio delle colture mediante l'utilizzo di sensori remoti montati su droni"
+    // (drones.docx, noviembre 2026). Textos y fotos salen de ahí; solo se acortaron para las tarjetas.
+    testo: ['La proposta', 'Monitorare le colture con i droni', [
+      "I droni dotati di sensori aiutano a risolvere una delle principali problematiche delle colture intensive: la difficoltà di monitorare in modo preciso, frequente e a livello di singole parcelle lo stato fitosanitario e fisiologico delle piante.",
+      "Lo stress idrico, la comparsa di parassiti o malattie e l'eterogeneità del suolo possono passare inosservati con i tradizionali metodi di osservazione. Questa tecnologia consente di individuarli precocemente e in modo localizzato, con interventi più efficienti, meno perdite produttive e un uso migliore di acqua e prodotti agricoli.",
+      "Il CAVA propone corsi, laboratori e attività pratiche per formare all'uso di queste tecnologie studenti, docenti e aziende del settore.",
     ]],
-    programma: ['Cosa si potrebbe fare', [
-      ['🎓', 'Corsi e laboratori', 'Moduli teorici e prove pratiche di volo, in presenza o a distanza.'],
-      ['🛰️', 'Mappe e dati', 'Rilievi con droni e satelliti per leggere lo stato delle colture e decidere meglio.'],
-      ['🧪', 'Prove in campo condivise', 'Lo stesso protocollo provato in Veneto e in Argentina, in due stagioni opposte.'],
-      ['📜', 'Regole e sicurezza', 'Un confronto tra le norme europee e quelle argentine, aggiornate nel 2025.'],
-      ['🏭', 'Le aziende', 'Imprese venete del settore e produttori argentini, per lavorare con tecnologie reali.'],
-      ['🌱', 'Giovani tecnici', "Priorità ai giovani della rete, futuri professionisti dell'agricoltura di precisione."],
-    ]],
+    foto: [
+      ['droni-monitoraggio.jpg', 702, 220, 'Un drone con sensori sopra un uliveto, la mappa di vigore delle piante ricavata dalle immagini e la vista aerea del campo', 'Monitoraggio: dal volo alla mappa dello stato delle colture'],
+      ['droni-irrorazione.jpg', 544, 367, 'Un drone agricolo che irrora un campo coltivato', 'Irrorazione di precisione'],
+    ],
+    schede: [
+      ['Principali utilizzi', [
+        ['💧', 'Irrorazione e fertilizzazione', 'Distribuzione di prodotti fitosanitari e sostanze nutritive mediante sistemi di nebulizzazione.'],
+        ['🌱', 'Semina di colture di copertura', 'Distribuzione di semi, ad esempio loietto, o di altri materiali solidi in appezzamenti difficili da raggiungere.'],
+        ['🔍', 'Monitoraggio e diagnosi', 'Camere multispettrali per individuare stress idrico, erbe infestanti e parassiti, e per generare mappe di prescrizione a dosaggio variabile.'],
+        ['🌊', 'Accesso a terreni difficili', "Interventi su terreni saturi d'acqua o allagati, senza il compattamento del suolo e i danni alle colture causati dai macchinari pesanti."],
+      ]],
+      ['Vantaggi e benefici', [
+        ['🪣', 'Risparmio di prodotti e acqua', "Meno acqua e meno prodotti agrochimici rispetto ai metodi tradizionali, in funzione dell'applicazione e della tecnologia utilizzata."],
+        ['💶', 'Minore investimento iniziale', 'Anche con capacità di carico elevate, possono richiedere un investimento inferiore rispetto alle irroratrici terrestri semoventi.'],
+        ['🦺', 'Sicurezza sul lavoro', 'Riduzione del contatto diretto degli operatori con i prodotti chimici.'],
+      ]],
+      ['Sensori e dati', [
+        ['📷', 'Camere RGB', "Ortofoto per valutare la qualità dell'impianto colturale, contare le piante e individuare fallanze di semina o danni meccanici."],
+        ['🌡️', 'Sensori multispettrali e termici', "Oltre lo spettro visibile: indici di vegetazione come l'NDVI, vigore delle colture, stress idrico e possibili anomalie fitosanitarie."],
+        ['📍', 'Geolocalizzazione (GPS)', 'Ogni immagine georeferenziata, per realizzare mappe dello stato vegetativo e mappe di prescrizione a dosaggio variabile.'],
+        ['💻', 'Elaborazione dei dati', 'Software come QGIS, WebODM o strumenti di agricoltura digitale trasformano i voli in informazioni utili alle decisioni agronomiche.'],
+      ], { pdf: false }],
+    ],
     storia: ['Su cosa costruire', [
-      ['Padova', "Un master in GIScience e droni, con un indirizzo dedicato all'agricoltura di precisione."],
-      ['Legnaro', "L'azienda agraria sperimentale di Agripolis, dove si svolgono le prove in campo."],
-      ['INTA', 'Le stazioni sperimentali di Marcos Juárez, Pergamino e Rafaela, città della rete del CAVA.'],
-      ['Oggi', 'Il CAVA propone di mettere in rete queste esperienze con un programma comune.'],
-    ]] },
+      ['INTA', "L'Istituto Nazionale di Tecnologia Agropecuaria, riferimento per la collaborazione e lo sviluppo tecnologico in campo agricolo."],
+      ['Formazione', "Rispettare le norme di sicurezza del volo, coordinare le operazioni con l'aviazione agricola e formare adeguatamente gli operatori."],
+      ['Oggi', 'Il CAVA propone di sviluppare corsi, laboratori e attività pratiche, coinvolgendo studenti, docenti e aziende del settore.'],
+    ]],
+    pdfStoria: false }, // en el PDF no entra: la hoja ya va llena con texto, utilizzi y vantaggi
   { slug: 'radicamento-attivo', area: 'lavoro', emoji: '🏡',
     titolo: 'Radicamento attivo nel Veneto',
     sintesi: "Valutare una politica di attrazione che garantisca percorsi stabili ai discendenti veneti del Sudamerica che desiderano vivere e lavorare in Veneto, di fronte all'inverno demografico e al fabbisogno di competenze della Regione.",
@@ -644,12 +660,19 @@ for (const p of P) {
         <div class="sec-head center" data-reveal>
           <h2>${esc(titolo)}</h2>
         </div>
-        <ul class="reasons">
+        <ul class="reasons${items.length === 4 ? ' reasons-4' : ''}">
 ${items.map(([e, t, d], i) => `          <li class="reason" data-reveal style="--i:${i}"><span class="reason-emoji" aria-hidden="true">${e}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`).join('\n')}
         </ul>
       </section>`;
   const ragioni = p.ragioni ? cards("Perché puntare sull'Argentina", p.ragioni) : '';
   const programma = p.programma ? cards(...p.programma) : '';
+  // schede: más bloques de tarjetas, cada uno con su título ([título, tarjetas, { pdf: false } opcional])
+  const schede = (p.schede || []).map(([t, items]) => cards(t, items)).join('');
+  // foto: [archivo en assets/img/proposte/, ancho, alto, texto alternativo, epígrafe]
+  const foto = p.foto ? `
+      <section class="block foto" data-reveal>
+${p.foto.map(([f, w, h, alt, cap]) => `        <figure style="--r:${(w / h).toFixed(3)}"><img src="${r}assets/img/proposte/${f}" width="${w}" height="${h}" alt="${esc(alt)}" loading="lazy" decoding="async"><figcaption>${esc(cap)}</figcaption></figure>`).join('\n')}
+      </section>` : '';
   const testo = p.testo ? `
       <section class="block ruolo testo" data-reveal>
         <div>
@@ -695,7 +718,7 @@ ${p.storia[1].map(([a, t], i) => `          <li${a === 'Oggi' || a === 'Domani' 
         <div>
           <p class="big">${esc(p.sintesi)}</p>
         </div>
-      </section>` : ''}${testo}${ragioni}${programma}${storia}
+      </section>` : ''}${testo}${foto}${ragioni}${schede}${programma}${storia}
 
       <section class="block ruolo" data-reveal>
         <div>
@@ -748,7 +771,7 @@ const legend = `<ul class="legend">${Object.entries(AREE).map(([k, v]) => `<li d
 const pcards = (titolo, items) => `
       <div class="pp-block">
         <h3 class="pp-h">${esc(titolo)}</h3>
-        <div class="pp-cards">
+        <div class="pp-cards${items.length === 4 ? ' pp-cards-4' : ''}">
 ${items.map(([e, t, d]) => `          <div class="reason"><span class="emoji">${e}</span><div><h4>${esc(t)}</h4><p>${esc(d)}</p></div></div>`).join('\n')}
         </div>
       </div>`;
@@ -770,7 +793,7 @@ const ppage = (p) => {
         <div class="pp-cols">
 ${p.testo[2].map((t) => `          <p>${esc(t)}</p>`).join('\n')}
         </div>
-      </div>` : ''}${p.ragioni ? pcards("Perché puntare sull'Argentina", p.ragioni) : ''}${p.programma ? pcards(...p.programma) : ''}${p.storia ? `
+      </div>` : ''}${p.ragioni ? pcards("Perché puntare sull'Argentina", p.ragioni) : ''}${(p.schede || []).filter(([, , o]) => !o || o.pdf !== false).map(([t, items]) => pcards(t, items)).join('')}${p.programma ? pcards(...p.programma) : ''}${p.storia && p.pdfStoria !== false ? `
       <div class="pp-block">
         <h3 class="pp-h">${esc(p.storia[0])}</h3>${p.storia[2] ? `
         <p class="pp-intro">${esc(p.storia[2])}</p>` : ''}

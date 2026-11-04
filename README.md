@@ -25,6 +25,7 @@ recursos/           material de trabajo: NO se publica
   tiempos.txt         distancias y horas de micro desde Buenos Aires
   videosabuscar.txt   qué video va en cada página
   propuesta8-radicamento-attivo.docx   texto original que mandaron para la propuesta 8
+  propuesta7-droni.docx                texto y fotos que mandaron para la propuesta 7
 ```
 
 Para publicar, alcanza con subir todo **menos** `recursos/` (en Vercel lo deja afuera `.vercelignore`).
@@ -56,7 +57,11 @@ Los textos de las propuestas están en la lista `P`, al principio de `build.mjs`
 - `testo`: `[etiqueta, título, [párrafos]]`. Bloque de texto; el primer párrafo sale más grande.
 - `ragioni`: tarjetas con emoji de "Perché puntare sull'Argentina" (solo la 2; también salen en el PDF).
 - `programma`: `[título, [[emoji, título, texto], …]]`. Tarjetas con emoji (qué podría incluir, cómo funcionaría, etc.).
-- `storia`: `[título, [[etiqueta, texto], …], intro opcional]`. Línea de tiempo; si la etiqueta es *Oggi* o *Domani* el punto sale dorado.
+- `storia`: `[título, [[etiqueta, texto], …], intro opcional]`. Línea de tiempo; si la etiqueta es *Oggi* o *Domani* el punto sale dorado. Con `pdfStoria: false` no sale en el PDF (para que la hoja entre).
+- `schede`: `[[título, [[emoji, título, texto], …], { pdf: false } opcional], …]`. Más bloques de tarjetas, cada uno con su título (la 7 tiene *Principali utilizzi*, *Vantaggi e benefici* y *Sensori e dati*). Con `{ pdf: false }` el bloque sale solo en la web.
+- `foto`: `[[archivo, ancho, alto, texto alternativo, epígrafe], …]`. Fotos una al lado de la otra, debajo del texto (solo en la web). Los archivos van en `assets/img/proposte/`.
+
+Los bloques de 4 tarjetas se acomodan solos en una fila de 4 (2 × 2 en el PDF y en pantallas medianas).
 
 Arriba de cada propuesta hay un comentario con las fuentes que se usaron para investigar ese contenido.
 
@@ -117,7 +122,9 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 - [ ] P3: la propuesta dice *riattivare*: ¿qué programa juvenil había antes y cuándo se cortó? Con ese dato el texto queda más firme.
 - [ ] P4: las becas de máster de la Región aparecen solo en 2018 y 2019; confirmar si hubo ediciones después.
 - [ ] P5: los cuatro pedidos de *Cosa chiede il CAVA alla Regione* son una propuesta mía.
-- [ ] P6 y P7: los *abbinamenti* (Conegliano–Mendoza, Rafaela, Pergamino, Marcos Juárez, Villa Regina) y las estaciones del INTA son ideas para mostrar el potencial, no acuerdos existentes.
+- [ ] P6: los *abbinamenti* (Conegliano–Mendoza, Rafaela, Pergamino, Marcos Juárez, Villa Regina) son ideas para mostrar el potencial, no acuerdos existentes.
+- [x] P7: el contenido ahora sale del documento que mandó el CAVA (`recursos/propuesta7-droni.docx`). El documento escribe mal el nombre del CAVA (*Comitato Associazione Veneta Argentina*): esa frase no se usó, y en la web y el PDF va siempre *Comitato delle Associazioni Venete dell'Argentina*.
+- [ ] P7: las dos fotos vienen del documento. Confirmar de dónde salieron y si se pueden usar (la del dron fumigando podría ser generada por IA). Si no, sacar `foto` en `build.mjs`.
 - [ ] En todas: las tarjetas de *programma* (qué incluiría, cómo funcionaría) son propuestas razonables, no compromisos de nadie.
 
 **Propuesta 8 (*Radicamento attivo nel Veneto*): confirmar con quien la mandó**
