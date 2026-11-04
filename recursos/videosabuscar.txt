@@ -4,7 +4,7 @@ VIDEOS A BUSCAR
 ESTADO (13/10/2026)
 -------------------
 YA ESTÁN (comprimidos a 720p, sin audio, en video/):
-  landing, y las propuestas 1 a 7.
+  landing, y las propuestas 1 a 8.
   Los originales en alta quedaron en recursos/videos-originales/ (no se publican).
 FALTA:
   video/associazioni.mp4  (la banda oscura "Perché vale la pena" de la landing)
@@ -69,6 +69,11 @@ PROPUESTAS (carpeta proposte/)
    video/droni-in-agricoltura.mp4
    -> Buscar video de "drone agrícola volando sobre cultivos", "drone fumigando un campo",
       "agricultura de precisión".
+
+8. Radicamento attivo nel Veneto
+   video/radicamento-attivo.mp4   (original: videos-originales/propuesta8.mp4, se usó del segundo 24 al 46)
+   -> Pueblo de montaña desde el aire (drone lento sobre un pueblo alpino en verano).
+      Búsquedas: "italian mountain village aerial", "Dolomites village drone", "alpine village".
 
 
 OPCIONAL

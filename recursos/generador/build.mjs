@@ -17,6 +17,7 @@ const AREE = {
   istituzioni: 'Istituzioni',
   giovani: 'Giovani e formazione',
   agricoltura: 'Agricoltura e innovazione',
+  lavoro: 'Lavoro e territorio',
 };
 
 // Rol de las asociaciones relacionado con cada área (texto de la presentación "Mille chilometri").
@@ -24,6 +25,7 @@ const RUOLO = {
   istituzioni: ['Istituzioni', 'Aprire le porte istituzionali verso autorità e organismi locali e nazionali.'],
   giovani: ['Giovani', 'Sostenere iniziative formative e programmi di mobilità per giovani e professionisti, rafforzando il legame identitario e il capitale umano.'],
   agricoltura: ['Economia', 'Favorire rapporti economici e professionali e canali di cooperazione culturale, economica e accademica, con opportunità per imprese e investitori.'],
+  lavoro: ['Capitale umano', 'Sostenere iniziative formative e programmi di mobilità per giovani e professionisti, rafforzando il legame identitario e il capitale umano.'],
 };
 
 const P = [
@@ -197,8 +199,38 @@ const P = [
       ['INTA', 'Le stazioni sperimentali di Marcos Juárez, Pergamino e Rafaela, città della rete del CAVA.'],
       ['Oggi', 'Il CAVA propone di mettere in rete queste esperienze con un programma comune.'],
     ]] },
+  { slug: 'radicamento-attivo', area: 'lavoro', emoji: '🏡',
+    titolo: 'Radicamento attivo nel Veneto',
+    sintesi: "Valutare una politica di attrazione che garantisca percorsi stabili ai discendenti veneti del Sudamerica che desiderano vivere e lavorare in Veneto, di fronte all'inverno demografico e al fabbisogno di competenze della Regione.",
+    // Fuente: documento "Radicamento attivo nel Veneto" que recibió el CAVA (nuevas.docx). Textos tomados de ahí, solo ordenados y corregidos.
+    testo: ['La proposta', 'Due esigenze che si incontrano', [
+      "Il Veneto affronta una duplice criticità: la contrazione della natalità, con il progressivo spopolamento delle terre alte e delle aree interne, e una carenza sistemica di manodopera, per cui quasi la metà delle assunzioni previste dalle imprese risulta di difficile reperimento.",
+      "In Sudamerica molti giovani e nuclei familiari di origine veneta, con qualifiche universitarie o tecniche, una forte radice identitaria e motivazione, aspirano a compiere un percorso di vita e di lavoro in Italia, disponibili a stabilirsi e a rivitalizzare i territori d'origine.",
+      "Il CAVA propone di studiare seriamente se ci sono le condizioni per una politica di attrazione che garantisca percorsi stabili, valorizzando il capitale umano della diaspora.",
+      "Per chi sceglie di restare, è il passo successivo alla proposta 4: dopo la formazione e gli stage in Veneto, un percorso di vita e di lavoro.",
+    ]],
+    programma: ["I pilastri d'azione", [
+      ['🤝', 'Incrocio domanda-offerta', 'Mappatura delle posizioni scoperte con Veneto Lavoro e le categorie economiche, e selezioni mirate nei Paesi di residenza prima della partenza.'],
+      ['🌎', 'Rete territoriale estera', "Federazioni e associazioni venete, Com.It.Es. e rete consolare per l'orientamento civico-linguistico, la verifica dei titoli e le preselezioni."],
+      ['🏛️', 'Sportello unico', 'Un presidio con i Comuni riceventi per le pratiche anagrafiche, il medico di base e il riconoscimento rapido delle competenze (sistema IVC).'],
+      ['🔑', 'Soluzione abitativa integrata', "Accordi con i Comuni delle aree interne e montane e con gli enti di edilizia residenziale per alloggi temporanei o a canone concordato."],
+    ]],
+    storia: ['Possibili linee guida', [
+      ['Risorse', 'Integrare i canali già esistenti a livello regionale, nazionale ed europeo nel DEFR.'],
+      ['Formazione', 'Percorsi di riqualificazione e moduli di lingua italiana professionale.'],
+      ['Incentivi', "Bonus all'inserimento lavorativo e contributi per i canoni di locazione iniziali."],
+      ['Regia', 'Una cabina di regia interdipartimentale tra Programmazione, Lavoro, Sociale e Casa, Veneti nel Mondo.'],
+      ['Domani', 'Un bando sperimentale pilota.'],
+    ], 'Un progetto di questo tipo dovrà avere una sostenibilità economica e finanziaria adeguata.'] },
 ];
 P.forEach((p, i) => (p.n = i + 1));
+// Cantidad de propuestas, en número y en letras (para "Proposta 3 di 8", "Le otto proposte"...)
+const NP = P.length;
+const NUM_IT = ['zero', 'una', 'due', 'tre', 'quattro', 'cinque', 'sei', 'sette', 'otto', 'nove', 'dieci'];
+const NP_IT = NUM_IT[NP];
+const NA_IT = NUM_IT[Object.keys(AREE).length];
+const cap = (s) => s[0].toUpperCase() + s.slice(1);
+const AMBITI_IT = 'istituzioni, giovani, agricoltura e lavoro';
 
 // Textos para la vista previa al compartir (WhatsApp, etc.) y para Google.
 // WhatsApp en el celular muestra ~2 líneas de título y ~2 de descripción: título ≤ 50 caracteres, descripción ≤ 100.
@@ -210,6 +242,7 @@ const SHARE = {
   'risorse-e-finanziamenti': ['Risorse e finanziamenti', 'Bandi, fondi europei, fondazioni e partner privati per sostenere i progetti delle associazioni.'],
   'scuole-agrarie-e-universita': ['Scuole agrarie e università', "Accordi tra istituti agrari, università e centri di ricerca del Veneto e dell'Argentina."],
   'droni-in-agricoltura': ['Droni in agricoltura', 'Corsi e laboratori pratici su droni e agricoltura di precisione per studenti, docenti e aziende.'],
+  'radicamento-attivo': ['Radicamento attivo nel Veneto', 'Percorsi stabili di vita e lavoro in Veneto per i discendenti veneti del Sudamerica.'],
 };
 P.forEach((p) => ([p.shareTitolo, p.shareDesc] = SHARE[p.slug]));
 
@@ -224,7 +257,7 @@ const RUOLI = [
 ];
 const CITAZIONE = "Le associazioni non sono semplici custodi della tradizione, ma <em>attori strategici di diplomazia culturale ed economica</em>, capaci di aprire le porte dell'Argentina e di generare nuove opportunità di interscambio.";
 
-// Documento PDF con las siete propuestas (lo genera este script al final, con Chrome o Edge)
+// Documento PDF con todas las propuestas (lo genera este script al final, con Chrome o Edge)
 const PDF_FILE = 'CAVA-Proposte-Consulta-Veneti-nel-Mondo.pdf';
 const PDF_PAGES = 4 + P.length; // portada, una por propuesta, chi siamo, la rete, contraportada
 
@@ -380,9 +413,9 @@ const nav = (r, home, p) => {
   const prev = p && P[p.n - 2];
   const next = p && P[p.n];
   const ctx = p ? `
-    <div class="nav-ctx" aria-label="Proposta ${p.n} di 7">
+    <div class="nav-ctx" aria-label="Proposta ${p.n} di ${NP}">
       ${prev ? `<a class="ctx-arrow" href="${prev.slug}.html" aria-label="Proposta precedente: ${esc(prev.titolo)}">←</a>` : `<span class="ctx-arrow is-off" aria-hidden="true">←</span>`}
-      <a class="ctx-title" href="#main"><b>${pad(p.n)}</b><span class="ctx-of">/ 07</span><span class="ctx-name">${esc(p.corto ? p.corto.titolo : p.titolo)}</span></a>
+      <a class="ctx-title" href="#main"><b>${pad(p.n)}</b><span class="ctx-of">/ ${pad(NP)}</span><span class="ctx-name">${esc(p.corto ? p.corto.titolo : p.titolo)}</span></a>
       <div class="ctx-end">
         <a class="ctx-all" href="${r}index.html#proposte">Tutte le proposte</a>
         ${next ? `<a class="ctx-arrow" href="${next.slug}.html" aria-label="Proposta successiva: ${esc(next.titolo)}">→</a>` : `<span class="ctx-arrow is-off" aria-hidden="true">→</span>`}
@@ -423,7 +456,7 @@ const nav = (r, home, p) => {
         <a class="menu-mail" style="--i:4" href="${MAIL}"><small>Scrivici</small>federazionecava@gmail.com</a>
       </div>
       <div>
-        <p class="menu-label">Le sette proposte</p>
+        <p class="menu-label">Le ${NP_IT} proposte</p>
         <ol class="menu-props">
 ${P.map((q, i) => `          <li style="--i:${i + 2}"><a class="menu-prop${p && q.n === p.n ? ' is-current' : ''}" data-area="${q.area}" href="${r}proposte/${q.slug}.html"><b>${pad(q.n)}</b><span>${esc(q.titolo)}</span></a></li>`).join('\n')}
         </ol>
@@ -482,7 +515,7 @@ const card = (r, p, i) => `
           </li>`;
 
 // ---------------- Landing ----------------
-const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo', 'Sette proposte per rafforzare i rapporti tra Veneto e Argentina, su istituzioni, giovani e agricoltura.', { path: '', ogTitle: 'CAVA · Proposte per la Consulta dei Veneti nel Mondo', seoDesc: "Le associazioni venete dell'Argentina (CAVA) presentano sette proposte per rafforzare i rapporti tra Veneto e Argentina, su istituzioni, giovani e agricoltura.", image: 'assets/img/og.jpg?v=2', imageAlt: 'Logo del CAVA su un canale di Venezia: Proposte per la Consulta dei Veneti nel Mondo' })}
+const index = `${head('', 'CAVA · Proposte per la Consulta dei Veneti nel Mondo', `${cap(NP_IT)} proposte per rafforzare i rapporti tra Veneto e Argentina, su ${AMBITI_IT}.`, { path: '', ogTitle: 'CAVA · Proposte per la Consulta dei Veneti nel Mondo', seoDesc: `Le associazioni venete dell'Argentina (CAVA) presentano ${NP_IT} proposte per rafforzare i rapporti tra Veneto e Argentina, su ${AMBITI_IT}.`, image: 'assets/img/og.jpg?v=2', imageAlt: 'Logo del CAVA su un canale di Venezia: Proposte per la Consulta dei Veneti nel Mondo' })}
 <body>${nav('', true)}
 
   <main id="main">
@@ -582,12 +615,11 @@ ${RUOLI.map(([t, d], i) => `        <li class="role" data-reveal style="--i:${i}
   <div class="sheet">
     <section class="container" id="proposte">
       <div class="sec-head" data-reveal>
-        <h2>Sette proposte, tre ambiti</h2>
-        <ul class="legend" aria-label="Ambiti">
-          <li data-area="istituzioni">Istituzioni</li>
-          <li data-area="giovani">Giovani e formazione</li>
-          <li data-area="agricoltura">Agricoltura e innovazione</li>
+        <h2>${cap(NP_IT)} proposte, ${NA_IT} ambiti</h2>
+        <ul class="legend" aria-label="Ambiti">${Object.entries(AREE).map(([k, v]) => `
+          <li data-area="${k}">${v}</li>`).join('')}
         </ul>
+
       </div>
       <ol class="proposals">${P.map((p, i) => card('', p, i)).join('')}
       </ol>
@@ -639,14 +671,14 @@ ${p.storia[1].map(([a, t], i) => `          <li${a === 'Oggi' || a === 'Domani' 
         </ol>
       </section>` : '';
 
-  const html = `${head(r, `Proposta ${p.n} · ${p.shareTitolo} · CAVA`, p.shareDesc, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} · ${p.shareTitolo}`, seoDesc: `${p.shareDesc} Una proposta del CAVA per la Consulta dei Veneti nel Mondo.`, image: `assets/img/og/${p.slug}.jpg`, imageAlt: `Proposta ${p.n} di 7 del CAVA: ${p.titolo}` })}
+  const html = `${head(r, `Proposta ${p.n} · ${p.shareTitolo} · CAVA`, p.shareDesc, { path: `proposte/${p.slug}.html`, ogTitle: `Proposta ${p.n} · ${p.shareTitolo}`, seoDesc: `${p.shareDesc} Una proposta del CAVA per la Consulta dei Veneti nel Mondo.`, image: `assets/img/og/${p.slug}.jpg?v=2`, imageAlt: `Proposta ${p.n} di ${NP} del CAVA: ${p.titolo}` })}
 <body data-area="${p.area}" data-page="${p.slug}">${nav(r, false, p)}
 
   <main id="main">
   <section class="hero hero-proposal">${bg(r, p.area, `video/${p.slug}.mp4`)}
     <div class="hero-content">
       <span class="hero-emoji fade-in" style="--d:0s;view-transition-name:emoji-${p.n}" aria-hidden="true"><span class="float">${p.emoji}</span></span>
-      <p class="eyebrow fade-in" style="--d:.1s">Proposta ${p.n} di 7</p>
+      <p class="eyebrow fade-in" style="--d:.1s">Proposta ${p.n} di ${NP}</p>
       <h1 class="fade-in" style="--d:.2s">${esc(p.corto ? p.corto.titolo : p.titolo)}</h1>
       <p class="lead fade-in" style="--d:.4s">${esc(p.corto ? p.corto.lead : p.sintesi)}</p>
       <span class="chip fade-in" style="--d:.55s">${AREE[p.area]}</span>
@@ -728,7 +760,7 @@ const ppage = (p) => {
       <header class="pp-head">
         <div class="pp-side"><span class="pc-num">${pad(p.n)}</span><span class="pc-emoji emoji">${p.emoji}</span></div>
         <div class="pp-title">
-          <span class="pc-area">Proposta ${p.n} di 7 · ${AREE[p.area]}</span>
+          <span class="pc-area">Proposta ${p.n} di ${NP} · ${AREE[p.area]}</span>
           <h2>${esc(p.titolo)}</h2>
           <p class="big">${esc(p.sintesi)}</p>
         </div>
@@ -769,11 +801,11 @@ ${readFileSync(join(GEN, 'documento.css'), 'utf8')}
       <div class="cover-content">
         <img class="cover-logo" src="${D}assets/img/logo-cava.png" alt="CAVA · Comitato delle Associazioni Venete dell'Argentina">
         <h1>Proposte per la Consulta dei Veneti nel&nbsp;Mondo</h1>
-        <p class="lead">Sette proposte per rafforzare i rapporti tra Veneto e Argentina.</p>
+        <p class="lead">${cap(NP_IT)} proposte per rafforzare i rapporti tra Veneto e Argentina.</p>
       </div>
     </div>
     <div class="cover-sheet">
-      <div class="cover-sheet-head"><h2>Le sette proposte</h2>${legend}</div>
+      <div class="cover-sheet-head"><h2>Le ${NP_IT} proposte</h2>${legend}</div>
       <ol class="toc">
 ${P.map((p) => `        <li data-area="${p.area}"><a href="#proposta-${pad(p.n)}"><b>${pad(p.n)}</b><span>${esc(p.titolo)}</span><small>${AREE[p.area]}</small></a></li>`).join('\n')}
       </ol>

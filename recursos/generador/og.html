@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'ZT Nature'; src: url('../../assets/fonts/ZTNature-Medium.woff2') format('woff2'); font-weight: 500; }
+  @font-face { font-family: 'ZT Nature'; src: url('../../assets/fonts/ZTNature-Bold.woff2') format('woff2'); font-weight: 700; }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #0b1828; }
+  body { position: relative; font-family: 'ZT Nature', sans-serif; color: #fff; text-align: center; }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85); }
+  .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 18, 26, .42) 0%, rgba(11, 18, 26, .48) 45%, rgba(11, 18, 26, .86) 72%, rgba(11, 18, 26, .92) 100%); }
+  .logo { position: absolute; top: 44px; left: 50%; width: 106px; transform: translateX(-50%); filter: brightness(0) invert(1); }
+  .txt { position: absolute; left: 0; right: 0; bottom: 56px; display: flex; flex-direction: column; align-items: center; }
+  .eyebrow { font-weight: 700; font-size: 22px; letter-spacing: .12em; text-transform: uppercase; color: #e27731; margin-bottom: 20px; }
+  h1 { font-weight: 700; font-size: 55.5px; line-height: 58px; letter-spacing: -.02em; max-width: 1000px; text-wrap: balance; }
+  .sub { font-weight: 500; font-size: 22px; margin-top: 20px; color: rgba(255, 255, 255, .92); }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: linear-gradient(90deg, #e1b556, #d77a3d 50%, #c83339); }
+</style>
+</head>
+<body>
+  <img class="bg" id="bg" alt="">
+  <div class="shade"></div>
+  <img class="logo" src="../../assets/img/logo-mark.png" alt="">
+  <div class="txt">
+    <p class="eyebrow" id="eb"></p>
+    <h1 id="t"></h1>
+    <p class="sub">CAVA · Proposte per la Consulta dei Veneti nel Mondo</p>
+  </div>
+  <div class="bar"></div>
+  <script>
+    const d = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+    document.getElementById('bg').src = d.bg;
+    document.getElementById('eb').textContent = d.eb;
+    document.getElementById('t').textContent = d.t;
+  </script>
+</body>
+</html>

@@ -40,6 +40,7 @@
   --area-istituzioni: var(--rosso);
   --area-giovani: #2a8fc4;
   --area-agricoltura: var(--verde);
+  --area-lavoro: var(--arancio);
 
   /* Tipografía: solo ZT Nature (la del CAVA) */
   --font: 'ZT Nature', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -246,6 +247,7 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 [data-theme='istituzioni'] { --bg-base: radial-gradient(ellipse 80% 70% at 15% 10%, rgba(200, 50, 58, .5), transparent 60%), radial-gradient(ellipse 70% 60% at 90% 95%, rgba(19, 38, 59, .9), transparent 65%), linear-gradient(165deg, #3a0f1c 0%, #5e1327 50%, #1b2a40 100%); }
 [data-theme='giovani'] { --bg-base: radial-gradient(ellipse 80% 70% at 15% 10%, rgba(59, 169, 224, .55), transparent 60%), radial-gradient(ellipse 70% 60% at 90% 95%, rgba(224, 122, 46, .35), transparent 65%), linear-gradient(165deg, #0f2c48 0%, #1a4a74 50%, #13263b 100%); }
 [data-theme='agricoltura'] { --bg-base: radial-gradient(ellipse 80% 70% at 15% 10%, rgba(95, 191, 127, .4), transparent 60%), radial-gradient(ellipse 70% 60% at 90% 95%, rgba(210, 172, 98, .35), transparent 65%), linear-gradient(165deg, #0b3324 0%, #1d6b45 50%, #13263b 100%); }
+[data-theme='lavoro'] { --bg-base: radial-gradient(ellipse 80% 70% at 15% 10%, rgba(224, 122, 46, .5), transparent 60%), radial-gradient(ellipse 70% 60% at 90% 95%, rgba(29, 107, 69, .45), transparent 65%), linear-gradient(165deg, #3d2410 0%, #6b3a17 50%, #13263b 100%); }
 [data-theme='veneto'] { --bg-base: #161d2c; }
 
 /* ---------- Hero ---------- */
@@ -320,18 +322,22 @@ a.ctx-arrow:first-child:hover { transform: translateX(-2px); }
 [data-area='istituzioni'] { --area: var(--area-istituzioni); }
 [data-area='giovani'] { --area: var(--area-giovani); }
 [data-area='agricoltura'] { --area: var(--area-agricoltura); }
+[data-area='lavoro'] { --area: var(--area-lavoro); }
 
-/* ---------- Propuestas (1 arriba al centro, después 3 + 3, como la inspo) ---------- */
-.proposals { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, .75rem + 1.5vw, 2rem); }
-.proposals > li:first-child { grid-column: 2; }
-.proposals > li:nth-child(2) { grid-column-start: 1; }
+/* ---------- Propuestas (1 y 2 arriba al centro, después 3 + 3) ----------
+   Grilla de 6 columnas: cada tarjeta ocupa 2, y las dos primeras se corren una columna para quedar centradas. */
+.proposals { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(1rem, .75rem + 1.5vw, 2rem); }
+.proposals > li { grid-column: span 2; }
+.proposals > li:first-child { grid-column: 2 / span 2; }
+.proposals > li:nth-child(2) { grid-column: 4 / span 2; }
 @media (max-width: 960px) {
   .proposals { grid-template-columns: repeat(2, 1fr); }
-  .proposals > li:first-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - .5rem); }
+  .proposals > li,
+  .proposals > li:first-child,
+  .proposals > li:nth-child(2) { grid-column: auto; }
 }
 @media (max-width: 600px) {
   .proposals { grid-template-columns: 1fr; }
-  .proposals > li:first-child { width: 100%; }
 }
 
 .p-card {

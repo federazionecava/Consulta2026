@@ -27,6 +27,7 @@
   --area-istituzioni: var(--rosso);
   --area-giovani: #2a8fc4;
   --area-agricoltura: var(--verde);
+  --area-lavoro: #e07a2e;
   --font: 'ZT Nature', system-ui, 'Segoe UI', sans-serif;
   --emoji: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   --mx: 18mm;
@@ -34,6 +35,7 @@
 [data-area='istituzioni'] { --area: var(--area-istituzioni); }
 [data-area='giovani'] { --area: var(--area-giovani); }
 [data-area='agricoltura'] { --area: var(--area-agricoltura); }
+[data-area='lavoro'] { --area: var(--area-lavoro); }
 
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; margin: 0; }
