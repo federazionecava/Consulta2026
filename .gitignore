@@ -3,3 +3,6 @@
 
 # Videos en alta: pesan ~115 MB; la web usa las versiones comprimidas de video/
 recursos/videos-originales/
+
+# Web institucional: se arma acá y se mueve a su propio repo (no va en este)
+cava/

@@ -102,7 +102,7 @@ Están en `video/`, uno por página (`landing.mp4` y `<slug-de-la-propuesta>.mp4
 - [x] Dominio configurado en los `.html`: `https://consulta.comitatocava.org`.
 - [x] Publicado en Vercel en `consulta.comitatocava.org`.
 - [x] Vercel publica los commits nuevos (antes el plan gratis bloqueaba los deploys de quien no es miembro del equipo `federazionecava`). Ojo: `git` no está en el PATH de esta compu (se puede usar GitHub Desktop).
-- [ ] Probar el link compartido por WhatsApp una vez publicado (con `?v=2`).
+- [x] Probar el link compartido por WhatsApp una vez publicado: anda.
 - [ ] Probar en un **iPhone y un Android reales**: videos de fondo, menú, mapa (tocar ciudades) y navegación entre propuestas.
 
 **Datos para confirmar con el CAVA**
