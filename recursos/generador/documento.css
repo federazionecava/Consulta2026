@@ -228,33 +228,30 @@ h2.h2 { font-size: 27pt; color: var(--navy); }
 .pp-foot b { display: block; font-weight: 700; color: var(--navy); }
 .pc-link { flex: none; display: inline-flex; gap: 1.5mm; font-size: 8pt; font-weight: 600; color: var(--area); border-bottom: 1px solid currentColor; }
 
-/* ---------- 11. Contraportada: como el footer de la web, con el QR abajo ---------- */
-.back { background: var(--navy-deep); color: rgba(255, 255, 255, .78); }
-.back::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2mm; background: linear-gradient(90deg, #009246 0 33.3%, #f4f5f0 0 66.6%, #ce2b37 0); z-index: 2; }
-.back .dots { height: 112%; left: 50%; top: 50%; transform: translate(-50%, -54%); }
-.back-content { position: absolute; z-index: 1; inset: 38mm var(--mx) 16mm; display: flex; flex-direction: column; }
-.back-logo { width: 34mm; height: auto; filter: brightness(0) invert(1); opacity: .95; margin-bottom: 14mm; }
-.back h2 { font-size: 46pt; line-height: 1; letter-spacing: -0.04em; color: var(--white); max-width: 12ch; }
-.back h2 span { display: block; color: var(--oro); }
-.back-contact { display: grid; gap: 5mm; max-width: 110mm; margin-top: 12mm; }
-.back-contact p { font-size: 13pt; line-height: 1.4; color: rgba(255, 255, 255, .85); }
-.mail { display: flex; align-items: center; justify-content: space-between; gap: 4mm; padding: 3.5mm 3.5mm 3.5mm 6mm; border-radius: 999px; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .16); }
-.mail-text { display: grid; gap: .3mm; color: var(--white); font-weight: 700; font-size: 13pt; }
-.mail-text small { font-size: 8pt; font-weight: 600; color: var(--oro); }
+/* ---------- 11. Contraportada: el mismo esquema de la portada (usa .cover: franja tricolor, encabezado,
+   mapa de puntitos, título y pie); en el lugar del mosaico, el contacto y el QR ---------- */
+.cover-title h2 { font-size: 48pt; line-height: .98; letter-spacing: -0.045em; color: var(--navy); }
+.cover-title h2 span { display: block; color: var(--oro-scuro); } /* dorado liso: el degradé deja un recuadro al imprimir */
+
+.back-contact { position: absolute; z-index: 1; left: var(--mx); width: 112mm; top: 128mm; }
+.mail { display: flex; align-items: center; justify-content: space-between; gap: 4mm; padding: 3.5mm 3.5mm 3.5mm 6mm; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
+.mail-text { display: grid; gap: .3mm; color: var(--navy); font-weight: 700; font-size: 13pt; }
+.mail-text small { font-size: 8pt; font-weight: 600; color: var(--oro-scuro); }
 .mail-arrow { flex: none; display: grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: var(--verde); color: var(--white); font-size: 12pt; font-weight: 700; }
 
-.qr { margin-top: auto; display: grid; grid-template-columns: 42mm 1fr; gap: 8mm; align-items: center; padding: 6mm; border-radius: 7mm; background: var(--crema); color: var(--ink); }
-.qr-code { width: 42mm; height: 42mm; padding: 3mm; border-radius: 3.5mm; background: var(--white); }
+/* Tarjeta del QR: ocupa el lugar del mosaico, con el mismo borde redondeado y el círculo de las tarjetas */
+.qr { position: absolute; z-index: 1; left: var(--mx); right: var(--mx); bottom: 26mm; display: grid; grid-template-columns: 46mm 1fr; gap: 9mm; align-items: center; padding: 7mm; border-radius: 4mm; background: var(--navy); color: var(--white); overflow: hidden; }
+.qr::after { content: ''; position: absolute; right: -14mm; bottom: -14mm; width: 44mm; height: 44mm; border-radius: 50%; background: rgba(255, 255, 255, .06); }
+.qr-code { width: 46mm; height: 46mm; padding: 3mm; border-radius: 3mm; background: var(--white); }
 .qr-code svg { width: 100%; height: 100%; }
-.qr-text { display: grid; gap: 2.5mm; justify-items: start; }
-.qr-text h3 { font-size: 17pt; font-weight: 700; letter-spacing: -0.03em; color: var(--navy); }
-.qr-text p { font-size: 10pt; color: var(--ink-soft); }
-.qr-url { display: inline-flex; align-items: center; gap: 2mm; margin-top: 1mm; padding: 2mm 4mm; border-radius: 999px; background: var(--navy); color: var(--white); font-size: 10pt; font-weight: 700; }
-.back-bottom { display: flex; justify-content: space-between; margin-top: 7mm; padding-top: 4mm; border-top: 1px solid rgba(255, 255, 255, .1); font-size: 8pt; }
+.qr-text { position: relative; z-index: 1; display: grid; gap: 2.5mm; justify-items: start; }
+.qr-text h3 { font-size: 19pt; font-weight: 700; letter-spacing: -0.03em; color: var(--white); }
+.qr-text p { font-size: 10pt; line-height: 1.45; color: rgba(255, 255, 255, .78); }
+.qr-url { display: inline-flex; align-items: center; gap: 2mm; margin-top: 1.5mm; padding: 2mm 4mm; border-radius: 999px; background: var(--crema); color: var(--navy); font-size: 10pt; font-weight: 700; }
 
 /* Dorado en degradé, solo en los dorados grandes: al imprimir, Chrome deja rayitas en los bordes
    del degradado en textos chicos, de varias líneas o en bloques anchos (el "+" de 20+, la cita) */
-.eyebrow, .role-n, .back h2 span {
+.eyebrow, .role-n {
   background: var(--oro-grad); -webkit-background-clip: text; background-clip: text;
   color: transparent; -webkit-text-fill-color: transparent;
 }

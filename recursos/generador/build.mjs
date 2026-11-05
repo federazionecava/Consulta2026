@@ -905,24 +905,29 @@ ${LOCALITA.map(([prov, cs]) => `              <div><dt>${prov}</dt><dd>${cs.map(
     </div>
   </section>
 
-  <section class="page back">${dots}
-    <div class="back-content">
-      <img class="back-logo" src="${D}assets/img/logo-cava.png" alt="CAVA">
-      <h2>Un ponte tra il Veneto <span>e l'Argentina.</span></h2>
-      <div class="back-contact">
-        <p>Per sostenere le proposte o collaborare con il CAVA, scriveteci.</p>
-        <a class="mail" href="${MAIL}"><span class="mail-text"><small>Scrivici</small>federazionecava@gmail.com</span><span class="mail-arrow">→</span></a>
-      </div>
-      <a class="qr" href="${SITE}/">
-        <div class="qr-code">${qr}</div>
-        <div class="qr-text">
-          <h3>Le proposte online</h3>
-          <p>Inquadra il codice con il telefono per aprire il sito, con una pagina per ogni proposta e la mappa della rete.</p>
-          <span class="qr-url">${SITE.replace(/^https?:\/\//, '')} <span>→</span></span>
-        </div>
-      </a>
-      <div class="back-bottom"><span>© 2026 CAVA · Comitato delle Associazioni Venete dell'Argentina</span><span>federazionecava@gmail.com</span></div>
+  <section class="page cover back">${dots}
+    <header class="cover-top">
+      <span>Comitato delle Associazioni Venete dell'Argentina</span>
+      <span>Buenos Aires · 2026</span>
+    </header>
+    <div class="cover-title">
+      <img class="cover-logo" src="${D}assets/img/logo-cava.png" alt="CAVA · Comitato delle Associazioni Venete dell'Argentina">
+      <p class="cover-eyebrow">Proposte per la Consulta dei Veneti nel&nbsp;Mondo</p>
+      <h2>Costruiamolo <span>insieme.</span></h2>
+      <p class="lead">Per sostenere le proposte o collaborare con il CAVA, scriveteci.</p>
     </div>
+    <div class="back-contact">
+      <a class="mail" href="${MAIL}"><span class="mail-text"><small>Scrivici</small>federazionecava@gmail.com</span><span class="mail-arrow">→</span></a>
+    </div>
+    <a class="qr" href="${SITE}/">
+      <div class="qr-code">${qr}</div>
+      <div class="qr-text">
+        <h3>Le proposte online</h3>
+        <p>Inquadra il codice con il telefono per aprire il sito, con una pagina per ogni proposta e la mappa della rete.</p>
+        <span class="qr-url">${SITE.replace(/^https?:\/\//, '')} <span>→</span></span>
+      </div>
+    </a>
+    <p class="cover-foot"><span>© 2026 CAVA · Comitato delle Associazioni Venete dell'Argentina</span><a href="${MAIL}">federazionecava@gmail.com</a></p>
   </section>
 </body>
 </html>
