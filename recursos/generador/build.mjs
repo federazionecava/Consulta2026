@@ -958,6 +958,15 @@ if (browser) {
     `--user-data-dir=${join(tmpdir(), 'cava-pdf')}`, '--virtual-time-budget=5000',
     `--print-to-pdf=${resolve(pdfDir, PDF_FILE)}`, pathToFileURL(resolve(docHtml)).href,
   ], { stdio: 'ignore' });
+  // Chrome deja el PDF sin comprimir del todo (miles de objetos sueltos). Si hay Python con PyMuPDF
+  // (pip install pymupdf) lo recomprime sin perder calidad: ~3 MB → ~1,7 MB. Si no, queda como está.
+  const pdfPath = resolve(pdfDir, PDF_FILE);
+  try {
+    execFileSync('python', ['-c', `import pymupdf,sys,os
+p=sys.argv[1]; t=p+'.tmp'
+pymupdf.open(p).save(t,garbage=4,deflate=True,clean=True,use_objstms=1)
+os.replace(t,p)`, pdfPath], { stdio: 'ignore' });
+  } catch { console.log('(sin PyMuPDF: el PDF queda sin recomprimir)'); }
   console.log('ok documento/' + PDF_FILE);
 } else {
   console.log(`No encontré Chrome ni Edge: abrí ${docHtml}, Imprimir > Guardar como PDF (sin márgenes ni encabezados) y guardalo como documento/${PDF_FILE}`);
